@@ -1,0 +1,17 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://textures/stormdays_dark.jpg" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.2, 0.835294, 1, 1 )
+ambient_light_sky_contribution = 0.0
+glow_intensity = 1.46
+glow_strength = 0.71
+glow_bloom = 0.11
+glow_blend_mode = 0
+
