@@ -4,7 +4,7 @@
 
 *new:*
 
-**Dynamic sky and reflection** two shaders for sky and reflection [video](https://youtu.be/IQ-yw19xBQ8) [live link](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/web/dsr.html) [windows version](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/bin/win.zip)
+**Dynamic sky and reflection** two shaders for sky and reflection [video](https://youtu.be/IQ-yw19xBQ8), [live link](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/web/dsr.html) and [windows version](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/bin/win.zip)
 
 
 *old:*
