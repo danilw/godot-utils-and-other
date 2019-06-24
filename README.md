@@ -23,6 +23,10 @@ To build this project you need build Godot with module **futari-addon** (google 
 
 ### Graphic
 
+**a_rel_bw_game** video
+
+[![a_rel_bw_game](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_yt.jpg)](https://youtu.be/jTmppCifnYE)
+
 **Dynamic sky and reflection**
 
 ![dyn](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/dsr.jpg)
