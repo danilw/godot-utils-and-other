@@ -1,0 +1,223 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://display/gui.gd" type="Script" id=1]
+[ext_resource path="res://font/square.tres" type="DynamicFont" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+uniform vec4 t_color:hint_color;
+
+void fragment(){
+	COLOR=vec4(t_color);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/t_color = Color( 0.0627451, 0.0470588, 0.188235, 0.776471 )
+
+[sub_resource type="ImageTexture" id=3]
+size = Vector2( 500, 600 )
+
+[sub_resource type="StyleBoxLine" id=4]
+color = Color( 1, 1, 1, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=5]
+color = Color( 1, 0, 0, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=6]
+color = Color( 1, 1, 1, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=7]
+color = Color( 1, 0, 0, 1 )
+thickness = 10
+
+[node name="gui" type="Control"]
+pause_mode = 2
+margin_right = 500.0
+margin_bottom = 600.0
+script = ExtResource( 1 )
+
+[node name="bg" type="Sprite" parent="."]
+pause_mode = 2
+material = SubResource( 2 )
+texture = SubResource( 3 )
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+pause_mode = 2
+margin_right = 500.0
+margin_bottom = 600.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+pause_mode = 2
+margin_right = 500.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "Options:"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+pause_mode = 2
+margin_top = 34.0
+margin_right = 500.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+pause_mode = 2
+margin_right = 153.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "FOV (70-100)"
+
+[node name="FOV" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+pause_mode = 2
+margin_left = 157.0
+margin_right = 500.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_styles/slider = SubResource( 4 )
+custom_styles/grabber_area = SubResource( 5 )
+min_value = 70.0
+value = 70.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+pause_mode = 2
+margin_top = 68.0
+margin_right = 500.0
+margin_bottom = 108.0
+
+[node name="PP" type="CheckButton" parent="VBoxContainer/HBoxContainer2"]
+pause_mode = 2
+margin_right = 419.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Turn off post-porcessing"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 112.0
+margin_right = 500.0
+margin_bottom = 152.0
+
+[node name="panorama" type="CheckButton" parent="VBoxContainer/HBoxContainer4"]
+pause_mode = 2
+margin_right = 309.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Disable panorama"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+pause_mode = 2
+margin_top = 156.0
+margin_right = 500.0
+margin_bottom = 196.0
+
+[node name="reflection" type="CheckButton" parent="VBoxContainer/HBoxContainer3"]
+pause_mode = 2
+margin_right = 380.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Disable RT reflections"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 200.0
+margin_right = 500.0
+margin_bottom = 230.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer5"]
+pause_mode = 2
+margin_right = 326.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Refl resolution(32-1024)"
+
+[node name="refl_res" type="HSlider" parent="VBoxContainer/HBoxContainer5"]
+pause_mode = 2
+margin_left = 330.0
+margin_right = 500.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_styles/slider = SubResource( 6 )
+custom_styles/grabber_area = SubResource( 7 )
+min_value = 32.0
+max_value = 1024.0
+value = 128.0
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 234.0
+margin_right = 500.0
+margin_bottom = 264.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer7"]
+pause_mode = 2
+margin_right = 162.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "MSAA (0x-8x)"
+
+[node name="MSAA" type="HSlider" parent="VBoxContainer/HBoxContainer7"]
+pause_mode = 2
+margin_left = 166.0
+margin_right = 500.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_styles/slider = SubResource( 6 )
+custom_styles/grabber_area = SubResource( 7 )
+max_value = 4.0
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="VBoxContainer"]
+pause_mode = 2
+margin_top = 268.0
+margin_right = 500.0
+margin_bottom = 308.0
+
+[node name="less_parts" type="CheckButton" parent="VBoxContainer/HBoxContainer8"]
+pause_mode = 2
+margin_right = 308.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "2x Less particles"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 312.0
+margin_right = 500.0
+margin_bottom = 342.0
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer6"]
+pause_mode = 2
+margin_right = 500.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.984314, 0, 0, 1 )
+text = "Control: use mouse"
+align = 1
+
+[node name="Ok" type="Button" parent="."]
+pause_mode = 2
+margin_left = 189.5
+margin_top = 519.0
+margin_right = 320.5
+margin_bottom = 594.0
+text = "Ok"
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/FOV" to="." method="_on_FOV_value_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer2/PP" to="." method="_on_PP_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer4/panorama" to="." method="_on_panorama_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer3/reflection" to="." method="_on_reflection_toggled"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer5/refl_res" to="." method="_on_refl_res_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer7/MSAA" to="." method="_on_MSAA_value_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer8/less_parts" to="." method="_on_less_parts_toggled"]
+[connection signal="pressed" from="Ok" to="." method="_on_Ok_pressed"]

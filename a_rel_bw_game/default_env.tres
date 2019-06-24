@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://textures/stormdays_dark.jpg" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.168627, 0.211765, 0.282353, 1 )
+ambient_light_energy = 4.0
+ambient_light_sky_contribution = 0.0
+fog_depth_enabled = false
+fog_depth_begin = 3.0
+fog_depth_end = 1.0
+fog_height_max = 2.0
+ss_reflections_max_steps = 128
+ssao_intensity = 48.9
+ssao_light_affect = 0.57
+ssao_ao_channel_affect = 0.6
+glow_intensity = 3.09
+glow_strength = 1.33
+glow_hdr_threshold = 3.0

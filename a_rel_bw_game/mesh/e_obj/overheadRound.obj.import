@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/overheadRound.obj-9b4533cb093f5d34075ce5d2b86c3d2e.mesh"
+
+[deps]
+
+files=[ "res://.import/overheadRound.obj-9b4533cb093f5d34075ce5d2b86c3d2e.mesh" ]
+
+source_file="res://mesh/e_obj/overheadRound.obj"
+dest_files=[ "res://.import/overheadRound.obj-9b4533cb093f5d34075ce5d2b86c3d2e.mesh", "res://.import/overheadRound.obj-9b4533cb093f5d34075ce5d2b86c3d2e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

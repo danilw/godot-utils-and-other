@@ -1,0 +1,41 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="a_rel_bw_game"
+run/main_scene="res://display.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+settings/fps/force_fps=60
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/stretch/mode="2d"
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=8096
+limits/debugger_stdout/max_messages_per_frame=200
+limits/debugger_stdout/max_errors_per_frame=200
+
+[physics]
+
+3d/active_soft_world=false
+3d/default_gravity=0.0

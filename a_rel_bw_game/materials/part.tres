@@ -1,0 +1,18 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://textures/pause_menu/particle.png" type="Texture" id=1]
+
+[resource]
+render_priority = 6
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+params_grow = true
+params_grow_amount = 0.0
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.780392, 0.945098, 1, 1 )
+albedo_texture = ExtResource( 1 )
