@@ -50,6 +50,7 @@ func unfree():
 		hide_it()
 	if((self_obj.translation.z>44)):
 		isalive=true
+		show_colliders_on_rc()
 		hide_it()
 	if((self_obj.translation.z<38)&&(self_obj.translation.z>-1)):
 		show_it()
