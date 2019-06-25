@@ -18,10 +18,7 @@ To build this project you need build Godot with module **futari-addon** (google 
 
 **Godot-particles-collision** *unfinished* particle collision shader for Godot [source repo](https://github.com/danilw/Godot-particles-collision)
 
-## Contact:
-
-[**Join discord server**](https://discord.gg/JKyqWgt)
-
+### Contact: [**Join discord server**](https://discord.gg/JKyqWgt)
 
 
 
