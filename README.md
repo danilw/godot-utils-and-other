@@ -1,6 +1,6 @@
 **update 2019**
 
-gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I can update github repo I will(depends of github rules updates base on U.S. laws)
+gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I can update github repo I will (depends of github rules updates base on U.S. laws)
 
 # godot-utils-and-other
 **what is it** random(mosly some very broken demos, and very unusable utils) code I write using Godot. I do not recoment use this code for learning.
