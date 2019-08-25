@@ -13,6 +13,7 @@ To build this project you need build Godot with module **futari-addon** (google 
 
 **Dynamic sky and reflection** two shaders for sky and reflection [video](https://youtu.be/IQ-yw19xBQ8), [live link](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/web/dsr.html) and [windows version](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/bin/win.zip)
 
+**Environment bug**(on first load): Godot has bug with removing *Default Environment* after re-import Assets(project is work if launch, it does not work only in Godot editor), set Project->Projet Setting->Rendering->Environment->Default Environment select file *default_env.tres*
 
 *old:*
 
