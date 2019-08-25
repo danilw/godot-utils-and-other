@@ -15,6 +15,8 @@ func set_visible_obj(idx):
 	global_v.get_node("full_refl").get_child(idx).visible=false
 
 func _ready():
+	for a in global_v.get_node("viewports").get_child_count():
+		global_v.get_node("viewports").get_child(a).get_child(0).environment=load("res://default_env.tres") as Environment
 	pass
 
 func _process(delta):

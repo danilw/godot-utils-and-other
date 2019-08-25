@@ -47,6 +47,7 @@ onready var sky_b=get_tree().get_root().get_node("scene/Sky")
 
 func _ready():
 	var iChannel=sky_b.get_viewport().get_texture()
+	self.environment=load("res://default_env.tres") as Environment
 	self.environment.background_sky.set_panorama(iChannel)
 	if privot:
 		privot = get_node(privot)
