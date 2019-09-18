@@ -33,6 +33,11 @@ To build this project you need build Godot with module **futari-addon** (google 
 
 ### Graphic
 
+**e-ani** video 
+
+[![e-ani](https://danilw.github.io/godot-utils-and-other/yt_e-ani.png)](https://youtu.be/0jKyTBFrpjU)
+
+
 **a_rel_bw_game** video
 
 [![a_rel_bw_game](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_yt.jpg)](https://youtu.be/jTmppCifnYE)
