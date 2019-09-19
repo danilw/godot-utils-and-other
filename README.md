@@ -8,7 +8,7 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 
 *new:*
 
-**e-ani** lino to repo with source code https://gitlab.com/danilw/e-ani playable version download from https://danilw.itch.io/e-ani
+**e-ani** link to repo with source code https://gitlab.com/danilw/e-ani playable version download from https://danilw.itch.io/e-ani
 
 **a_rel_bw_game** *Warning: code very bad!* || Using lots of particles in Godot, in small demo-game.
 To build this project you need build Godot with module **futari-addon** (google it(gitlab) ot use this [link](https://gitlab.com/polymorphcool/futari-addon) ) *Binary versions*: [win64](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_win64.zip) [linux64](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_lin64.zip) [live/web](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/web/afg.html)(work only in Firefox [reason](https://github.com/godotengine/godot/issues/28573)) (native builds have Mipmap On, web build off)
