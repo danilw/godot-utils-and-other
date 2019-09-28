@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://CPU_phys.gd" type="Script" id=1]
+
+[node name="scene" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.615686, 0.615686, 0.615686, 1 )
+text = "Control: Zoom - mouse left/right, or keyboard +-
+
+Left click on shape to add mass, right to reduce mass. 
+(only on black and red)
+
+# colors
+# black static object with gravity
+# red movable object with gravity, and do not react on other gravity
+# blue moving object without gravity
+# green moving object without gravity and collision
+
+this scene display "
+
+[node name="CPU_phys" type="Node2D" parent="."]
+script = ExtResource( 1 )
