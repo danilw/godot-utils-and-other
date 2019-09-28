@@ -20,7 +20,8 @@ var mouse_block=false
 func _ready():
 	# preload
 	elem=preload("res://CPU_object.tscn")
-	self.position=get_viewport().size/2
+	var iResolution=Vector2(1280,720)
+	self.position=iResolution/2
 	
 	# static gravity objects
 	spawn_1()
