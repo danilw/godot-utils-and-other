@@ -12,8 +12,8 @@ var static_orb_radius=Array()
 # when GDScript can not more then 100
 var static_size=6
 var dyn_grav_size=10*1
-var dyn_size=10*4
-var dyn_nograv_size=10*1
+var dyn_size=10*6
+var dyn_nograv_size=10*2
 
 var mouse_block=false
 

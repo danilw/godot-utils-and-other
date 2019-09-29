@@ -23,6 +23,9 @@ export var start_heading=Vector2()
 var is_active=true # if false this object ignored
 var heading=Vector2() #velocity
 
+onready var root_node=get_node("../")
+var node_list=Array()
+
 # colors
 # black static object with gravity
 # red movable object with gravity, and do not react on other gravity
@@ -45,6 +48,10 @@ func _ready():
 	if(radius==0)||(mass==0):
 		is_active=false
 		self.visible=false
+	
+	for a in range(get_node("../").get_child_count()):
+		var el=get_node("../").get_child(a)
+		node_list.append(el)
 	
 	var self_color=Color()
 	self.material=self.material.duplicate()
@@ -74,7 +81,7 @@ func _process(delta):
 func update_text():
 	self.material.set("shader_param/len",str(mass).length())
 	self.material.set("shader_param/value",int(mass))
-	self.material.set("shader_param/zoom_val",get_node("../").scale.x)
+	self.material.set("shader_param/zoom_val",root_node.scale.x)
 
 # mass change by mouse
 func process_input():
@@ -83,8 +90,8 @@ func process_input():
 	var iResolution=Vector2(1280,720)
 	var iMouse=get_viewport().get_mouse_position()/iResolution
 	iMouse=(iMouse-Vector2(0.5,0.5))*iResolution
-	if((self.position*get_node("../").scale-iMouse).length()<(radius/2)*get_node("../").scale.x):
-		get_node("../").mouse_block=true
+	if((self.position*root_node.scale-iMouse).length()<(radius/2)*root_node.scale.x):
+		root_node.mouse_block=true
 		if(Input.is_action_pressed("l_click")):
 			mass+=int(250+20000*smoothstep(5000,500000,mass))
 		if(Input.is_action_pressed("r_click")):
@@ -176,8 +183,8 @@ func sumVector():
 	if(is_static):
 		return
 	var final=heading
-	for a in range(get_node("../").get_child_count()):
-		var el=get_node("../").get_child(a)
+	for a in range(node_list.size()):
+		var el=node_list[a]
 		if(el==self)||(!el.is_active):
 			continue
 		if(!is_static)&&(react_gravity)&&(el.self_gravity):
