@@ -1,0 +1,482 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://scripts/scene.gd" type="Script" id=1]
+[ext_resource path="res://shaders/2dGI.shader" type="Shader" id=2]
+[ext_resource path="res://shaders/2dGI_rtx.shader" type="Shader" id=3]
+[ext_resource path="res://scripts/iChannels.gd" type="Script" id=4]
+[ext_resource path="res://scripts/fb_self.gd" type="Script" id=5]
+[ext_resource path="res://shaders/bg.shader" type="Shader" id=6]
+[ext_resource path="res://textures/grid.png" type="Texture" id=7]
+[ext_resource path="res://scripts/menu.gd" type="Script" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/iTime = 0.0
+shader_param/iFrame = 0
+shader_param/iFrame1 = null
+
+[sub_resource type="ImageTexture" id=2]
+size = Vector2( 1280, 720 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/iTime = 0.0
+shader_param/iFrame = 0
+
+[sub_resource type="ImageTexture" id=4]
+size = Vector2( 640, 360 )
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Viewport2")
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Viewport2")
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/iTime = 0.0
+shader_param/iFrame = 0
+shader_param/l_res = Vector2( 1280, 720 )
+shader_param/render = false
+shader_param/render2 = null
+shader_param/render3 = false
+shader_param/iChannel0 = ExtResource( 7 )
+shader_param/iChannel2 = SubResource( 6 )
+shader_param/iChannel3 = SubResource( 7 )
+
+[sub_resource type="ImageTexture" id=9]
+size = Vector2( 1280, 720 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 0.411765 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.0588235, 0.317647, 0.145098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.0666667, 0.32549, 0.0901961, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.0352941, 0.215686, 0.0784314, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.278431, 0.278431, 0.278431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.0784314, 0.211765, 0.0666667, 1 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.137255, 0.372549, 0.0588235, 1 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.776471, 0.12549, 0.12549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.0588235, 0.137255, 0.482353, 0.690196 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.6, 0.231373, 0.231373, 0.760784 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.223529, 0.521569, 0.211765, 1 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.141176, 0.14902, 0.207843, 0.603922 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.211765, 0.235294, 0.521569, 1 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.141176, 0.14902, 0.207843, 0.603922 )
+
+[node name="scene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1280, 720 )
+disable_3d = true
+render_target_clear_mode = 1
+render_target_update_mode = 0
+
+[node name="Sprite" type="Sprite" parent="Viewport"]
+material = SubResource( 1 )
+texture = SubResource( 2 )
+centered = false
+
+[node name="Viewport2" type="Viewport" parent="."]
+size = Vector2( 640, 360 )
+disable_3d = true
+render_target_update_mode = 0
+
+[node name="Sprite" type="Sprite" parent="Viewport2"]
+material = SubResource( 3 )
+texture = SubResource( 4 )
+centered = false
+script = ExtResource( 4 )
+
+[node name="Viewport3" type="Viewport" parent="."]
+size = Vector2( 640, 360 )
+disable_3d = true
+render_target_update_mode = 0
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Viewport3"]
+texture = SubResource( 5 )
+centered = false
+
+[node name="bg" type="Sprite" parent="."]
+material = SubResource( 8 )
+texture = SubResource( 9 )
+centered = false
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="menu" type="GridContainer" parent="Control"]
+margin_right = 1280.0
+margin_bottom = 720.0
+columns = 6
+script = ExtResource( 8 )
+
+[node name="Control" type="Control" parent="Control/menu"]
+margin_right = 210.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control4" type="Control" parent="Control/menu"]
+margin_left = 214.0
+margin_right = 424.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="Control/menu"]
+margin_left = 428.0
+margin_right = 638.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="Control/menu"]
+margin_left = 642.0
+margin_right = 852.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control5" type="Control" parent="Control/menu"]
+margin_left = 856.0
+margin_right = 1066.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="vc" type="VBoxContainer" parent="Control/menu"]
+margin_left = 1070.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="t" type="Label" parent="Control/menu/vc"]
+margin_right = 210.0
+margin_bottom = 14.0
+custom_styles/normal = SubResource( 10 )
+text = "Text"
+align = 1
+
+[node name="at" type="Button" parent="Control/menu/vc"]
+margin_top = 18.0
+margin_right = 210.0
+margin_bottom = 38.0
+text = "Add text"
+
+[node name="s" type="Label" parent="Control/menu/vc"]
+margin_top = 42.0
+margin_right = 210.0
+margin_bottom = 56.0
+custom_styles/normal = SubResource( 10 )
+text = "Shapes"
+align = 1
+
+[node name="al" type="Button" parent="Control/menu/vc"]
+margin_top = 60.0
+margin_right = 210.0
+margin_bottom = 80.0
+text = "Add line"
+
+[node name="al2" type="Button" parent="Control/menu/vc"]
+margin_top = 84.0
+margin_right = 210.0
+margin_bottom = 104.0
+text = "Add circle"
+
+[node name="al3" type="Button" parent="Control/menu/vc"]
+margin_top = 108.0
+margin_right = 210.0
+margin_bottom = 128.0
+text = "Add box"
+
+[node name="al4" type="Button" parent="Control/menu/vc"]
+margin_top = 132.0
+margin_right = 210.0
+margin_bottom = 152.0
+text = "Add triangle"
+
+[node name="se" type="Label" parent="Control/menu/vc"]
+margin_top = 156.0
+margin_right = 210.0
+margin_bottom = 170.0
+custom_styles/normal = SubResource( 10 )
+text = "Background image"
+align = 1
+
+[node name="sehb" type="HBoxContainer" parent="Control/menu/vc"]
+margin_top = 174.0
+margin_right = 210.0
+margin_bottom = 194.0
+
+[node name="bgib" type="Button" parent="Control/menu/vc/sehb"]
+margin_right = 103.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Select"
+
+[node name="bgib2" type="Button" parent="Control/menu/vc/sehb"]
+margin_left = 107.0
+margin_right = 210.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Clean"
+
+[node name="o" type="Label" parent="Control/menu/vc"]
+margin_top = 198.0
+margin_right = 210.0
+margin_bottom = 212.0
+custom_styles/normal = SubResource( 10 )
+text = "Out image resolution"
+align = 1
+
+[node name="opx" type="OptionButton" parent="Control/menu/vc"]
+margin_top = 216.0
+margin_right = 210.0
+margin_bottom = 236.0
+text = "1280x720"
+items = [ "1280x720", null, false, 0, null, "1920x1080", null, false, 1, null, "3840x2160", null, false, 2, null ]
+selected = 0
+
+[node name="hb" type="HBoxContainer" parent="Control/menu/vc"]
+editor/display_folded = true
+margin_top = 240.0
+margin_right = 210.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+
+[node name="o2" type="Label" parent="Control/menu/vc/hb"]
+visible = false
+margin_right = 80.0
+margin_bottom = 14.0
+custom_styles/normal = SubResource( 10 )
+text = "width/height"
+align = 1
+
+[node name="x" type="LineEdit" parent="Control/menu/vc/hb"]
+visible = false
+margin_right = 58.0
+margin_bottom = 24.0
+text = "1280"
+max_length = 4
+editable = false
+
+[node name="y" type="LineEdit" parent="Control/menu/vc/hb"]
+visible = false
+margin_right = 58.0
+margin_bottom = 24.0
+text = "720"
+max_length = 4
+editable = false
+
+[node name="io" type="Label" parent="Control/menu/vc"]
+margin_top = 244.0
+margin_right = 210.0
+margin_bottom = 258.0
+custom_styles/normal = SubResource( 10 )
+text = "Real time render"
+align = 1
+
+[node name="rtx" type="CheckBox" parent="Control/menu/vc"]
+margin_top = 262.0
+margin_right = 210.0
+margin_bottom = 278.0
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/hover_pressed = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "Real time render(low cost)"
+
+[node name="io2" type="Label" parent="Control/menu/vc"]
+margin_top = 282.0
+margin_right = 210.0
+margin_bottom = 296.0
+custom_styles/normal = SubResource( 10 )
+text = "----------------"
+align = 1
+
+[node name="re" type="Button" parent="Control/menu/vc"]
+margin_top = 300.0
+margin_right = 210.0
+margin_bottom = 314.0
+custom_styles/normal = SubResource( 17 )
+text = "Render"
+
+[node name="hp" type="Button" parent="Control/menu/vc"]
+margin_top = 318.0
+margin_right = 210.0
+margin_bottom = 338.0
+text = "Help"
+
+[node name="hs" type="Button" parent="Control/menu/vc"]
+margin_top = 342.0
+margin_right = 210.0
+margin_bottom = 356.0
+custom_styles/normal = SubResource( 18 )
+text = "Hide/show buttons"
+
+[node name="imgl" type="FileDialog" parent="Control"]
+margin_left = 286.981
+margin_top = 168.368
+margin_right = 983.981
+margin_bottom = 548.368
+popup_exclusive = true
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.jpg", "*.png", "*.jpeg" )
+current_dir = "/home/danil/Godot_projects/my/menu_2DGI_render"
+current_path = "/home/danil/Godot_projects/my/menu_2DGI_render/"
+
+[node name="info" type="AcceptDialog" parent="Control"]
+margin_left = 231.579
+margin_top = 108.421
+margin_right = 1011.58
+margin_bottom = 463.421
+popup_exclusive = true
+window_title = "Info"
+dialog_text = "Example: 
+check Real time render to see result in real time
+
+press Add text
+White Cross icon to move element (by mouse)
+Edit is text to render
+Checkbox is to render with glow (color*2)
+Second edit is Angle (deg)
+Drop menu is size
+Color is text color (can be >1)
+Red button to delete
+
+press Add box
+White Cross icon to move element (by mouse)
+Edit is box size (pixels)
+Checkbox is to render with glow (color*2)
+Second edit rotation angle(deg)
+Color is box color (can be >1)
+Red button to delete
+(other shapes are similar to this)
+
+then press Render, it create images at this *.exe location, folder \"out_img\". Old files will be overwritten.
+to have more options just edit source: https://github.com/danilw/godot-utils-and-other
+**render with Glow(checkbox) mean render 2 frames(2image) with glow, and without(normal color).
+***backgound image simply added as +color
+****to have different glow color-render one-by-one frames with color you want and save. (have glow color select is overkill for this)
+
+
+https://twitter.com/arugl"
+
+[node name="warn" type="ConfirmationDialog" parent="Control"]
+margin_left = 505.0
+margin_top = 300.0
+margin_right = 705.0
+margin_bottom = 370.0
+popup_exclusive = true
+dialog_text = "Warning! Render very slow! 
+
+it MAY or WILL ruin your OS(GPU driver) or user session!
+
+Save everything outside to have not lost any data!
+
+Press Cancel to not render."
+
+[node name="pct" type="Control" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/pct"]
+margin_left = 189.0
+margin_top = 397.0
+margin_right = 313.0
+margin_bottom = 411.0
+custom_styles/normal = SubResource( 19 )
+text = "Progress: Frame - 1"
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/pct"]
+margin_left = 191.36
+margin_top = 337.504
+margin_right = 1089.36
+margin_bottom = 387.504
+custom_styles/fg = SubResource( 20 )
+custom_styles/bg = SubResource( 21 )
+
+[node name="ProgressBar2" type="ProgressBar" parent="Control/pct"]
+margin_left = 332.0
+margin_top = 392.0
+margin_right = 1090.0
+margin_bottom = 416.0
+custom_styles/fg = SubResource( 22 )
+custom_styles/bg = SubResource( 23 )
+
+[node name="maxe" type="AcceptDialog" parent="Control"]
+margin_left = 527.028
+margin_top = 304.015
+margin_right = 712.028
+margin_bottom = 362.015
+popup_exclusive = true
+dialog_text = "Max 5 elems of each type!
+
+(edit source(const max_elems) if you need more)"
+
+[node name="serr" type="AcceptDialog" parent="Control"]
+margin_left = 527.028
+margin_top = 304.015
+margin_right = 712.028
+margin_bottom = 362.015
+popup_exclusive = true
+dialog_text = "Error on save image file: "
+
+[node name="elems" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+[connection signal="pressed" from="Control/menu/vc/at" to="Control/menu" method="_on_at_pressed"]
+[connection signal="pressed" from="Control/menu/vc/al" to="Control/menu" method="_on_al_pressed"]
+[connection signal="pressed" from="Control/menu/vc/al2" to="Control/menu" method="_on_al2_pressed"]
+[connection signal="pressed" from="Control/menu/vc/al3" to="Control/menu" method="_on_al3_pressed"]
+[connection signal="pressed" from="Control/menu/vc/al4" to="Control/menu" method="_on_al4_pressed"]
+[connection signal="pressed" from="Control/menu/vc/sehb/bgib" to="Control/menu" method="_on_bgib_pressed"]
+[connection signal="pressed" from="Control/menu/vc/sehb/bgib2" to="Control/menu" method="_on_bgib2_pressed"]
+[connection signal="item_selected" from="Control/menu/vc/opx" to="Control/menu" method="_on_opx_item_selected"]
+[connection signal="text_changed" from="Control/menu/vc/hb/x" to="Control/menu" method="_on_x_text_changed"]
+[connection signal="text_changed" from="Control/menu/vc/hb/y" to="Control/menu" method="_on_y_text_changed"]
+[connection signal="toggled" from="Control/menu/vc/rtx" to="Control/menu" method="_on_rtx_toggled"]
+[connection signal="pressed" from="Control/menu/vc/re" to="Control/menu" method="_on_re_pressed"]
+[connection signal="pressed" from="Control/menu/vc/hp" to="Control/menu" method="_on_hp_pressed"]
+[connection signal="pressed" from="Control/menu/vc/hs" to="Control/menu" method="_on_hs_pressed"]
