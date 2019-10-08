@@ -52,6 +52,10 @@ ___
 
 ### Graphic
 
+**Menu_2DGI** video(click)
+
+[![Menu_2DGI](https://danilw.github.io/godot-utils-and-other/menu_2DGI/2dgi_yt.jpg)](https://youtu.be/HTuG5UOMC74)
+
 **e-ani** video 
 
 [![e-ani](https://danilw.github.io/godot-utils-and-other/yt_e-ani.png)](https://youtu.be/0jKyTBFrpjU)
