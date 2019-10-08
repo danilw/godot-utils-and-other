@@ -10,7 +10,7 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 ___
 
 **Menu_2DGI** rendering static textures and use them as menu textures, include render and examples.
-To edit *max number of shapes* (is 5) edit `const max_elems` in scene.gd, and `int max_elems` in 2dGI.shader.
+To edit *max number of shapes* (is 5) edit `const max_elems` in scene.gd, and `int max_elems` in 2dGI.shader. (used default Godot 3.1.1)
 
 How to use [watch video](https://youtu.be/HTuG5UOMC74).
 
