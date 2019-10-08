@@ -14,7 +14,7 @@ To edit *max number of shapes* (is 5) edit `const max_elems` in scene.gd, and `i
 
 How to use [watch video](https://youtu.be/HTuG5UOMC74).
 
-**Web version**, live **Examples**: [Smooth color](https://danilw.github.io/godot-utils-and-other/menu_2DGI/example_3/web/example_3.html) example. *Minimal* examples [1](https://danilw.github.io/godot-utils-and-other/menu_2DGI/example_1/web/example_1.html) [2](https://danilw.github.io/godot-utils-and-other/menu_2DGI/example_2/web/example_2_text.html).
+**Web version**, live **Examples**: [Smooth color](https://danilw.github.io/godot-utils-and-other/menu_2DGI/example_3/web/example_3.html) example. *Minimal* examples [1](https://danilw.github.io/godot-utils-and-other/menu_2DGI/example_1/web/example_1_minimal.html) [2](https://danilw.github.io/godot-utils-and-other/menu_2DGI/example_2/web/example_2_text.html).
 
 Download *bin*:**Render** for [Windows](https://danilw.github.io/godot-utils-and-other/menu_2DGI/editor/menu_2D_GI_editor_win.zip) or [Linux](https://danilw.github.io/godot-utils-and-other/menu_2DGI/editor/menu_2D_GI_editor_linux.zip). **Examples** example [1](https://danilw.github.io/godot-utils-and-other/menu_2DGI/menu2DGI_examples_bin/menu2DGI_example_1.zip), [2](https://danilw.github.io/godot-utils-and-other/menu_2DGI/menu2DGI_examples_bin/menu2DGI_example_2.zip), [3](https://danilw.github.io/godot-utils-and-other/menu_2DGI/menu2DGI_examples_bin/menu2DGI_example_3.zip)
 ___
