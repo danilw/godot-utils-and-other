@@ -7,8 +7,8 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 
 
 *new:*
-
 ___
+
 **Menu_2DGI** rendering static textures and use them as menu textures, include render and examples.
 To edit *max number of shapes* (is 5) edit `const max_elems` in scene.gd, and `int max_elems` in 2dGI.shader.
 
@@ -20,13 +20,17 @@ Web version, live **Examples**: [Smooth color](https://danilw.github.io/godot-ut
 ___
 
 **e-ani** link to repo with source code https://gitlab.com/danilw/e-ani playable version download from https://danilw.itch.io/e-ani
+___
 
 **a_rel_bw_game** *Warning: code very bad!* || Using lots of particles in Godot, in small demo-game.
 To build this project you need build Godot with module **futari-addon** (google it(gitlab) ot use this [link](https://gitlab.com/polymorphcool/futari-addon) ) *Binary versions*: [win64](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_win64.zip) [linux64](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_lin64.zip) [live/web](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/web/afg.html)(work only in Firefox [reason](https://github.com/godotengine/godot/issues/28573)) (native builds have Mipmap On, web build off)
+___
 
 **Dynamic sky and reflection** two shaders for sky and reflection [video](https://youtu.be/IQ-yw19xBQ8), [live link](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/web/dsr.html) and [windows version](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/bin/win.zip)
+___
 
 **Environment bug**(on first load): Godot has bug with removing *Default Environment* after re-import Assets(project is work if launch, it does not work only in Godot editor), set Project->Projet Setting->Rendering->Environment->Default Environment select file *default_env.tres*
+___
 
 *new small:*
 
