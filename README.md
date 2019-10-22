@@ -19,7 +19,7 @@ How to use [watch video](https://youtu.be/HTuG5UOMC74).
 Download *bin*:**Render** for [Windows](https://danilw.github.io/godot-utils-and-other/menu_2DGI/editor/menu_2D_GI_editor_win.zip) or [Linux](https://danilw.github.io/godot-utils-and-other/menu_2DGI/editor/menu_2D_GI_editor_linux.zip). **Examples** example [1](https://danilw.github.io/godot-utils-and-other/menu_2DGI/menu2DGI_examples_bin/menu2DGI_example_1.zip), [2](https://danilw.github.io/godot-utils-and-other/menu_2DGI/menu2DGI_examples_bin/menu2DGI_example_2.zip), [3](https://danilw.github.io/godot-utils-and-other/menu_2DGI/menu2DGI_examples_bin/menu2DGI_example_3.zip)
 ___
 
-**e-ani** link to repo with source code https://gitlab.com/danilw/e-ani playable version download from https://danilw.itch.io/e-ani
+**e-ani** link to repo with source code https://github.com/danilw/e-ani playable version download from https://danilw.itch.io/e-ani
 ___
 
 **a_rel_bw_game** *Warning: code very bad!* || Using lots of particles in Godot, in small demo-game.
