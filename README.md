@@ -9,7 +9,7 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 *new:*
 ___
 
-**particle_self_collision** *source code in few weeks latter* || very simple GPU collision for thousands **Indexed**-*particles*, each particle with own index and other unique data, on GLES3/WebGL2, using Godot. [live(web) demo link](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/web_demo/mini_example.html) , or download for [Win64(exe)](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/particles_collision_win.zip)
+**particle_self_collision** *source code in few weeks latter* || very simple GPU collision for thousands **Indexed**-*particles*, each particle with own index and other unique data, on GLES3/WebGL2, using Godot. [**live(web) demo link**](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/web_demo/mini_example.html) , or download for [Win64(exe)](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/particles_collision_win.zip)
 
 **Edit**: *Angle* does not allow use `sampler2D` in transform feedback, so I change it, [old version not-Angle](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/web_demo_not_angle/mini_example.html) with `sampler2D` in transfrom feedback(does not work in Angle)
 
