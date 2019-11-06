@@ -11,7 +11,7 @@ ___
 
 **flat-maze** demo base on particle collision, that show more complex collisions. link to repo https://github.com/danilw/flat-maze playable web version **https://danilw.itch.io/flat-maze-web**
 
-video [youtube link](https://youtu.be/HawWnuMn1mc)
+Video [youtube link](https://youtu.be/HawWnuMn1mc)
 ___
 
 **particle_self_collision** very simple GPU collision for thousands **Indexed**-*particles*, each particle with own index and other unique data, on GLES3/WebGL2, using Godot. [**live(web) demo link**](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/web_demo/mini_example.html) , or download for [Win64(exe)](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/particles_collision_win.zip)
