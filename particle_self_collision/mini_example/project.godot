@@ -1,0 +1,47 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="mini_example"
+run/main_scene="res://scene.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+settings/fps/force_fps=60
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[rendering]
+
+vram_compression/import_s3tc=false
+vram_compression/import_etc2=false
+quality/shadows/filter_mode=0
+quality/shading/force_vertex_shading=true
+quality/shading/force_vertex_shading.mobile=false
+quality/shading/force_lambert_over_burley=true
+quality/shading/force_lambert_over_burley.mobile=false
+quality/shading/force_blinn_over_ggx=true
+quality/shading/force_blinn_over_ggx.mobile=false
+quality/depth_prepass/enable=false
+quality/filters/use_nearest_mipmap_filter=true
+environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false
