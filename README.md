@@ -9,7 +9,7 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 *new:*
 ___
 
-**flat-maze** demo base on particle collision, that show more complex collisions. link to repo https://github.com/danilw/flat-maze playable web version https://danilw.itch.io/flat-maze-web
+**flat-maze** demo base on particle collision, that show more complex collisions. link to repo https://github.com/danilw/flat-maze playable web version **https://danilw.itch.io/flat-maze-web**
 
 video [youtube link](https://youtu.be/HawWnuMn1mc)
 ___
