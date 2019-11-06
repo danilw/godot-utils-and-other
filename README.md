@@ -16,6 +16,8 @@ ___
 
 **particle_self_collision** very simple GPU collision for thousands **Indexed**-*particles*, each particle with own index and other unique data, on GLES3/WebGL2, using Godot. [**live(web) demo link**](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/web_demo/mini_example.html) , or download for [Win64(exe)](https://danilw.github.io/godot-utils-and-other/particle_self_collision/minimal_example/particles_collision_win.zip)
 
+this is GLSL-only logic, example on shadertoy https://www.shadertoy.com/view/tstSz7
+
 Video [youtube link](https://youtu.be/fRu9PA4XHPQ)
 ___
 
