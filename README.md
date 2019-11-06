@@ -19,6 +19,8 @@ ___
 this is GLSL-only logic, example on shadertoy https://www.shadertoy.com/view/tstSz7
 
 Video [youtube link](https://youtu.be/fRu9PA4XHPQ)
+
+**Building:** you need rebuild Godot with enabled `GL_RGBA32F` suport, read this page [**there building howto**](https://github.com/danilw/flat-maze)
 ___
 
 **Menu_2DGI** rendering static textures and use them as menu textures, include render and examples.
