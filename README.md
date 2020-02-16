@@ -19,7 +19,7 @@ ___
 
 **Portals** they are *bad*, they exist only for this demo-scene. Portals rendered with *huge-overhead* because Light Cull Mask [not implemented](https://github.com/godotengine/godot/issues/19438) in Godot 3.x versions.
 
-*Credit*: I have use external resources, [list of used 3d models](https://github.com/danilw/godot-utils-and-other/blob/master/portals_panorama/resources/using_external_resources_LINKS.md), and original shader-source linked in each *\*.shader* file.
+*Used external resources*: I have use external resources, [list of used 3d models](https://github.com/danilw/godot-utils-and-other/blob/master/portals_panorama/resources/using_external_resources_LINKS.md), and original shader-source linked in each *\*.shader* file.
 
 *Licence* of shaders License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 ___
