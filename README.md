@@ -11,9 +11,9 @@ ___
 
 **portals_panorama** GLES2 scene with six very simple **procedural panorama** for godot. Shader source code in [panorama/shaders](https://github.com/danilw/godot-utils-and-other/tree/master/portals_panorama/panorama/shaders) folder.
 
-*Live links* [web build](), [Win64](), [Linux64]()
+*links* **[Live web build](https://danilw.github.io/godot-utils-and-other/portal_panorama/web/portals_panorama.html)**, [Win64](https://danilw.github.io/godot-utils-and-other/portal_panorama/portal_panorama_win.zip), [Linux64](https://danilw.github.io/godot-utils-and-other/portal_panorama/portal_panorama_linux.zip)
 
-*support* Godot 3.1, Godot 3.2, GLES2 or GLES3. Used official Godot build, nothing else.
+*Support*: Godot 3.1, Godot 3.2, GLES2 or GLES3. Used official Godot build, nothing else.
 
 **How yo use** in your project: create MeshInstance, mesh Sphere, in mesh check *flip faces*, create shader material, in shader code copy-paste any of *\*.shader* code form this project. (for advanced use look this project source)
 
