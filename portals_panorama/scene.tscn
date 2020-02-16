@@ -80,13 +80,13 @@ extents = Vector3( 1, 10, 5 )
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 1.5, 10, 1 )
 
-[sub_resource type="BoxShape" id=68]
+[sub_resource type="BoxShape" id=13]
 extents = Vector3( 9.21181, 12.9581, 6.85097 )
 
-[sub_resource type="BoxShape" id=69]
+[sub_resource type="BoxShape" id=14]
 extents = Vector3( 11.22, 12.9581, 11.2771 )
 
-[sub_resource type="Shader" id=13]
+[sub_resource type="Shader" id=15]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform sampler2D fbo_texture;
@@ -98,29 +98,29 @@ void fragment() {
 	ALBEDO = texture(fbo_texture, SCREEN_UV).rgb;
 	if(is_opt){
 		float d=smoothstep(-0.45+timer,0.+timer,length(UV-0.5));
-		float spread = texture(iChannel0, SCREEN_UV).r;
+		float spread = texture(iChannel0, UV).r;
 		vec3 iscr=texture(SCREEN_TEXTURE,SCREEN_UV).rgb;
 		ALBEDO = mix(ALBEDO, iscr, smoothstep(spread, 1.0, pow(d, 2.0)));
 	}
 }"
 
-[sub_resource type="ViewportTexture" id=14]
+[sub_resource type="ViewportTexture" id=16]
 viewport_path = NodePath("p1")
 
-[sub_resource type="ShaderMaterial" id=15]
+[sub_resource type="ShaderMaterial" id=17]
 resource_local_to_scene = true
 render_priority = 15
-shader = SubResource( 13 )
+shader = SubResource( 15 )
 shader_param/is_opt = null
 shader_param/timer = null
-shader_param/fbo_texture = SubResource( 14 )
+shader_param/fbo_texture = SubResource( 16 )
 shader_param/iChannel0 = ExtResource( 26 )
 
-[sub_resource type="PlaneMesh" id=16]
+[sub_resource type="PlaneMesh" id=18]
 resource_local_to_scene = true
 size = Vector2( 3.5, 5 )
 
-[sub_resource type="Shader" id=17]
+[sub_resource type="Shader" id=19]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_never,cull_back,diffuse_burley,specular_schlick_ggx,depth_test_disable,unshaded;
 
@@ -132,12 +132,12 @@ void fragment() {
 	ALBEDO = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 }"
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id=20]
 resource_local_to_scene = true
 render_priority = 10
-shader = SubResource( 17 )
+shader = SubResource( 19 )
 
-[sub_resource type="CylinderMesh" id=19]
+[sub_resource type="CylinderMesh" id=21]
 resource_local_to_scene = true
 top_radius = 11.5
 bottom_radius = 11.5
@@ -145,7 +145,7 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="Shader" id=20]
+[sub_resource type="Shader" id=22]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_never,cull_back,diffuse_burley,specular_schlick_ggx,depth_test_disable,unshaded;
 uniform sampler2D fbo_texture;
@@ -155,16 +155,16 @@ void fragment() {
 	ALPHA=1.;
 }"
 
-[sub_resource type="ViewportTexture" id=21]
+[sub_resource type="ViewportTexture" id=23]
 viewport_path = NodePath("p1")
 
-[sub_resource type="ShaderMaterial" id=22]
+[sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
 render_priority = 5
-shader = SubResource( 20 )
-shader_param/fbo_texture = SubResource( 21 )
+shader = SubResource( 22 )
+shader_param/fbo_texture = SubResource( 23 )
 
-[sub_resource type="CylinderMesh" id=23]
+[sub_resource type="CylinderMesh" id=25]
 resource_local_to_scene = true
 flip_faces = true
 top_radius = 11.5
@@ -173,34 +173,34 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="BoxShape" id=24]
+[sub_resource type="BoxShape" id=26]
 extents = Vector3( 5, 10, 0.1 )
 
-[sub_resource type="BoxShape" id=25]
+[sub_resource type="BoxShape" id=27]
 extents = Vector3( 1.2, 10, 0.1 )
 
-[sub_resource type="ViewportTexture" id=26]
+[sub_resource type="ViewportTexture" id=28]
 viewport_path = NodePath("p2")
-
-[sub_resource type="ShaderMaterial" id=27]
-resource_local_to_scene = true
-render_priority = 15
-shader = SubResource( 13 )
-shader_param/is_opt = null
-shader_param/timer = null
-shader_param/fbo_texture = SubResource( 26 )
-shader_param/iChannel0 = ExtResource( 26 )
-
-[sub_resource type="PlaneMesh" id=28]
-resource_local_to_scene = true
-size = Vector2( 3.5, 5 )
 
 [sub_resource type="ShaderMaterial" id=29]
 resource_local_to_scene = true
-render_priority = 10
-shader = SubResource( 17 )
+render_priority = 15
+shader = SubResource( 15 )
+shader_param/is_opt = null
+shader_param/timer = null
+shader_param/fbo_texture = SubResource( 28 )
+shader_param/iChannel0 = ExtResource( 26 )
 
-[sub_resource type="CylinderMesh" id=30]
+[sub_resource type="PlaneMesh" id=30]
+resource_local_to_scene = true
+size = Vector2( 3.5, 5 )
+
+[sub_resource type="ShaderMaterial" id=31]
+resource_local_to_scene = true
+render_priority = 10
+shader = SubResource( 19 )
+
+[sub_resource type="CylinderMesh" id=32]
 resource_local_to_scene = true
 top_radius = 11.5
 bottom_radius = 11.5
@@ -208,16 +208,16 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="ViewportTexture" id=31]
+[sub_resource type="ViewportTexture" id=33]
 viewport_path = NodePath("p2")
 
-[sub_resource type="ShaderMaterial" id=32]
+[sub_resource type="ShaderMaterial" id=34]
 resource_local_to_scene = true
 render_priority = 5
-shader = SubResource( 20 )
-shader_param/fbo_texture = SubResource( 31 )
+shader = SubResource( 22 )
+shader_param/fbo_texture = SubResource( 33 )
 
-[sub_resource type="CylinderMesh" id=33]
+[sub_resource type="CylinderMesh" id=35]
 resource_local_to_scene = true
 flip_faces = true
 top_radius = 11.5
@@ -226,28 +226,28 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="ViewportTexture" id=34]
+[sub_resource type="ViewportTexture" id=36]
 viewport_path = NodePath("p3")
-
-[sub_resource type="ShaderMaterial" id=35]
-resource_local_to_scene = true
-render_priority = 15
-shader = SubResource( 13 )
-shader_param/is_opt = null
-shader_param/timer = null
-shader_param/fbo_texture = SubResource( 34 )
-shader_param/iChannel0 = ExtResource( 26 )
-
-[sub_resource type="PlaneMesh" id=36]
-resource_local_to_scene = true
-size = Vector2( 3.5, 5 )
 
 [sub_resource type="ShaderMaterial" id=37]
 resource_local_to_scene = true
-render_priority = 10
-shader = SubResource( 17 )
+render_priority = 15
+shader = SubResource( 15 )
+shader_param/is_opt = null
+shader_param/timer = null
+shader_param/fbo_texture = SubResource( 36 )
+shader_param/iChannel0 = ExtResource( 26 )
 
-[sub_resource type="CylinderMesh" id=38]
+[sub_resource type="PlaneMesh" id=38]
+resource_local_to_scene = true
+size = Vector2( 3.5, 5 )
+
+[sub_resource type="ShaderMaterial" id=39]
+resource_local_to_scene = true
+render_priority = 10
+shader = SubResource( 19 )
+
+[sub_resource type="CylinderMesh" id=40]
 resource_local_to_scene = true
 top_radius = 11.5
 bottom_radius = 11.5
@@ -255,16 +255,16 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="ViewportTexture" id=39]
+[sub_resource type="ViewportTexture" id=41]
 viewport_path = NodePath("p3")
 
-[sub_resource type="ShaderMaterial" id=40]
+[sub_resource type="ShaderMaterial" id=42]
 resource_local_to_scene = true
 render_priority = 5
-shader = SubResource( 20 )
-shader_param/fbo_texture = SubResource( 39 )
+shader = SubResource( 22 )
+shader_param/fbo_texture = SubResource( 41 )
 
-[sub_resource type="CylinderMesh" id=41]
+[sub_resource type="CylinderMesh" id=43]
 resource_local_to_scene = true
 flip_faces = true
 top_radius = 11.5
@@ -273,75 +273,28 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="ViewportTexture" id=42]
+[sub_resource type="ViewportTexture" id=44]
 viewport_path = NodePath("p4")
-
-[sub_resource type="ShaderMaterial" id=43]
-resource_local_to_scene = true
-render_priority = 15
-shader = SubResource( 13 )
-shader_param/is_opt = null
-shader_param/timer = null
-shader_param/fbo_texture = SubResource( 42 )
-shader_param/iChannel0 = ExtResource( 26 )
-
-[sub_resource type="PlaneMesh" id=44]
-resource_local_to_scene = true
-size = Vector2( 3.5, 5 )
 
 [sub_resource type="ShaderMaterial" id=45]
 resource_local_to_scene = true
-render_priority = 10
-shader = SubResource( 17 )
-
-[sub_resource type="CylinderMesh" id=46]
-resource_local_to_scene = true
-top_radius = 11.5
-bottom_radius = 11.5
-height = 20.0
-radial_segments = 8
-rings = 1
-
-[sub_resource type="ViewportTexture" id=47]
-viewport_path = NodePath("p4")
-
-[sub_resource type="ShaderMaterial" id=48]
-resource_local_to_scene = true
-render_priority = 5
-shader = SubResource( 20 )
-shader_param/fbo_texture = SubResource( 47 )
-
-[sub_resource type="CylinderMesh" id=49]
-resource_local_to_scene = true
-flip_faces = true
-top_radius = 11.5
-bottom_radius = 11.5
-height = 20.0
-radial_segments = 8
-rings = 1
-
-[sub_resource type="ViewportTexture" id=50]
-viewport_path = NodePath("p5")
-
-[sub_resource type="ShaderMaterial" id=51]
-resource_local_to_scene = true
 render_priority = 15
-shader = SubResource( 13 )
+shader = SubResource( 15 )
 shader_param/is_opt = null
 shader_param/timer = null
-shader_param/fbo_texture = SubResource( 50 )
+shader_param/fbo_texture = SubResource( 44 )
 shader_param/iChannel0 = ExtResource( 26 )
 
-[sub_resource type="PlaneMesh" id=52]
+[sub_resource type="PlaneMesh" id=46]
 resource_local_to_scene = true
 size = Vector2( 3.5, 5 )
 
-[sub_resource type="ShaderMaterial" id=53]
+[sub_resource type="ShaderMaterial" id=47]
 resource_local_to_scene = true
 render_priority = 10
-shader = SubResource( 17 )
+shader = SubResource( 19 )
 
-[sub_resource type="CylinderMesh" id=54]
+[sub_resource type="CylinderMesh" id=48]
 resource_local_to_scene = true
 top_radius = 11.5
 bottom_radius = 11.5
@@ -349,16 +302,16 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="ViewportTexture" id=55]
-viewport_path = NodePath("p5")
+[sub_resource type="ViewportTexture" id=49]
+viewport_path = NodePath("p4")
 
-[sub_resource type="ShaderMaterial" id=56]
+[sub_resource type="ShaderMaterial" id=50]
 resource_local_to_scene = true
 render_priority = 5
-shader = SubResource( 20 )
-shader_param/fbo_texture = SubResource( 55 )
+shader = SubResource( 22 )
+shader_param/fbo_texture = SubResource( 49 )
 
-[sub_resource type="CylinderMesh" id=57]
+[sub_resource type="CylinderMesh" id=51]
 resource_local_to_scene = true
 flip_faces = true
 top_radius = 11.5
@@ -367,32 +320,79 @@ height = 20.0
 radial_segments = 8
 rings = 1
 
-[sub_resource type="ConvexPolygonShape" id=58]
-points = PoolVector3Array( -0.969629, 0.0688584, 0.183165, -0.936043, -0.205223, -0.243657, -0.932743, 0.250456, -0.212371, -0.840427, -0.446543, -0.272577, -0.840427, -0.446543, 0.272577, -0.838223, 0.430681, 0.302146, -0.749431, 0.12877, 0.636265, -0.748229, -0.143251, -0.635234, -0.748229, -0.143251, 0.635234, -0.746749, 0.400095, -0.513111, -0.690001, 0.705615, 0.06065, -0.596948, -0.778643, -0.120908, -0.564627, -0.655131, -0.482196, -0.534175, 0.700183, -0.451692, -0.447242, -0.113368, -0.880046, -0.443972, 0.70028, 0.542142, -0.414697, -0.535113, 0.724371, -0.386777, 0.250556, 0.880436, -0.357249, 0.921214, -0.0303277, -0.354292, -0.837403, 0.392441, -0.325083, 0.401311, -0.847749, -0.235463, -0.205052, 0.943289, -0.175122, -0.969547, 0.0914792, -0.174001, 0.827161, -0.515746, -0.173558, -0.53655, -0.816969, -0.143481, -0.658612, 0.72718, -0.113185, 0.855767, 0.484665, -0.0836475, 0.160588, -0.978608, -0.0836475, 0.160588, 0.978608, -0.0830945, 0.554042, 0.819556, -0.0830458, -0.841555, -0.515671, -0.0530873, -0.970386, -0.183309, 0.0690328, -0.96962, -0.183164, 0.0987385, 0.553265, -0.818421, 0.0988748, -0.902662, 0.394618, 0.098887, 0.888251, -0.424905, 0.0991281, -0.296242, -0.943242, 0.0993798, 0.953539, 0.244012, 0.160941, -0.0836318, 0.978553, 0.249753, -0.5062, 0.816475, 0.281933, -0.935908, 0.15224, 0.312077, 0.920585, -0.182414, 0.369727, 0.430035, -0.814553, 0.4302, 0.369556, 0.814547, 0.431405, -0.627491, -0.635387, 0.433764, -0.144015, -0.882166, 0.489163, 0.66957, -0.541648, 0.489163, 0.66957, 0.541648, 0.52246, 0.825345, 0.151371, 0.549211, -0.563745, 0.601702, 0.553526, -0.81078, -0.121197, 0.554154, -0.0830756, 0.819475, 0.611637, -0.716875, 0.301976, 0.613273, 0.280142, -0.726772, 0.700712, 0.580133, -0.391705, 0.734567, 0.643655, 0.151369, 0.764597, -0.173579, 0.605305, 0.766466, 0.311223, 0.546132, 0.792055, -0.384137, -0.452404, 0.857494, 0.0986642, -0.485352, 0.887957, -0.416787, 0.12131, 0.920577, 0.312099, -0.182418, 0.922235, 0.190676, 0.304763, 0.952196, -0.235481, -0.121743 )
+[sub_resource type="ViewportTexture" id=52]
+viewport_path = NodePath("p5")
 
-[sub_resource type="ConvexPolygonShape" id=59]
-points = PoolVector3Array( -0.969785, -0.212856, 0.0641888, -0.967192, 0.121254, 0.185281, -0.905657, -0.33328, -0.239106, -0.873773, 0.151284, -0.450452, -0.87254, 0.453214, -0.147671, -0.871399, -0.211187, 0.425773, -0.780784, 0.0903674, 0.606857, -0.751135, -0.63405, 0.154346, -0.750145, 0.361758, 0.546132, -0.690949, -0.181062, -0.691145, -0.688449, 0.661882, 0.27411, -0.657434, -0.570846, -0.477452, -0.656496, 0.600117, -0.446688, -0.596345, -0.329854, 0.723252, -0.510807, -0.847348, 0.0940315, -0.510265, 0.846455, -0.0871361, -0.509325, 0.12062, -0.841506, -0.476219, 0.539741, -0.686259, -0.47561, -0.658764, 0.572289, -0.450681, 0.0907029, 0.881776, -0.41842, -0.331527, -0.840813, -0.386698, 0.630483, 0.663789, -0.357017, -0.811415, -0.447407, -0.208033, 0.48387, -0.843279, -0.207261, -0.87379, 0.425099, -0.178735, -0.973157, -0.0876668, -0.177353, 0.814711, -0.539804, -0.148561, 0.152149, -0.970505, -0.117378, -0.514389, -0.84393, -0.117304, 0.937574, 0.305819, -0.0870925, -0.454158, 0.881553, -0.0572551, 0.152201, 0.977636, -0.0571598, -0.212709, -0.96931, 0.0644578, 0.152277, 0.978123, 0.0948818, 0.97358, -0.179003, 0.124025, 0.632783, 0.756623, 0.18437, -0.81316, -0.53877, 0.185121, 0.544421, -0.813137, 0.213959, -0.78161, 0.574446, 0.244523, 0.813009, 0.515281, 0.245923, -0.938999, 0.215377, 0.364248, -0.541095, -0.748068, 0.365527, -0.48272, 0.787773, 0.366333, -0.906975, -0.177881, 0.366626, 0.302569, -0.874163, 0.366971, 0.787502, -0.481246, 0.425881, -0.21115, -0.871636, 0.427597, -0.151462, 0.881991, 0.456358, 0.875484, 0.0938042, 0.513231, 0.449726, 0.722886, 0.572405, 0.47915, -0.655291, 0.573508, -0.630081, 0.513367, 0.664523, -0.631014, -0.387219, 0.725142, -0.631346, 0.243922, 0.728174, 0.573475, -0.358805, 0.759219, 0.0602242, 0.638027, 0.759309, 0.0905365, -0.631302, 0.785591, 0.571342, 0.213885, 0.815779, -0.300572, 0.484504, 0.818534, -0.301592, -0.479336, 0.881149, -0.453859, -0.0570767, 0.948887, 0.213403, -0.210003, 0.977103, -0.1519, -0.0573981, 0.97806, 0.15224, 0.0642577 )
+[sub_resource type="ShaderMaterial" id=53]
+resource_local_to_scene = true
+render_priority = 15
+shader = SubResource( 15 )
+shader_param/is_opt = null
+shader_param/timer = null
+shader_param/fbo_texture = SubResource( 52 )
+shader_param/iChannel0 = ExtResource( 26 )
+
+[sub_resource type="PlaneMesh" id=54]
+resource_local_to_scene = true
+size = Vector2( 3.5, 5 )
+
+[sub_resource type="ShaderMaterial" id=55]
+resource_local_to_scene = true
+render_priority = 10
+shader = SubResource( 19 )
+
+[sub_resource type="CylinderMesh" id=56]
+resource_local_to_scene = true
+top_radius = 11.5
+bottom_radius = 11.5
+height = 20.0
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ViewportTexture" id=57]
+viewport_path = NodePath("p5")
+
+[sub_resource type="ShaderMaterial" id=58]
+resource_local_to_scene = true
+render_priority = 5
+shader = SubResource( 22 )
+shader_param/fbo_texture = SubResource( 57 )
+
+[sub_resource type="CylinderMesh" id=59]
+resource_local_to_scene = true
+flip_faces = true
+top_radius = 11.5
+bottom_radius = 11.5
+height = 20.0
+radial_segments = 8
+rings = 1
 
 [sub_resource type="ConvexPolygonShape" id=60]
+points = PoolVector3Array( -0.969629, 0.0688584, 0.183165, -0.936043, -0.205223, -0.243657, -0.932743, 0.250456, -0.212371, -0.840427, -0.446543, -0.272577, -0.840427, -0.446543, 0.272577, -0.838223, 0.430681, 0.302146, -0.749431, 0.12877, 0.636265, -0.748229, -0.143251, -0.635234, -0.748229, -0.143251, 0.635234, -0.746749, 0.400095, -0.513111, -0.690001, 0.705615, 0.06065, -0.596948, -0.778643, -0.120908, -0.564627, -0.655131, -0.482196, -0.534175, 0.700183, -0.451692, -0.447242, -0.113368, -0.880046, -0.443972, 0.70028, 0.542142, -0.414697, -0.535113, 0.724371, -0.386777, 0.250556, 0.880436, -0.357249, 0.921214, -0.0303277, -0.354292, -0.837403, 0.392441, -0.325083, 0.401311, -0.847749, -0.235463, -0.205052, 0.943289, -0.175122, -0.969547, 0.0914792, -0.174001, 0.827161, -0.515746, -0.173558, -0.53655, -0.816969, -0.143481, -0.658612, 0.72718, -0.113185, 0.855767, 0.484665, -0.0836475, 0.160588, -0.978608, -0.0836475, 0.160588, 0.978608, -0.0830945, 0.554042, 0.819556, -0.0830458, -0.841555, -0.515671, -0.0530873, -0.970386, -0.183309, 0.0690328, -0.96962, -0.183164, 0.0987385, 0.553265, -0.818421, 0.0988748, -0.902662, 0.394618, 0.098887, 0.888251, -0.424905, 0.0991281, -0.296242, -0.943242, 0.0993798, 0.953539, 0.244012, 0.160941, -0.0836318, 0.978553, 0.249753, -0.5062, 0.816475, 0.281933, -0.935908, 0.15224, 0.312077, 0.920585, -0.182414, 0.369727, 0.430035, -0.814553, 0.4302, 0.369556, 0.814547, 0.431405, -0.627491, -0.635387, 0.433764, -0.144015, -0.882166, 0.489163, 0.66957, -0.541648, 0.489163, 0.66957, 0.541648, 0.52246, 0.825345, 0.151371, 0.549211, -0.563745, 0.601702, 0.553526, -0.81078, -0.121197, 0.554154, -0.0830756, 0.819475, 0.611637, -0.716875, 0.301976, 0.613273, 0.280142, -0.726772, 0.700712, 0.580133, -0.391705, 0.734567, 0.643655, 0.151369, 0.764597, -0.173579, 0.605305, 0.766466, 0.311223, 0.546132, 0.792055, -0.384137, -0.452404, 0.857494, 0.0986642, -0.485352, 0.887957, -0.416787, 0.12131, 0.920577, 0.312099, -0.182418, 0.922235, 0.190676, 0.304763, 0.952196, -0.235481, -0.121743 )
+
+[sub_resource type="ConvexPolygonShape" id=61]
 points = PoolVector3Array( -0.969785, -0.212856, 0.0641888, -0.967192, 0.121254, 0.185281, -0.905657, -0.33328, -0.239106, -0.873773, 0.151284, -0.450452, -0.87254, 0.453214, -0.147671, -0.871399, -0.211187, 0.425773, -0.780784, 0.0903674, 0.606857, -0.751135, -0.63405, 0.154346, -0.750145, 0.361758, 0.546132, -0.690949, -0.181062, -0.691145, -0.688449, 0.661882, 0.27411, -0.657434, -0.570846, -0.477452, -0.656496, 0.600117, -0.446688, -0.596345, -0.329854, 0.723252, -0.510807, -0.847348, 0.0940315, -0.510265, 0.846455, -0.0871361, -0.509325, 0.12062, -0.841506, -0.476219, 0.539741, -0.686259, -0.47561, -0.658764, 0.572289, -0.450681, 0.0907029, 0.881776, -0.41842, -0.331527, -0.840813, -0.386698, 0.630483, 0.663789, -0.357017, -0.811415, -0.447407, -0.208033, 0.48387, -0.843279, -0.207261, -0.87379, 0.425099, -0.178735, -0.973157, -0.0876668, -0.177353, 0.814711, -0.539804, -0.148561, 0.152149, -0.970505, -0.117378, -0.514389, -0.84393, -0.117304, 0.937574, 0.305819, -0.0870925, -0.454158, 0.881553, -0.0572551, 0.152201, 0.977636, -0.0571598, -0.212709, -0.96931, 0.0644578, 0.152277, 0.978123, 0.0948818, 0.97358, -0.179003, 0.124025, 0.632783, 0.756623, 0.18437, -0.81316, -0.53877, 0.185121, 0.544421, -0.813137, 0.213959, -0.78161, 0.574446, 0.244523, 0.813009, 0.515281, 0.245923, -0.938999, 0.215377, 0.364248, -0.541095, -0.748068, 0.365527, -0.48272, 0.787773, 0.366333, -0.906975, -0.177881, 0.366626, 0.302569, -0.874163, 0.366971, 0.787502, -0.481246, 0.425881, -0.21115, -0.871636, 0.427597, -0.151462, 0.881991, 0.456358, 0.875484, 0.0938042, 0.513231, 0.449726, 0.722886, 0.572405, 0.47915, -0.655291, 0.573508, -0.630081, 0.513367, 0.664523, -0.631014, -0.387219, 0.725142, -0.631346, 0.243922, 0.728174, 0.573475, -0.358805, 0.759219, 0.0602242, 0.638027, 0.759309, 0.0905365, -0.631302, 0.785591, 0.571342, 0.213885, 0.815779, -0.300572, 0.484504, 0.818534, -0.301592, -0.479336, 0.881149, -0.453859, -0.0570767, 0.948887, 0.213403, -0.210003, 0.977103, -0.1519, -0.0573981, 0.97806, 0.15224, 0.0642577 )
 
-[sub_resource type="SphereShape" id=61]
+[sub_resource type="ConvexPolygonShape" id=62]
+points = PoolVector3Array( -0.969785, -0.212856, 0.0641888, -0.967192, 0.121254, 0.185281, -0.905657, -0.33328, -0.239106, -0.873773, 0.151284, -0.450452, -0.87254, 0.453214, -0.147671, -0.871399, -0.211187, 0.425773, -0.780784, 0.0903674, 0.606857, -0.751135, -0.63405, 0.154346, -0.750145, 0.361758, 0.546132, -0.690949, -0.181062, -0.691145, -0.688449, 0.661882, 0.27411, -0.657434, -0.570846, -0.477452, -0.656496, 0.600117, -0.446688, -0.596345, -0.329854, 0.723252, -0.510807, -0.847348, 0.0940315, -0.510265, 0.846455, -0.0871361, -0.509325, 0.12062, -0.841506, -0.476219, 0.539741, -0.686259, -0.47561, -0.658764, 0.572289, -0.450681, 0.0907029, 0.881776, -0.41842, -0.331527, -0.840813, -0.386698, 0.630483, 0.663789, -0.357017, -0.811415, -0.447407, -0.208033, 0.48387, -0.843279, -0.207261, -0.87379, 0.425099, -0.178735, -0.973157, -0.0876668, -0.177353, 0.814711, -0.539804, -0.148561, 0.152149, -0.970505, -0.117378, -0.514389, -0.84393, -0.117304, 0.937574, 0.305819, -0.0870925, -0.454158, 0.881553, -0.0572551, 0.152201, 0.977636, -0.0571598, -0.212709, -0.96931, 0.0644578, 0.152277, 0.978123, 0.0948818, 0.97358, -0.179003, 0.124025, 0.632783, 0.756623, 0.18437, -0.81316, -0.53877, 0.185121, 0.544421, -0.813137, 0.213959, -0.78161, 0.574446, 0.244523, 0.813009, 0.515281, 0.245923, -0.938999, 0.215377, 0.364248, -0.541095, -0.748068, 0.365527, -0.48272, 0.787773, 0.366333, -0.906975, -0.177881, 0.366626, 0.302569, -0.874163, 0.366971, 0.787502, -0.481246, 0.425881, -0.21115, -0.871636, 0.427597, -0.151462, 0.881991, 0.456358, 0.875484, 0.0938042, 0.513231, 0.449726, 0.722886, 0.572405, 0.47915, -0.655291, 0.573508, -0.630081, 0.513367, 0.664523, -0.631014, -0.387219, 0.725142, -0.631346, 0.243922, 0.728174, 0.573475, -0.358805, 0.759219, 0.0602242, 0.638027, 0.759309, 0.0905365, -0.631302, 0.785591, 0.571342, 0.213885, 0.815779, -0.300572, 0.484504, 0.818534, -0.301592, -0.479336, 0.881149, -0.453859, -0.0570767, 0.948887, 0.213403, -0.210003, 0.977103, -0.1519, -0.0573981, 0.97806, 0.15224, 0.0642577 )
 
-[sub_resource type="SphereShape" id=62]
+[sub_resource type="SphereShape" id=63]
 
-[sub_resource type="StyleBoxFlat" id=63]
-bg_color = Color( 0.52549, 0.780392, 0.956863, 1 )
-
-[sub_resource type="StyleBoxFlat" id=64]
-bg_color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
+[sub_resource type="SphereShape" id=64]
 
 [sub_resource type="StyleBoxFlat" id=65]
-bg_color = Color( 0.4, 0.521569, 0.580392, 1 )
+bg_color = Color( 0.52549, 0.780392, 0.956863, 1 )
 
 [sub_resource type="StyleBoxFlat" id=66]
-bg_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
 
 [sub_resource type="StyleBoxFlat" id=67]
+bg_color = Color( 0.4, 0.521569, 0.580392, 1 )
+
+[sub_resource type="StyleBoxFlat" id=68]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=69]
 bg_color = Color( 0, 0, 0, 1 )
 
 [node name="scene" type="Spatial"]
@@ -565,11 +565,11 @@ shape = SubResource( 10 )
 [node name="Area3" type="Area" parent="portals/a"]
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/Area3"]
-shape = SubResource( 68 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="portals/a/Area3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97542, 0, 5.24521e-06 )
-shape = SubResource( 69 )
+shape = SubResource( 14 )
 
 [node name="stone_ancient_window__door_frame_pbr" parent="portals/a" instance=ExtResource( 6 )]
 
@@ -583,23 +583,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04785, -2.21818, 2.38419e-0
 [node name="door_out" type="MeshInstance" parent="portals/a/wall"]
 transform = Transform( 0.00872632, 0.999962, -1.62914e-07, 0, -1.62921e-07, -1, -0.999962, 0.00872632, -1.4217e-09, 9.33, 4.871, 0.133 )
 layers = 3
-material_override = SubResource( 15 )
+material_override = SubResource( 17 )
 cast_shadow = 0
-mesh = SubResource( 16 )
+mesh = SubResource( 18 )
 material/0 = null
 
 [node name="wall_out" type="MeshInstance" parent="portals/a/wall"]
 transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
-material_override = SubResource( 18 )
+material_override = SubResource( 20 )
 cast_shadow = 0
-mesh = SubResource( 19 )
+mesh = SubResource( 21 )
 material/0 = null
 
 [node name="wall_in" type="MeshInstance" parent="portals/a/wall"]
 transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
-material_override = SubResource( 22 )
+material_override = SubResource( 24 )
 cast_shadow = 0
-mesh = SubResource( 23 )
+mesh = SubResource( 25 )
 material/0 = null
 
 [node name="walls_collision" type="Spatial" parent="portals/a"]
@@ -609,50 +609,50 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3231
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -12.2451, -0.10538, -36.6109 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody2" type="StaticBody" parent="portals/a/walls_collision"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.44732, -0.10538, -36.9403 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody2"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody4" type="StaticBody" parent="portals/a/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 4.83233, -0.10538, -43.9577 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody4"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody5" type="StaticBody" parent="portals/a/walls_collision"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.12056, -0.10538, -50.3058 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody5"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody6" type="StaticBody" parent="portals/a/walls_collision"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -5.16312, -0.10538, -53.4075 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody6"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody7" type="StaticBody" parent="portals/a/walls_collision"]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -11.7879, -0.10538, -50.5141 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody7"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody8" type="StaticBody" parent="portals/a/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -14.8162, -0.10538, -42.8408 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody8"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody3" type="StaticBody" parent="portals/a/walls_collision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44732, -0.10538, -33.5318 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/a/walls_collision/StaticBody3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73305, 0, 0 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="sun_pos" type="Spatial" parent="portals/a"]
 transform = Transform( -0.734879, 0, 0.678198, 0, 1, 0, -0.678198, 0, -0.734879, -6.97079, 2.1654, 6.30041 )
@@ -713,11 +713,11 @@ shape = SubResource( 10 )
 [node name="Area3" type="Area" parent="portals/b"]
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/Area3"]
-shape = SubResource( 68 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="portals/b/Area3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97542, 0, 5.24521e-06 )
-shape = SubResource( 69 )
+shape = SubResource( 14 )
 
 [node name="stone_ancient_window__door_frame_pbr" parent="portals/b" instance=ExtResource( 6 )]
 
@@ -731,23 +731,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04785, -2.21818, 2.38419e-0
 [node name="door_out" type="MeshInstance" parent="portals/b/wall"]
 transform = Transform( 0.00872632, 0.999962, -1.62914e-07, 0, -1.62921e-07, -1, -0.999962, 0.00872632, -1.4217e-09, 9.33, 4.871, 0.133 )
 layers = 3
-material_override = SubResource( 27 )
-cast_shadow = 0
-mesh = SubResource( 28 )
-material/0 = null
-
-[node name="wall_out" type="MeshInstance" parent="portals/b/wall"]
-transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
 material_override = SubResource( 29 )
 cast_shadow = 0
 mesh = SubResource( 30 )
 material/0 = null
 
+[node name="wall_out" type="MeshInstance" parent="portals/b/wall"]
+transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
+material_override = SubResource( 31 )
+cast_shadow = 0
+mesh = SubResource( 32 )
+material/0 = null
+
 [node name="wall_in" type="MeshInstance" parent="portals/b/wall"]
 transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
-material_override = SubResource( 32 )
+material_override = SubResource( 34 )
 cast_shadow = 0
-mesh = SubResource( 33 )
+mesh = SubResource( 35 )
 material/0 = null
 
 [node name="walls_collision" type="Spatial" parent="portals/b"]
@@ -757,50 +757,50 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3231
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -12.2451, -0.10538, -36.6109 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody2" type="StaticBody" parent="portals/b/walls_collision"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.44732, -0.10538, -36.9403 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody2"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody4" type="StaticBody" parent="portals/b/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 4.83233, -0.10538, -43.9577 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody4"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody5" type="StaticBody" parent="portals/b/walls_collision"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.12056, -0.10538, -50.3058 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody5"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody6" type="StaticBody" parent="portals/b/walls_collision"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -5.16312, -0.10538, -53.4075 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody6"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody7" type="StaticBody" parent="portals/b/walls_collision"]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -11.7879, -0.10538, -50.5141 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody7"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody8" type="StaticBody" parent="portals/b/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -14.8162, -0.10538, -42.8408 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody8"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody3" type="StaticBody" parent="portals/b/walls_collision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44732, -0.10538, -33.5318 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/b/walls_collision/StaticBody3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73305, 0, 0 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="sun_pos" type="Spatial" parent="portals/b"]
 transform = Transform( -0.734879, 0, 0.678198, 0, 1, 0, -0.678198, 0, -0.734879, -6.97079, 2.1654, 6.30041 )
@@ -861,11 +861,11 @@ shape = SubResource( 10 )
 [node name="Area3" type="Area" parent="portals/c"]
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/Area3"]
-shape = SubResource( 68 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="portals/c/Area3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97542, 0, 5.24521e-06 )
-shape = SubResource( 69 )
+shape = SubResource( 14 )
 
 [node name="stone_ancient_window__door_frame_pbr" parent="portals/c" instance=ExtResource( 6 )]
 
@@ -879,23 +879,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04785, -2.21818, 2.38419e-0
 [node name="door_out" type="MeshInstance" parent="portals/c/wall"]
 transform = Transform( 0.00872632, 0.999962, -1.62914e-07, 0, -1.62921e-07, -1, -0.999962, 0.00872632, -1.4217e-09, 9.33, 4.871, 0.133 )
 layers = 3
-material_override = SubResource( 35 )
-cast_shadow = 0
-mesh = SubResource( 36 )
-material/0 = null
-
-[node name="wall_out" type="MeshInstance" parent="portals/c/wall"]
-transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
 material_override = SubResource( 37 )
 cast_shadow = 0
 mesh = SubResource( 38 )
 material/0 = null
 
+[node name="wall_out" type="MeshInstance" parent="portals/c/wall"]
+transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
+material_override = SubResource( 39 )
+cast_shadow = 0
+mesh = SubResource( 40 )
+material/0 = null
+
 [node name="wall_in" type="MeshInstance" parent="portals/c/wall"]
 transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
-material_override = SubResource( 40 )
+material_override = SubResource( 42 )
 cast_shadow = 0
-mesh = SubResource( 41 )
+mesh = SubResource( 43 )
 material/0 = null
 
 [node name="walls_collision" type="Spatial" parent="portals/c"]
@@ -905,50 +905,50 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3231
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -12.2451, -0.10538, -36.6109 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody2" type="StaticBody" parent="portals/c/walls_collision"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.44732, -0.10538, -36.9403 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody2"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody4" type="StaticBody" parent="portals/c/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 4.83233, -0.10538, -43.9577 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody4"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody5" type="StaticBody" parent="portals/c/walls_collision"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.12056, -0.10538, -50.3058 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody5"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody6" type="StaticBody" parent="portals/c/walls_collision"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -5.16312, -0.10538, -53.4075 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody6"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody7" type="StaticBody" parent="portals/c/walls_collision"]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -11.7879, -0.10538, -50.5141 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody7"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody8" type="StaticBody" parent="portals/c/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -14.8162, -0.10538, -42.8408 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody8"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody3" type="StaticBody" parent="portals/c/walls_collision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44732, -0.10538, -33.5318 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/c/walls_collision/StaticBody3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73305, 0, 0 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="sun_pos" type="Spatial" parent="portals/c"]
 transform = Transform( -0.734879, 0, 0.678198, 0, 1, 0, -0.678198, 0, -0.734879, -6.97079, 2.1654, 6.30041 )
@@ -1009,11 +1009,11 @@ shape = SubResource( 10 )
 [node name="Area3" type="Area" parent="portals/d"]
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/Area3"]
-shape = SubResource( 68 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="portals/d/Area3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97542, 0, 5.24521e-06 )
-shape = SubResource( 69 )
+shape = SubResource( 14 )
 
 [node name="stone_ancient_window__door_frame_pbr" parent="portals/d" instance=ExtResource( 6 )]
 
@@ -1027,23 +1027,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04785, -2.21818, 2.38419e-0
 [node name="door_out" type="MeshInstance" parent="portals/d/wall"]
 transform = Transform( 0.00872632, 0.999962, -1.62914e-07, 0, -1.62921e-07, -1, -0.999962, 0.00872632, -1.4217e-09, 9.33, 4.871, 0.133 )
 layers = 3
-material_override = SubResource( 43 )
-cast_shadow = 0
-mesh = SubResource( 44 )
-material/0 = null
-
-[node name="wall_out" type="MeshInstance" parent="portals/d/wall"]
-transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
 material_override = SubResource( 45 )
 cast_shadow = 0
 mesh = SubResource( 46 )
 material/0 = null
 
+[node name="wall_out" type="MeshInstance" parent="portals/d/wall"]
+transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
+material_override = SubResource( 47 )
+cast_shadow = 0
+mesh = SubResource( 48 )
+material/0 = null
+
 [node name="wall_in" type="MeshInstance" parent="portals/d/wall"]
 transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
-material_override = SubResource( 48 )
+material_override = SubResource( 50 )
 cast_shadow = 0
-mesh = SubResource( 49 )
+mesh = SubResource( 51 )
 material/0 = null
 
 [node name="walls_collision" type="Spatial" parent="portals/d"]
@@ -1053,50 +1053,50 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3231
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -12.2451, -0.10538, -36.6109 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody2" type="StaticBody" parent="portals/d/walls_collision"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.44732, -0.10538, -36.9403 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody2"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody4" type="StaticBody" parent="portals/d/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 4.83233, -0.10538, -43.9577 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody4"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody5" type="StaticBody" parent="portals/d/walls_collision"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.12056, -0.10538, -50.3058 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody5"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody6" type="StaticBody" parent="portals/d/walls_collision"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -5.16312, -0.10538, -53.4075 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody6"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody7" type="StaticBody" parent="portals/d/walls_collision"]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -11.7879, -0.10538, -50.5141 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody7"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody8" type="StaticBody" parent="portals/d/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -14.8162, -0.10538, -42.8408 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody8"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody3" type="StaticBody" parent="portals/d/walls_collision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44732, -0.10538, -33.5318 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/d/walls_collision/StaticBody3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73305, 0, 0 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="sun_pos" type="Spatial" parent="portals/d"]
 transform = Transform( -0.734879, 0, 0.678198, 0, 1, 0, -0.678198, 0, -0.734879, -6.97079, 2.1654, 6.30041 )
@@ -1157,11 +1157,11 @@ shape = SubResource( 10 )
 [node name="Area3" type="Area" parent="portals/e"]
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/Area3"]
-shape = SubResource( 68 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="portals/e/Area3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97542, 0, 5.24521e-06 )
-shape = SubResource( 69 )
+shape = SubResource( 14 )
 
 [node name="stone_ancient_window__door_frame_pbr" parent="portals/e" instance=ExtResource( 6 )]
 
@@ -1175,23 +1175,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04785, -2.21818, 2.38419e-0
 [node name="door_out" type="MeshInstance" parent="portals/e/wall"]
 transform = Transform( 0.00872632, 0.999962, -1.62914e-07, 0, -1.62921e-07, -1, -0.999962, 0.00872632, -1.4217e-09, 9.33, 4.871, 0.133 )
 layers = 3
-material_override = SubResource( 51 )
-cast_shadow = 0
-mesh = SubResource( 52 )
-material/0 = null
-
-[node name="wall_out" type="MeshInstance" parent="portals/e/wall"]
-transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
 material_override = SubResource( 53 )
 cast_shadow = 0
 mesh = SubResource( 54 )
 material/0 = null
 
+[node name="wall_out" type="MeshInstance" parent="portals/e/wall"]
+transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
+material_override = SubResource( 55 )
+cast_shadow = 0
+mesh = SubResource( 56 )
+material/0 = null
+
 [node name="wall_in" type="MeshInstance" parent="portals/e/wall"]
 transform = Transform( 0.390731, 1.49969e-07, 0.920505, 0, 1, -1.62921e-07, -0.920505, 6.36581e-08, 0.390731, -1.28648, 4.16811, -0.522929 )
-material_override = SubResource( 56 )
+material_override = SubResource( 58 )
 cast_shadow = 0
-mesh = SubResource( 57 )
+mesh = SubResource( 59 )
 material/0 = null
 
 [node name="walls_collision" type="Spatial" parent="portals/e"]
@@ -1201,50 +1201,50 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 33.3231
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -12.2451, -0.10538, -36.6109 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody2" type="StaticBody" parent="portals/e/walls_collision"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.44732, -0.10538, -36.9403 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody2"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody4" type="StaticBody" parent="portals/e/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 4.83233, -0.10538, -43.9577 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody4"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody5" type="StaticBody" parent="portals/e/walls_collision"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.12056, -0.10538, -50.3058 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody5"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody6" type="StaticBody" parent="portals/e/walls_collision"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -5.16312, -0.10538, -53.4075 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody6"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody7" type="StaticBody" parent="portals/e/walls_collision"]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -11.7879, -0.10538, -50.5141 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody7"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody8" type="StaticBody" parent="portals/e/walls_collision"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -14.8162, -0.10538, -42.8408 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody8"]
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StaticBody3" type="StaticBody" parent="portals/e/walls_collision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44732, -0.10538, -33.5318 )
 
 [node name="CollisionShape" type="CollisionShape" parent="portals/e/walls_collision/StaticBody3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73305, 0, 0 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="sun_pos" type="Spatial" parent="portals/e"]
 transform = Transform( -0.734879, 0, 0.678198, 0, 1, 0, -0.678198, 0, -0.734879, -6.97079, 2.1654, 6.30041 )
@@ -1285,7 +1285,7 @@ script = ExtResource( 17 )
 [node name="sphere1" parent="collision_spheres/sphere1" instance=ExtResource( 13 )]
 
 [node name="CollisionShape" type="CollisionShape" parent="collision_spheres/sphere1"]
-shape = SubResource( 58 )
+shape = SubResource( 60 )
 
 [node name="sphere2" type="RigidBody" parent="collision_spheres" groups=[
 "spheres",
@@ -1296,7 +1296,7 @@ script = ExtResource( 17 )
 [node name="sphere2" parent="collision_spheres/sphere2" instance=ExtResource( 14 )]
 
 [node name="CollisionShape" type="CollisionShape" parent="collision_spheres/sphere2"]
-shape = SubResource( 59 )
+shape = SubResource( 61 )
 
 [node name="sphere3" type="RigidBody" parent="collision_spheres" groups=[
 "spheres",
@@ -1305,7 +1305,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0255, -1.71856, -37.8944 )
 script = ExtResource( 17 )
 
 [node name="CollisionShape" type="CollisionShape" parent="collision_spheres/sphere3"]
-shape = SubResource( 60 )
+shape = SubResource( 62 )
 
 [node name="sphere3" parent="collision_spheres/sphere3" instance=ExtResource( 15 )]
 
@@ -1316,7 +1316,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2844, -1.29228, -26.8383 )
 script = ExtResource( 17 )
 
 [node name="CollisionShape" type="CollisionShape" parent="collision_spheres/sphere4"]
-shape = SubResource( 61 )
+shape = SubResource( 63 )
 
 [node name="sphere4" parent="collision_spheres/sphere4" instance=ExtResource( 19 )]
 
@@ -1327,7 +1327,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.4236, 1.36872, -1.66445 )
 script = ExtResource( 17 )
 
 [node name="CollisionShape" type="CollisionShape" parent="collision_spheres/sphere5"]
-shape = SubResource( 62 )
+shape = SubResource( 64 )
 
 [node name="sphere5" parent="collision_spheres/sphere5" instance=ExtResource( 18 )]
 
@@ -1347,11 +1347,11 @@ margin_left = 57.0
 margin_top = 37.0
 margin_right = 184.0
 margin_bottom = 63.0
-custom_styles/hover = SubResource( 63 )
-custom_styles/pressed = SubResource( 64 )
-custom_styles/focus = SubResource( 65 )
-custom_styles/disabled = SubResource( 66 )
-custom_styles/normal = SubResource( 67 )
+custom_styles/hover = SubResource( 65 )
+custom_styles/pressed = SubResource( 66 )
+custom_styles/focus = SubResource( 67 )
+custom_styles/disabled = SubResource( 68 )
+custom_styles/normal = SubResource( 69 )
 custom_fonts/font = ExtResource( 24 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
