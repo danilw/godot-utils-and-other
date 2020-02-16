@@ -15,7 +15,7 @@ ___
 
 *support* Godot 3.1, Godot 3.2, GLES2 or GLES3. Used official Godot build, nothing else.
 
-**How yo use** in your project: create MeshInstance, mesh Sphere, in mesh check *flip faces*, create shader material, in shader code copy-paste any of *\*.shader* code form this project. (for anwance use look this project source)
+**How yo use** in your project: create MeshInstance, mesh Sphere, in mesh check *flip faces*, create shader material, in shader code copy-paste any of *\*.shader* code form this project. (for advanced use look this project source)
 
 **Portals** they are *bad*, they exist only for this demo-scene. Portals rendered with *huge-overhead* because Lihght Cull Mask [not implemented](https://github.com/godotengine/godot/issues/19438) in Godot 3.x versions.
 
