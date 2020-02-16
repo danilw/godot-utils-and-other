@@ -11,7 +11,7 @@ ___
 
 **portals_panorama** GLES2 scene with six very simple **procedural panorama** for godot. Shader source code in [panorama/shaders](https://github.com/danilw/godot-utils-and-other/tree/master/portals_panorama/panorama/shaders) folder.
 
-Video [youtube link]()
+Video [youtube link](https://youtu.be/GyX0rkKkdFU)
 
 *links* **[Live web build](https://danilw.github.io/godot-utils-and-other/portal_panorama/web/portals_panorama.html)**, [Win64](https://danilw.github.io/godot-utils-and-other/portal_panorama/portal_panorama_win.zip), [Linux64](https://danilw.github.io/godot-utils-and-other/portal_panorama/portal_panorama_linux.zip)
 
