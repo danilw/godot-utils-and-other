@@ -5,6 +5,8 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 # godot-utils-and-other
 **what is it** random(mosly some very broken demos, and very unusable utils) code I write using Godot. I do not recoment use this code for learning.
 
+### Contact: [**Join discord server**](https://discord.gg/JKyqWgt)
+
 
 *new 2020:*
 ___
@@ -79,8 +81,6 @@ ___
 **Cubemap to panorama** convertor [live link](https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html) 
 
 **Godot-particles-collision** *unfinished* particle collision shader for Godot [source repo](https://github.com/danilw/Godot-particles-collision)
-
-### Contact: [**Join discord server**](https://discord.gg/JKyqWgt)
 
 
 
