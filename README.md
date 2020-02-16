@@ -17,7 +17,7 @@ ___
 
 **How yo use** in your project: create MeshInstance, mesh Sphere, in mesh check *flip faces*, create shader material, in shader code copy-paste any of *\*.shader* code form this project. (for advanced use look this project source)
 
-**Portals** they are *bad*, they exist only for this demo-scene. Portals rendered with *huge-overhead* because Lihght Cull Mask [not implemented](https://github.com/godotengine/godot/issues/19438) in Godot 3.x versions.
+**Portals** they are *bad*, they exist only for this demo-scene. Portals rendered with *huge-overhead* because Light Cull Mask [not implemented](https://github.com/godotengine/godot/issues/19438) in Godot 3.x versions.
 
 *Credit*: I have use external resources, [list of used 3d models](https://github.com/danilw/godot-utils-and-other/blob/master/portals_panorama/resources/using_external_resources_LINKS.md), and original shader-source linked in each *\*.shader* file.
 
