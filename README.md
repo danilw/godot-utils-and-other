@@ -86,6 +86,10 @@ ___
 
 ### Graphic
 
+**portals_panorama** video
+[![pp](https://danilw.github.io/godot-utils-and-other/portal_panorama/yt.png)](https://youtu.be/GyX0rkKkdFU)
+
+
 **Particle-collision-demo** (flat-maze game) video:
 [![flat_maze](https://danilw.github.io/godot-utils-and-other/flat_maze_yt.png)](https://youtu.be/HawWnuMn1mc)
 
