@@ -6,7 +6,23 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 **what is it** random(mosly some very broken demos, and very unusable utils) code I write using Godot. I do not recoment use this code for learning.
 
 
-*new:*
+*new 2020:*
+___
+
+**portals_panorama** GLES2 scene with six very simple **procedural panorama** for godot. Shader source code in [panorama/shaders](https://github.com/danilw/godot-utils-and-other/tree/master/portals_panorama/panorama/shaders) folder.
+
+**Versions support** Godot 3.1, Godot 3.2, GLES2 or GLES3. Used official Godot build, nothing else.
+
+**How yo use** in your project: create MeshInstance, mesh Sphere, in mesh check *flip faces*, create shader material, in shader code copy-paste any of *\*.shader* code form this project. (for anwance use look this project source)
+
+**Portals** they are *bad*, they exist only for this demo-scene. Portals rendered with *huge-overhead* because Lihght Cull Mask [not implemented](https://github.com/godotengine/godot/issues/19438) in Godot 3.x versions.
+
+*Credit*: I have use external resources, [list of used 3d models](https://github.com/danilw/godot-utils-and-other/blob/master/portals_panorama/resources/using_external_resources_LINKS.md), and original shader-source linked in each *\*.shader* file.
+
+*Licence* of shaders License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+___
+
+*old 2019:*
 ___
 
 **flat-maze** demo base on particle collision, that show more complex collisions. link to repo https://github.com/danilw/flat-maze playable web version **https://danilw.itch.io/flat-maze-web**
