@@ -1,0 +1,226 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://resources/low_poly_nature_scene/low_poly_nature_scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://resources/stone_ancient_window__door_frame_pbr/stone_ancient_window__door_frame_pbr.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/scifi_hexsphere/sphere2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://panorama/shaders/p4.shader" type="Shader" id=4]
+[ext_resource path="res://resources/pokeball/sphere5.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/beach_ball/sphere4.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/beautiful_sphere/sphere1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resources/spherical/sphere3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/button/button1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://resources/button/button2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://resources/button/button.tscn" type="PackedScene" id=11]
+[ext_resource path="res://panorama/static/stars.jpg" type="Texture" id=12]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 12 )
+
+[sub_resource type="Environment" id=15]
+background_mode = 2
+background_sky = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/dir_angle = Vector3( 0, -0.1, -0.9 )
+shader_param/iTime = null
+shader_param/iChannel0 = ExtResource( 12 )
+
+[sub_resource type="SphereMesh" id=4]
+flip_faces = true
+radius = 100.0
+height = 200.0
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform sampler2D fbo_texture;
+
+void fragment() {
+	ALBEDO = texture(fbo_texture, SCREEN_UV).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+
+[sub_resource type="PlaneMesh" id=7]
+resource_local_to_scene = true
+flip_faces = true
+size = Vector2( 3.5, 5 )
+
+[sub_resource type="Shader" id=8]
+code = "shader_type spatial;
+render_mode blend_add,depth_draw_opaque,cull_back,unshaded;
+uniform vec4 colorx:hint_color;
+
+void fragment() {
+	ALBEDO = 1.*colorx.rgb;
+	
+	float intensity = pow(0.122 + max(dot(NORMAL, normalize(VIEW)),0.), 010.85);
+	ALPHA=0.0+intensity;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+render_priority = 11
+shader = SubResource( 8 )
+shader_param/colorx = Color( 0.14902, 0.678431, 0.643137, 1 )
+
+[sub_resource type="SphereMesh" id=10]
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 1, 0.5, 1 )
+
+[sub_resource type="ShaderMaterial" id=12]
+render_priority = 11
+shader = SubResource( 8 )
+shader_param/colorx = Color( 0.678431, 0.521569, 0.14902, 1 )
+
+[sub_resource type="Shader" id=13]
+code = "shader_type spatial;
+render_mode blend_add,depth_draw_opaque,cull_back,unshaded;
+uniform vec4 colorx:hint_color;
+
+void fragment() {
+	ALBEDO = 1.*colorx.rgb;
+	
+	float intensity = pow(0.122 + max(dot(NORMAL, normalize(VIEW)),0.), 010.85);
+	ALPHA=0.0+intensity;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=14]
+render_priority = 11
+shader = SubResource( 13 )
+shader_param/colorx = Color( 0.172549, 0.717647, 0.207843, 1 )
+
+[node name="p4" type="Spatial"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 6.64654, 5.36431, -37.1819 )
+light_color = Color( 1, 0.643137, 0.827451, 1 )
+shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55013, 1.58168, -19.7168 )
+cull_mask = 1
+environment = SubResource( 15 )
+
+[node name="sphere" type="MeshInstance" parent="Camera"]
+material_override = SubResource( 3 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="portals" type="Spatial" parent="."]
+
+[node name="a" type="Spatial" parent="portals"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 38.337, -3.745, -27.077 )
+
+[node name="stone_ancient_window__door_frame_pbr" parent="portals/a" instance=ExtResource( 2 )]
+
+[node name="low_poly_nature_scene" parent="portals/a" instance=ExtResource( 1 )]
+transform = Transform( -0.920505, -0.390731, -6.36581e-08, 0, -1.62921e-07, 1, -0.390731, 0.920505, 1.49969e-07, -9.04785, -2.21818, 2.38419e-06 )
+
+[node name="wall" type="Spatial" parent="portals/a"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04785, -2.21818, 2.38419e-06 )
+
+[node name="door_in" type="MeshInstance" parent="portals/a/wall"]
+transform = Transform( 0.00872632, 0.999962, -1.62914e-07, 0, -1.62921e-07, -1, -0.999962, 0.00872632, -1.4217e-09, 9.334, 4.871, 0.133 )
+material_override = SubResource( 6 )
+cast_shadow = 0
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="sun_pos" type="Spatial" parent="portals/a"]
+transform = Transform( -0.734879, 0, 0.678198, 0, 1, 0, -0.678198, 0, -0.734879, -6.971, 2.165, 6.3 )
+
+[node name="b0" type="Spatial" parent="portals/a/sun_pos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3117, -1.27058, 0 )
+
+[node name="glow" type="MeshInstance" parent="portals/a/sun_pos/b0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.700528, 0 )
+layers = 3
+material_override = SubResource( 9 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="button" parent="portals/a/sun_pos/b0" instance=ExtResource( 11 )]
+
+[node name="Area_btn" type="Area" parent="portals/a/sun_pos/b0"]
+
+[node name="CollisionShape" type="CollisionShape" parent="portals/a/sun_pos/b0/Area_btn"]
+shape = SubResource( 11 )
+
+[node name="b1" type="Spatial" parent="portals/a/sun_pos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.686, -1.27, -0.81 )
+
+[node name="glow" type="MeshInstance" parent="portals/a/sun_pos/b1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.700528, 0 )
+layers = 3
+material_override = SubResource( 12 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="button" parent="portals/a/sun_pos/b1" instance=ExtResource( 9 )]
+
+[node name="Area_btn" type="Area" parent="portals/a/sun_pos/b1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="portals/a/sun_pos/b1/Area_btn"]
+shape = SubResource( 11 )
+
+[node name="b2" type="Spatial" parent="portals/a/sun_pos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94, -1.27, -1.624 )
+
+[node name="glow" type="MeshInstance" parent="portals/a/sun_pos/b2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.700528, 0 )
+layers = 3
+material_override = SubResource( 14 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="button" parent="portals/a/sun_pos/b2" instance=ExtResource( 10 )]
+
+[node name="Area_btn" type="Area" parent="portals/a/sun_pos/b2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="portals/a/sun_pos/b2/Area_btn"]
+shape = SubResource( 11 )
+
+[node name="spheres" type="Spatial" parent="."]
+
+[node name="sphere1" type="Spatial" parent="spheres"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3705, -1.29228, -26.8383 )
+visible = false
+
+[node name="sphere1" parent="spheres/sphere1" instance=ExtResource( 7 )]
+
+[node name="sphere2" type="Spatial" parent="spheres"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.20352, -1.29228, -26.8383 )
+visible = false
+
+[node name="sphere2" parent="spheres/sphere2" instance=ExtResource( 3 )]
+
+[node name="sphere3" type="Spatial" parent="spheres"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.95363, -1.29228, -26.8383 )
+visible = false
+
+[node name="sphere3" parent="spheres/sphere3" instance=ExtResource( 8 )]
+
+[node name="sphere4" type="Spatial" parent="spheres"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59758, -1.29228, -26.8383 )
+visible = false
+
+[node name="sphere4" parent="spheres/sphere4" instance=ExtResource( 6 )]
+
+[node name="sphere5" type="Spatial" parent="spheres"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40131, -1.29228, -26.8383 )
+visible = false
+
+[node name="sphere5" parent="spheres/sphere5" instance=ExtResource( 5 )]
+[connection signal="body_entered" from="portals/a/sun_pos/b0/Area_btn" to="portals/a/sun_pos" method="_on_Area_btn_body_entered" binds= [ 0 ]]
+[connection signal="body_exited" from="portals/a/sun_pos/b0/Area_btn" to="portals/a/sun_pos" method="_on_Area_btn_body_exited" binds= [ 0 ]]
+[connection signal="body_entered" from="portals/a/sun_pos/b1/Area_btn" to="portals/a/sun_pos" method="_on_Area_btn_body_entered" binds= [ 1 ]]
+[connection signal="body_exited" from="portals/a/sun_pos/b1/Area_btn" to="portals/a/sun_pos" method="_on_Area_btn_body_exited" binds= [ 1 ]]
+[connection signal="body_entered" from="portals/a/sun_pos/b2/Area_btn" to="portals/a/sun_pos" method="_on_Area_btn_body_entered" binds= [ 2 ]]
+[connection signal="body_exited" from="portals/a/sun_pos/b2/Area_btn" to="portals/a/sun_pos" method="_on_Area_btn_body_exited" binds= [ 2 ]]
