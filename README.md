@@ -1,6 +1,6 @@
-**update 2019(actual in 2020)**
+**update 2019 (actual in 2020)**
 
-gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I can update github repo I will (depends of github rules(region block) updates based on U.S. laws)
+gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I can update github repo I will (depends of github rules[(region block)](https://danilw.github.io/GLSL-howto/1.png) updates based on U.S. laws)
 
 # godot-utils-and-other
 **what is it** random(mosly some very broken demos, and very unusable utils) code I write using Godot. I do not recoment use this code for learning.
