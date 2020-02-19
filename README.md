@@ -1,6 +1,6 @@
 **update 2020**
 
-Got warning from github about my location(non U.S.), [https://gitlab.com/danilw](https://gitlab.com/danilw) is mirror when this github account will be banned.
+Got warning from github about my location (non U.S.), [https://gitlab.com/danilw](https://gitlab.com/danilw) is mirror when this github account will be banned.
 
 **update 2019**
 
