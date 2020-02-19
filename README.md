@@ -1,8 +1,4 @@
-**update 2020**
-
-Got warning from github about my location (non U.S.), [https://gitlab.com/danilw](https://gitlab.com/danilw) is mirror when this github account will be banned.
-
-**update 2019**
+**update 2019(actual in 2020)**
 
 gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I can update github repo I will (depends of github rules(region block) updates based on U.S. laws)
 
