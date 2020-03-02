@@ -64,6 +64,8 @@ ___
 
 **Dynamic sky and reflection** two shaders for sky and reflection [video](https://youtu.be/IQ-yw19xBQ8), [live link](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/web/dsr.html) and [windows version](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/bin/win.zip)
 
+**mipmap forced bug(Godot 3.2)** https://github.com/godotengine/godot/issues/36718 to fix it amd have sky as panorama set `iChannel.flags=Texture.FLAG_FILTER` in *scripts/set_uniforms.gd* (line 8) after `var iChannel=sky_b.get_viewport().get_texture()`
+
 **Environment bug**(on first load): Godot has bug with removing *Default Environment* after re-import Assets(project is work if launch, it does not work only in Godot editor), set Project->Projet Setting->Rendering->Environment->Default Environment select file *default_env.tres*
 ___
 
