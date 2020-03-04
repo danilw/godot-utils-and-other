@@ -15,7 +15,7 @@ ___
 
 Video [youtube link]()
 
-*links* **[Live web build]()**, [Win64]()
+*links* **[Live web build (WebGL2/GLES3)](https://danilw.github.io/godot-utils-and-other/volume_lights/web/Volumetric_Lights.html)**, [Win64 GLES2](https://danilw.github.io/godot-utils-and-other/volume_lights/volume_lights_win.zip)
 
 *WebGL GLES2 **bug*** this project does not work in Godot GLES2-Web build, because [this bug](https://github.com/godotengine/godot/issues/36786). I build it in GLES3(WebGL2) Godot build.
 
