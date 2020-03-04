@@ -11,6 +11,16 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 *new 2020:*
 ___
 
+**Volumetric_Lights** GLES2 Volumetric lights for Godot 3, very minimal example. Shader logic do sample depth from light source, in main-camera view. Shader not very hight cost. Shader can use 16 or 32 sample steps. Used unmodified Godot 3.2-stable.
+
+Video [youtube link]()
+
+*links* **[Live web build]()**, [Win64]()
+
+*WebGL GLES2 **bug*** this project does not work in Godot GLES2-Web build, because [this bug](https://github.com/godotengine/godot/issues/36786). I build it in GLES3(WebGL2) Godot build.
+
+___
+
 **portals_panorama** GLES2 scene with six very simple **procedural panorama** for godot. Shader source code in [panorama/shaders](https://github.com/danilw/godot-utils-and-other/tree/master/portals_panorama/panorama/shaders) folder.
 
 Video [youtube link](https://youtu.be/GyX0rkKkdFU)
