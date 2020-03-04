@@ -19,7 +19,7 @@ Video [youtube link](https://youtu.be/alVrbpt7VpY)
 
 *WebGL GLES2 **bug*** this project does not work in Godot GLES2-Web build, because [this bug](https://github.com/godotengine/godot/issues/36786). I build it in GLES3(WebGL2) Godot build.
 
-*Licence* this code, include shaders do not have any Licence. *No licence*. Use it as you wish.
+*Licence:* this code, include shaders do not have any Licence. *No licence*. Use it as you wish.
 
 ___
 
