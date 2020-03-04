@@ -1,0 +1,614 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://shaders/debug.shader" type="Shader" id=1]
+[ext_resource path="res://shadow_map_env.tres" type="Environment" id=2]
+[ext_resource path="res://scripts/shadow_map.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Camera.gd" type="Script" id=4]
+[ext_resource path="res://shaders/vulume_lights.shader" type="Shader" id=5]
+[ext_resource path="res://shaders/gglow.shader" type="Shader" id=6]
+[ext_resource path="res://scripts/Control.gd" type="Script" id=7]
+[ext_resource path="res://scripts/vlights.gd" type="Script" id=8]
+[ext_resource path="res://shaders/camera_depth.shader" type="Shader" id=9]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 9 )
+
+[sub_resource type="SphereMesh" id=2]
+flip_faces = true
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 6 )
+shader_param/colorx = Color( 0.980392, 0.352941, 1, 1 )
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("shadow_map/Back")
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("shadow_map/Down")
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("shadow_map/Front")
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("shadow_map/Left")
+
+[sub_resource type="ViewportTexture" id=9]
+viewport_path = NodePath("shadow_map/Right")
+
+[sub_resource type="ViewportTexture" id=10]
+viewport_path = NodePath("shadow_map/Up")
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/light_pos = null
+shader_param/colorx = Color( 0.980392, 0.352941, 1, 1 )
+shader_param/Front = SubResource( 7 )
+shader_param/Right = SubResource( 9 )
+shader_param/Left = SubResource( 8 )
+shader_param/Back = SubResource( 5 )
+shader_param/Up = SubResource( 10 )
+shader_param/Down = SubResource( 6 )
+
+[sub_resource type="SphereMesh" id=12]
+resource_local_to_scene = true
+flip_faces = true
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.580392, 0.580392, 0.580392, 1 )
+
+[sub_resource type="PlaneMesh" id=14]
+size = Vector2( 20, 20 )
+
+[sub_resource type="ViewportTexture" id=15]
+viewport_path = NodePath("shadow_map/Back")
+
+[sub_resource type="ViewportTexture" id=16]
+viewport_path = NodePath("shadow_map/Down")
+
+[sub_resource type="ViewportTexture" id=17]
+viewport_path = NodePath("shadow_map/Front")
+
+[sub_resource type="ViewportTexture" id=18]
+viewport_path = NodePath("shadow_map/Left")
+
+[sub_resource type="ViewportTexture" id=19]
+viewport_path = NodePath("shadow_map/Right")
+
+[sub_resource type="ViewportTexture" id=20]
+viewport_path = NodePath("shadow_map/Up")
+
+[sub_resource type="ShaderMaterial" id=21]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/Front = SubResource( 17 )
+shader_param/Right = SubResource( 19 )
+shader_param/Left = SubResource( 18 )
+shader_param/Back = SubResource( 15 )
+shader_param/Up = SubResource( 20 )
+shader_param/Down = SubResource( 16 )
+
+[sub_resource type="ImageTexture" id=22]
+size = Vector2( 300, 300 )
+
+[sub_resource type="CubeMesh" id=23]
+
+[sub_resource type="CubeMesh" id=24]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[node name="scene" type="Spatial"]
+
+[node name="light_pos" type="Spatial" parent="."]
+
+[node name="light1" type="Position3D" parent="light_pos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53338, 1.3904, -2.95449 )
+
+[node name="shadow_map" type="Spatial" parent="."]
+script = ExtResource( 3 )
+color = Color( 0.411765, 1, 0.462745, 1 )
+
+[node name="Front" type="Viewport" parent="shadow_map"]
+size = Vector2( 512, 512 )
+keep_3d_linear = true
+render_target_update_mode = 3
+
+[node name="Camera2" type="Camera" parent="shadow_map/Front"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+cull_mask = 2
+environment = ExtResource( 2 )
+current = true
+fov = 90.0
+
+[node name="depth" type="MeshInstance" parent="shadow_map/Front/Camera2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+layers = 2
+material_override = SubResource( 1 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Right" type="Viewport" parent="shadow_map"]
+size = Vector2( 512, 512 )
+keep_3d_linear = true
+render_target_update_mode = 3
+
+[node name="Camera3" type="Camera" parent="shadow_map/Right"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+cull_mask = 2
+environment = ExtResource( 2 )
+current = true
+fov = 90.0
+
+[node name="depth" type="MeshInstance" parent="shadow_map/Right/Camera3"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+layers = 2
+material_override = SubResource( 1 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Left" type="Viewport" parent="shadow_map"]
+size = Vector2( 512, 512 )
+keep_3d_linear = true
+render_target_update_mode = 3
+
+[node name="Camera4" type="Camera" parent="shadow_map/Left"]
+cull_mask = 2
+environment = ExtResource( 2 )
+current = true
+fov = 90.0
+far = 10.0
+
+[node name="depth" type="MeshInstance" parent="shadow_map/Left/Camera4"]
+layers = 2
+material_override = SubResource( 1 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Back" type="Viewport" parent="shadow_map"]
+size = Vector2( 512, 512 )
+keep_3d_linear = true
+render_target_update_mode = 3
+
+[node name="Camera5" type="Camera" parent="shadow_map/Back"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+cull_mask = 2
+environment = ExtResource( 2 )
+current = true
+fov = 90.0
+
+[node name="depth" type="MeshInstance" parent="shadow_map/Back/Camera5"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+layers = 2
+material_override = SubResource( 1 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Up" type="Viewport" parent="shadow_map"]
+size = Vector2( 512, 512 )
+keep_3d_linear = true
+render_target_update_mode = 3
+
+[node name="Camera6" type="Camera" parent="shadow_map/Up"]
+transform = Transform( -1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 0, 0, 0 )
+cull_mask = 2
+environment = ExtResource( 2 )
+current = true
+fov = 90.0
+
+[node name="depth" type="MeshInstance" parent="shadow_map/Up/Camera6"]
+transform = Transform( -1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -3.82137e-15, -1, 4.37114e-08, 0, 0, 0 )
+layers = 2
+material_override = SubResource( 1 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Down" type="Viewport" parent="shadow_map"]
+size = Vector2( 512, 512 )
+keep_3d_linear = true
+render_target_update_mode = 3
+
+[node name="Camera7" type="Camera" parent="shadow_map/Down"]
+transform = Transform( -1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, 0 )
+cull_mask = 2
+environment = ExtResource( 2 )
+current = true
+fov = 90.0
+
+[node name="depth" type="MeshInstance" parent="shadow_map/Down/Camera7"]
+transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, 0, 0, 0 )
+layers = 2
+material_override = SubResource( 1 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="shadow_map"]
+light_color = Color( 0.980392, 0.352941, 1, 1 )
+shadow_enabled = true
+
+[node name="MeshInstance" type="MeshInstance" parent="shadow_map"]
+material_override = SubResource( 3 )
+cast_shadow = 0
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.975993, 0.217803, 0, -0.217803, 0.975993, 0, 1.48808, 2.08069 )
+cull_mask = 1
+script = ExtResource( 4 )
+mouse_mode = 0
+max_speed = Vector3( 3, 3, 3 )
+
+[node name="vlights" type="MeshInstance" parent="Camera"]
+material_override = SubResource( 11 )
+cast_shadow = 0
+mesh = SubResource( 12 )
+material/0 = null
+script = ExtResource( 8 )
+
+[node name="floor" type="MeshInstance" parent="."]
+material_override = SubResource( 13 )
+mesh = SubResource( 14 )
+material/0 = null
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="debug" type="Button" parent="Control"]
+margin_left = 19.6438
+margin_top = 27.0102
+margin_right = 70.6438
+margin_bottom = 47.0102
+text = "debug"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fps" type="Label" parent="Control"]
+margin_left = 82.0
+margin_top = 31.0
+margin_right = 157.0
+margin_bottom = 45.0
+text = "FPS:000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="elems" type="Control" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="debug1" type="TextureRect" parent="Control/elems"]
+material = SubResource( 21 )
+margin_left = 966.0
+margin_top = 4.0
+margin_right = 1276.0
+margin_bottom = 322.0
+texture = SubResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Control/elems"]
+margin_left = 25.2181
+margin_top = 193.677
+margin_right = 77.2181
+margin_bottom = 217.677
+pressed = true
+text = "512"
+
+[node name="CheckBox2" type="CheckBox" parent="Control/elems"]
+margin_left = 24.5547
+margin_top = 169.42
+margin_right = 76.5547
+margin_bottom = 193.42
+text = "256"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox7" type="CheckBox" parent="Control/elems"]
+margin_left = 25.8815
+margin_top = 142.219
+margin_right = 77.8815
+margin_bottom = 166.219
+text = "128"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox5" type="CheckBox" parent="Control/elems"]
+margin_left = 27.1093
+margin_top = 283.65
+margin_right = 79.1093
+margin_bottom = 307.65
+pressed = true
+text = "32"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox4" type="CheckBox" parent="Control/elems"]
+margin_left = 27.1093
+margin_top = 255.412
+margin_right = 79.1093
+margin_bottom = 279.412
+text = "16"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox10" type="CheckBox" parent="Control/elems"]
+margin_left = 157.109
+margin_top = 171.65
+margin_right = 209.109
+margin_bottom = 195.65
+pressed = true
+text = "more obj"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox9" type="CheckBox" parent="Control/elems"]
+margin_left = 157.109
+margin_top = 143.412
+margin_right = 209.109
+margin_bottom = 167.412
+text = "2 cube"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox3" type="CheckBox" parent="Control/elems"]
+margin_left = 132.596
+margin_top = 85.9416
+margin_right = 184.596
+margin_bottom = 109.942
+pressed = true
+text = "on"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox8" type="CheckBox" parent="Control/elems"]
+margin_left = 197.19
+margin_top = 199.952
+margin_right = 249.19
+margin_bottom = 223.953
+pressed = true
+text = "on"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox11" type="CheckBox" parent="Control/elems"]
+margin_left = 277.963
+margin_top = 224.816
+margin_right = 329.963
+margin_bottom = 248.817
+text = "on"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox6" type="CheckBox" parent="Control/elems"]
+margin_left = 265.191
+margin_top = 87.1693
+margin_right = 317.191
+margin_bottom = 111.17
+text = "on"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/elems"]
+margin_left = 34.0
+margin_top = 61.0
+margin_right = 144.0
+margin_bottom = 75.0
+text = "cubemap camera"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Control/elems"]
+margin_left = 34.9109
+margin_top = 90.7723
+margin_right = 129.911
+margin_bottom = 104.772
+text = "update camera"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Control/elems"]
+margin_left = 214.161
+margin_top = 92.0
+margin_right = 260.161
+margin_bottom = 106.0
+text = "turn off"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control/elems"]
+margin_left = 33.0
+margin_top = 126.0
+margin_right = 98.0
+margin_bottom = 140.0
+text = "resolution"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Control/elems"]
+margin_left = 164.0
+margin_top = 204.0
+margin_right = 207.0
+margin_bottom = 218.0
+text = "floor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="Control/elems"]
+margin_left = 164.857
+margin_top = 228.864
+margin_right = 276.857
+margin_bottom = 242.864
+text = "floor on cubemap"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Control/elems"]
+margin_left = 32.0
+margin_top = 237.0
+margin_right = 86.0
+margin_bottom = 251.0
+text = "samples"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label10" type="Label" parent="Control/elems"]
+margin_left = 34.3214
+margin_top = 356.936
+margin_right = 88.3214
+margin_bottom = 370.936
+text = "light color"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="Control/elems"]
+margin_left = 19.1973
+margin_top = 631.667
+margin_right = 137.197
+margin_bottom = 645.667
+text = "twitter.com/AruGL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="Control/elems"]
+margin_left = 162.0
+margin_top = 125.0
+margin_right = 216.0
+margin_bottom = 139.0
+text = "objects"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Control/elems"]
+margin_left = 104.226
+margin_top = 355.869
+margin_right = 149.226
+margin_bottom = 375.869
+text = "Color"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="objects" type="Spatial" parent="."]
+visible = false
+
+[node name="cube1" type="MeshInstance" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15294, -2.59632 )
+layers = 3
+mesh = SubResource( 23 )
+material/0 = null
+
+[node name="cube2" type="MeshInstance" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9304, 0.499028, -5.7516 )
+layers = 3
+mesh = SubResource( 24 )
+material/0 = null
+
+[node name="objects2" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="objects2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.24917, 1.3065, -1.13129 )
+layers = 3
+material_override = SubResource( 25 )
+
+[node name="CSGSphere" type="CSGSphere" parent="objects2/CSGBox"]
+operation = 2
+radius = 1.2
+
+[node name="CSGBox" type="CSGBox" parent="objects2/CSGBox/CSGSphere"]
+width = 0.5
+height = 2.02
+depth = 2.02
+
+[node name="CSGBox2" type="CSGBox" parent="objects2/CSGBox/CSGSphere"]
+width = 2.02
+height = 2.02
+depth = 0.5
+
+[node name="CSGBox3" type="CSGBox" parent="objects2/CSGBox/CSGSphere"]
+width = 2.02
+height = 0.5
+depth = 2.02
+
+[node name="CSGSphere" type="CSGSphere" parent="objects2"]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -2.22829, 1.3065, -4.641 )
+layers = 3
+radius = 1.2
+radial_segments = 72
+rings = 36
+
+[node name="CSGSphere" type="CSGSphere" parent="objects2/CSGSphere"]
+operation = 2
+radius = 1.19
+radial_segments = 48
+rings = 24
+
+[node name="CSGBox" type="CSGBox" parent="objects2/CSGSphere/CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.367281, 0, 1.04617 )
+width = 2.3078
+height = 1.14044
+depth = 1.0
+
+[node name="CSGCylinder" type="CSGCylinder" parent="objects2/CSGSphere/CSGSphere"]
+radius = 1.22483
+height = 1.71546
+sides = 7
+smooth_faces = false
+[connection signal="pressed" from="Control/debug" to="Control" method="_on_debug_pressed"]
+[connection signal="toggled" from="Control/elems/CheckBox" to="Control" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox2" to="Control" method="_on_CheckBox2_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox7" to="Control" method="_on_CheckBox7_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox5" to="Control" method="_on_CheckBox5_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox4" to="Control" method="_on_CheckBox4_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox10" to="Control" method="_on_CheckBox10_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox9" to="Control" method="_on_CheckBox9_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox3" to="Control" method="_on_CheckBox3_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox8" to="Control" method="_on_CheckBox8_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox11" to="Control" method="_on_CheckBox11_toggled"]
+[connection signal="toggled" from="Control/elems/CheckBox6" to="Control" method="_on_CheckBox6_toggled"]
+[connection signal="color_changed" from="Control/elems/ColorPickerButton" to="Control" method="_on_ColorPickerButton_color_changed"]
+[connection signal="picker_created" from="Control/elems/ColorPickerButton" to="Control" method="_on_ColorPickerButton_picker_created"]
+[connection signal="popup_closed" from="Control/elems/ColorPickerButton" to="Control" method="_on_ColorPickerButton_popup_closed"]
+[connection signal="pressed" from="Control/elems/ColorPickerButton" to="Control" method="_on_ColorPickerButton_pressed"]
