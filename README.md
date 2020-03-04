@@ -19,6 +19,8 @@ Video [youtube link](https://youtu.be/alVrbpt7VpY)
 
 *WebGL GLES2 **bug*** this project does not work in Godot GLES2-Web build, because [this bug](https://github.com/godotengine/godot/issues/36786). I build it in GLES3(WebGL2) Godot build.
 
+*Licence* this code, include shaders do not have any Licence. *No licence*. Use it as you wish.
+
 ___
 
 **portals_panorama** GLES2 scene with six very simple **procedural panorama** for godot. Shader source code in [panorama/shaders](https://github.com/danilw/godot-utils-and-other/tree/master/portals_panorama/panorama/shaders) folder.
