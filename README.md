@@ -15,9 +15,11 @@ ___
 
 Video [youtube link](https://youtu.be/alVrbpt7VpY)
 
-*links* **[Live web build (WebGL2/GLES3)](https://danilw.github.io/godot-utils-and-other/volume_lights/web/Volumetric_Lights.html)**, [Win64 GLES2](https://danilw.github.io/godot-utils-and-other/volume_lights/volume_lights_win.zip)
+*links* **[Live web build (WebGL2/GLES3)](https://danilw.github.io/godot-utils-and-other/volume_lights/web/Volumetric_Lights.html)**, [Win64 GLES2](https://danilw.github.io/godot-utils-and-other/volume_lights/volume_lights_win.zip), [Win64 GLES3](https://danilw.github.io/godot-utils-and-other/volume_lights/volume_lights_win_gles3.zip)
 
 *WebGL GLES2* this project does not work in GLES2-Web build, because [WebGL do not allow write to depth](https://github.com/godotengine/godot/issues/36786). I build it in GLES3(WebGL2) Godot web-build.
+
+**AMD GLES2 bug** if you see [this(image link)](https://danilw.github.io/godot-utils-and-other/bug_depth/img/amd_gles2_bug.png) then you need use GLES3 only, [bugreport to Godot](https://github.com/godotengine/godot/issues/36812), [bugreport to AMD]().
 
 *Licence:* Volumetric_Lights code, include shaders do not have any Licence. *No licence*. Use it as you wish.
 
