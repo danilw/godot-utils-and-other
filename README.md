@@ -84,8 +84,7 @@ ___
 
 **Environment bug**(on first load): Godot has bug with removing *Default Environment* after re-import Assets(project is work if launch, it does not work only in Godot editor), set Project->Projet Setting->Rendering->Environment->Default Environment select file *default_env.tres*
 
-GLES2 version of this *Sky only* [web build GLES2 link for test](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/web_sky_ref_gles2/dsr.html) download source project [Dynamic_sky_only_GLES2.zip]
-(https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/Dyn_Sky_only_GLES2.zip)
+**GLES2 version** of this *Sky only* [web build GLES2 link for test](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/web_sky_ref_gles2/dsr.html) download source project [Dyn_Sky_only_GLES2.zip](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/Dyn_Sky_only_GLES2.zip)
 ___
 
 *new small:*
