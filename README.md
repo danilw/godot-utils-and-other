@@ -130,6 +130,6 @@ ___
 
 [![a_rel_bw_game](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_yt.jpg)](https://youtu.be/jTmppCifnYE)
 
-**Dynamic sky and reflection**
+**Dynamic sky and reflection** video
 
-![dyn](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/dsr.jpg)
+[![dyn](https://danilw.github.io/godot-utils-and-other/dyn_sky_refl/dsr.jpg)](https://youtu.be/IQ-yw19xBQ8)
