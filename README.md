@@ -19,7 +19,7 @@ ___
 
 Video [youtube link](https://youtu.be/Tk2P235GX1E)
 
-*Godot has bug with EXR/half_float bug.*
+*Godot has bug with EXR/half_float, in WebGL2 build.*
 
 To avoid it - edit scene **Area lights2**, mesh *floor* its material, remove ltc_mat, and ltc_max linked textures. Then edit *floor.gd* script on same mesh, uncomment line 20 `load_from_data_v2()`
 
