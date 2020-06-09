@@ -13,11 +13,15 @@ ___
 
 **graphic_demo_3d** using simple custom shaders in Godot 3.2.1, like Area lights, all used external-code/logic linked in each shader, if used. Used Godot 3.2.1 stable, without modifications.
 
-*Useed two models with animations from sketchfab*, links in [USED_ASSETS_LINKS.md](https://github.com/danilw/godot-utils-and-other/blob/master/graphic_demo_3d/USED_ASSETS_LINKS.md)
+*Used two models with animations from sketchfab*, links in [USED_ASSETS_LINKS.md](https://github.com/danilw/godot-utils-and-other/blob/master/graphic_demo_3d/USED_ASSETS_LINKS.md)
 
 **try it live(WebGL2) or download** on itch click **[demo link](https://danilw.itch.io/godot-graphic-demo-3d?password=demo)**
 
 Video [youtube link](https://youtu.be/Tk2P235GX1E)
+
+**To have worked WebGL2 build, you need to avoid Godot EXR/half_float bug.** 
+To do that edit scene **Area lights2**, mesh *floor* its material, remove ltc_mat, and ltc_max linked textures.
+Then edit *floor.gd* script on same mesh, uncomment line 20 `load_from_data_v2()`
 
 ![gda1](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/p1.gif) ![gda2](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/an1.gif)
 
