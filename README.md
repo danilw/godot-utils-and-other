@@ -11,9 +11,11 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 *new 2020:*
 ___
 
-**graphic_demo_3d**
+**graphic_demo_3d** using simple custom shaders in Godot 3.2.1, like Area lights, all used external-code/logic linked in each shader, if used. Used Godot 3.2.1 stable, without modifications.
 
-**try it live(WebGL2) or download** on itch click [demo link](https://danilw.itch.io/godot-graphic-demo-3d?password=demo)
+*Useed two models with animations from sketchfab*, links in [graphic_demo_3d/USED_ASSETS_LINKS.md](https://github.com/danilw/godot-utils-and-other/blob/master/graphic_demo_3d/USED_ASSETS_LINKS.md)
+
+**try it live(WebGL2) or download** on itch click **[demo link](https://danilw.itch.io/godot-graphic-demo-3d?password=demo)**
 
 Video [youtube link](https://youtu.be/Tk2P235GX1E)
 
