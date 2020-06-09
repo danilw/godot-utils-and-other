@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[resource]
+background_mode = 1
+background_sky = SubResource( 1 )
+fog_enabled = true
+fog_color = Color( 0, 0, 0, 1 )
+fog_sun_color = Color( 0, 0, 0, 1 )
+fog_depth_begin = 70.0
+fog_depth_end = 75.0
+fog_transmit_enabled = true
+ss_reflections_roughness = false
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/3 = false
+glow_levels/5 = false
+glow_intensity = 1.5
+glow_strength = 0.45
+glow_bloom = 1.0
+glow_blend_mode = 1
+glow_bicubic_upscale = true

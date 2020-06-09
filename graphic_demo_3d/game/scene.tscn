@@ -1,0 +1,567 @@
+[gd_scene load_steps=50 format=2]
+
+[ext_resource path="res://game/scripts/Camera_main.gd" type="Script" id=1]
+[ext_resource path="res://game/models/objects/arc/arc.res" type="PackedScene" id=2]
+[ext_resource path="res://game/scripts/scene.gd" type="Script" id=3]
+[ext_resource path="res://game/models/objects/spheres/spheres.res" type="PackedScene" id=4]
+[ext_resource path="res://game/models/objects/box/box.res" type="PackedScene" id=5]
+[ext_resource path="res://game/models/objects/area_lights/area_lights.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/models/lil_guy/guy.res" type="PackedScene" id=7]
+[ext_resource path="res://game/models/objects/area_lights2/area_lights2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game/models/woolf/woolf.res" type="PackedScene" id=9]
+[ext_resource path="res://default_env.tres" type="Environment" id=10]
+[ext_resource path="res://game/models/objects/floorx/floor.mesh" type="ArrayMesh" id=11]
+[ext_resource path="res://game/models/objects/floorx/particle.shader" type="Shader" id=12]
+[ext_resource path="res://game/models/objects/floorx/pir.mesh" type="ArrayMesh" id=13]
+[ext_resource path="res://game/models/objects/floorx/spir.mesh" type="ArrayMesh" id=14]
+[ext_resource path="res://game/models/objects/floorx/lght.mesh" type="ArrayMesh" id=15]
+[ext_resource path="res://game/models/objects/floorx/particle2.shader" type="Shader" id=16]
+[ext_resource path="res://game/models/objects/floorx/point.shader" type="Shader" id=17]
+[ext_resource path="res://game/shaders/edges.shader" type="Shader" id=18]
+[ext_resource path="res://game/scripts/Control.gd" type="Script" id=19]
+[ext_resource path="res://game/scripts/Navigation.gd" type="Script" id=20]
+[ext_resource path="res://game/models/objects/arc/navigationmesh.res" type="NavigationMesh" id=21]
+[ext_resource path="res://game/shaders/ltx.png" type="Texture" id=22]
+[ext_resource path="res://game/scripts/preloading.gd" type="Script" id=23]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+fog_color = Color( 0, 0, 0, 1 )
+fog_sun_color = Color( 0, 0, 0, 1 )
+fog_depth_begin = 1.0
+fog_depth_end = 2.0
+dof_blur_near_distance = 10.0
+dof_blur_near_transition = 0.01
+dof_blur_near_quality = 0
+glow_bloom = 1.0
+glow_blend_mode = 1
+
+[sub_resource type="SphereShape" id=2]
+radius = 0.2
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 10, 1, 5 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_vertex_lighting = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+params_specular_mode = 4
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="PlaneMesh" id=5]
+size = Vector2( 33, 0.875 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 12 )
+shader_param/line_size = 8
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 17 )
+
+[sub_resource type="PointMesh" id=8]
+material = SubResource( 7 )
+
+[sub_resource type="Shader" id=9]
+code = "shader_type particles;
+render_mode keep_data,disable_velocity;
+uniform int line_size=15;
+
+float rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536)) / 65535.0;
+}
+
+uint hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+// https://www.shadertoy.com/view/ll2GD3 
+vec3 pal( in float t, in vec3 a, in vec3 b, in vec3 c, in vec3 d ) {
+    return a + b*cos( 6.28318*(c*t+d) );
+}
+
+mat4 rotationAxisAngle( vec3 v, float angle )
+{
+    float s = sin( angle );
+    float c = cos( angle );
+    float ic = 1.0 - c;
+
+    return mat4( vec4(v.x*v.x*ic + c,     v.y*v.x*ic - s*v.z, v.z*v.x*ic + s*v.y, 0.0),
+                 vec4(v.x*v.y*ic + s*v.z, v.y*v.y*ic + c,     v.z*v.y*ic - s*v.x, 0.0),
+                 vec4(v.x*v.z*ic - s*v.y, v.y*v.z*ic + s*v.x, v.z*v.z*ic + c,     0.0),
+                 vec4(0.0,                0.0,                0.0,                1.0 ));
+}
+
+const float scale=2.0625; //2.0625*2 size of tile, everything calculated base on it (all positions in Editor)
+
+void vertex() {
+	if((CUSTOM.w<100.)) 
+	{
+		uint alt_seed = hash(uint(1+INDEX) + RANDOM_SEED);
+		float pi = 3.14159;
+		float degree_to_rad = pi / 180.0;
+		CUSTOM=vec4(vec3(0),110.);
+		TRANSFORM = EMISSION_TRANSFORM;
+		vec2 pos=vec2(0.);
+		pos=vec2(float(INDEX%line_size),float(INDEX/line_size));
+		
+		TRANSFORM[3].xyz=vec3(pos.x*2.*scale,0.,pos.y*2.*scale);
+		TRANSFORM[0].xyz *= scale;
+		TRANSFORM[1].xyz *= scale;
+		TRANSFORM[2].xyz *= scale;
+		TRANSFORM = TRANSFORM  *rotationAxisAngle(vec3(0.,1.,0.),-pi*0.5);
+		/*
+		pos+=rand_from_seed(alt_seed)*float(line_size)*3.;
+		pos*=1.;
+		vec3 tc=pal((floor((pos.y-0.5)*4.)+floor((pos.y-0.5)*4.)*floor((pos.y-0.5)*4.))*0.1,
+		vec3(0.5,0.5,0.5),vec3(0.5,0.2,0.5),vec3(1.0,1.0,1.0),vec3(0.0,0.3,0.4) )*10.;
+		*/
+		
+		const float px=6.;
+		vec3 tc=vec3(1.1,0.5,0.2)*px;
+		if((INDEX/line_size)%2==1)
+		tc=vec3(0.2,0.5,01.1)*px;
+		
+		CUSTOM.rgb=tc;
+
+	//}else{
+		
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/line_size = 8
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 16 )
+shader_param/line_size = 13
+
+[sub_resource type="Shader" id=12]
+code = "shader_type particles;
+render_mode keep_data,disable_velocity;
+uniform int line_size=10;
+
+float rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536)) / 65535.0;
+}
+
+uint hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+// https://www.shadertoy.com/view/ll2GD3 
+vec3 pal( in float t, in vec3 a, in vec3 b, in vec3 c, in vec3 d ) {
+    return a + b*cos( 6.28318*(c*t+d) );
+}
+
+mat4 rotationAxisAngle( vec3 v, float angle )
+{
+    float s = sin( angle );
+    float c = cos( angle );
+    float ic = 1.0 - c;
+
+    return mat4( vec4(v.x*v.x*ic + c,     v.y*v.x*ic - s*v.z, v.z*v.x*ic + s*v.y, 0.0),
+                 vec4(v.x*v.y*ic + s*v.z, v.y*v.y*ic + c,     v.z*v.y*ic - s*v.x, 0.0),
+                 vec4(v.x*v.z*ic - s*v.y, v.y*v.z*ic + s*v.x, v.z*v.z*ic + c,     0.0),
+                 vec4(0.0,                0.0,                0.0,                1.0 ));
+}
+
+
+const float scale=2.0625;
+
+void vertex() {
+	if((CUSTOM.w<100.)) 
+	{
+		uint alt_seed = hash(uint(1+INDEX) + RANDOM_SEED);
+		float pi = 3.14159;
+		float degree_to_rad = pi / 180.0;
+		CUSTOM=vec4(vec3(0),110.);
+		TRANSFORM = EMISSION_TRANSFORM;
+		vec2 pos=vec2(0.);
+		pos=vec2(float(INDEX%line_size),float(INDEX/line_size));
+		
+		TRANSFORM[3].xyz=vec3(pos.x*2.*scale,0.,pos.y*2.*scale);
+		TRANSFORM[0].xyz *= scale;
+		TRANSFORM[1].xyz *= scale;
+		TRANSFORM[2].xyz *= scale;
+		
+		TRANSFORM = TRANSFORM  *rotationAxisAngle(vec3(0.,1.,0.),pi);
+		
+		/*
+		pos+=rand_from_seed(alt_seed)*float(line_size)*3.;
+		pos*=1.;
+		vec3 tc=pal((floor((pos.y-0.5)*4.)+floor((pos.y-0.5)*4.)*floor((pos.y-0.5)*4.))*0.1,
+		vec3(0.5,0.5,0.5),vec3(0.5,0.2,0.5),vec3(1.0,1.0,1.0),vec3(0.0,0.3,0.4) )*10.;
+		*/
+		
+		vec3 tc=vec3(1.1,0.5,0.2)*10.;
+		if((INDEX/line_size)%2==1)tc=vec3(0.2,0.5,01.1)*10.;
+//		if(INDEX==13||INDEX==25)tc=vec3(1.1,0.5,0.2)*10.;
+//		if(INDEX==37||INDEX==27)tc=vec3(0.2,0.5,01.1)*10.;
+		if(INDEX==1||INDEX==11)tc=vec3(0.2,0.5,01.1)*10.;
+		if(INDEX==37||INDEX==27)tc=vec3(0.2,0.5,01.1)*10.;
+		
+		
+		CUSTOM.rgb=tc;
+
+	//}else{
+		
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+shader_param/line_size = 13
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 16 )
+shader_param/line_size = 13
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 17 )
+
+[sub_resource type="PointMesh" id=16]
+material = SubResource( 15 )
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 16.5, 1, 14.437 )
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 30, 1, 2.062 )
+
+[sub_resource type="Shader" id=19]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+uniform float iTime=0.;
+
+float hash13(vec3 p3)
+{
+	p3  = fract(p3 * 443.8975);
+	p3 += dot(p3, p3.yzx + 19.19);
+	return fract((p3.x + p3.y) * p3.z);
+}
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord, in vec2 iResolution, sampler2D tx)
+{
+	const float c_goldenRatioConjugate = 0.61803398875;
+	vec2 uv = fragCoord/iResolution.xy;
+	vec3 fg = texture( tx, uv ).rgb;
+	float opaque = 1.0;
+	float alpha = smoothstep(0.,1.,iTime);
+	float whiteNoise = hash13(vec3(uv, 0.5));
+	opaque *= step(alpha, whiteNoise);      
+	fragColor = vec4(fg,opaque);
+}
+
+void fragment(){
+    vec2 iResolution=1./TEXTURE_PIXEL_SIZE;
+    mainImage(COLOR,UV*iResolution,iResolution, TEXTURE);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = SubResource( 19 )
+shader_param/iTime = 0.0
+
+[sub_resource type="ShaderMaterial" id=21]
+shader = ExtResource( 18 )
+shader_param/alpha = 1.0
+
+[sub_resource type="ViewportTexture" id=22]
+viewport_path = NodePath("edge")
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 2.75, 0.8, 2 )
+
+[sub_resource type="SpatialMaterial" id=24]
+flags_unshaded = true
+albedo_color = Color( 0.215686, 0.152941, 0.356863, 1 )
+
+[sub_resource type="PlaneMesh" id=25]
+material = SubResource( 24 )
+size = Vector2( 1, 1 )
+
+[sub_resource type="MeshLibrary" id=26]
+item/0/name = ""
+item/0/mesh = SubResource( 25 )
+item/0/mesh_transform = null
+item/0/shapes = [  ]
+item/0/navmesh = ExtResource( 21 )
+item/0/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="scene" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="edge" type="Viewport" parent="."]
+size = Vector2( 640, 360 )
+transparent_bg = true
+hdr = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="edge"]
+cull_mask = 2
+environment = SubResource( 1 )
+current = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.0187439, -0.224929, 0.974195, -3.6652e-08, 0.974366, 0.224968, -0.999824, 0.00421675, -0.0182634, 1.23, 0.8, 0 )
+environment = ExtResource( 10 )
+script = ExtResource( 1 )
+mouse_mode = 0
+collisions = false
+acceleration = 0.8
+deceleration = 0.2
+max_speed = Vector3( 1.25, 1.25, 1.25 )
+
+[node name="KinematicBody" type="KinematicBody" parent="Camera" groups=[
+"player",
+]]
+
+[node name="CollisionShape" type="CollisionShape" parent="Camera/KinematicBody"]
+transform = Transform( 1, 1.42109e-14, 0, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="wfp" type="Position3D" parent="Camera"]
+transform = Transform( 1, -7.10543e-15, 2.84217e-14, 0, 1, -5.76474e-16, 0, -5.76475e-16, 1, -5.36442e-07, -0.0638785, -0.240143 )
+
+[node name="arc" parent="." instance=ExtResource( 2 )]
+
+[node name="spheres" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 3.5 )
+
+[node name="box" parent="." instance=ExtResource( 5 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 15, 0, -6 )
+
+[node name="area_lights" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14 )
+
+[node name="guy" parent="area_lights" instance=ExtResource( 7 )]
+
+[node name="Area" type="Area" parent="area_lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.901574, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="area_lights/Area"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="area_lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, -4.437 )
+material_override = SubResource( 4 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="area_lights2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0, -10.5 )
+
+[node name="woolf" parent="." instance=ExtResource( 9 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -5.38727, 0, -1.51073 )
+
+[node name="parts" type="Spatial" parent="."]
+
+[node name="border1" type="Particles" parent="parts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.937, 0, 12.062 )
+amount = 24
+explosiveness = 1.0
+visibility_aabb = AABB( -2.99197, -0.835258, -2.52557, 33.5855, 1.67052, 13.0463 )
+process_material = SubResource( 6 )
+draw_passes = 4
+draw_pass_1 = ExtResource( 11 )
+draw_pass_2 = ExtResource( 13 )
+draw_pass_3 = ExtResource( 14 )
+draw_pass_4 = ExtResource( 15 )
+
+[node name="border5" type="Particles" parent="parts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.937, 0.29, 12.062 )
+amount = 24
+explosiveness = 1.0
+visibility_aabb = AABB( -2.99197, -0.835258, -2.52557, 33.5855, 1.67052, 13.0463 )
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="border6" type="Particles" parent="parts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.937, 0.29, -29.187 )
+amount = 24
+explosiveness = 1.0
+visibility_aabb = AABB( -2.99197, -0.835258, -2.52557, 33.5855, 1.67052, 13.0463 )
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="border2" type="Particles" parent="parts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.937, 0, -29.187 )
+amount = 24
+explosiveness = 1.0
+visibility_aabb = AABB( -2.99197, -0.835258, -2.52557, 33.5855, 1.67052, 13.0463 )
+process_material = SubResource( 10 )
+draw_passes = 4
+draw_pass_1 = ExtResource( 11 )
+draw_pass_2 = ExtResource( 13 )
+draw_pass_3 = ExtResource( 14 )
+draw_pass_4 = ExtResource( 15 )
+
+[node name="border3" type="Particles" parent="parts"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -20.312, 0, 20.312 )
+amount = 39
+explosiveness = 1.0
+visibility_aabb = AABB( -2.25099, -0.835258, -2.52557, 53.208, 1.67052, 13.0463 )
+process_material = SubResource( 11 )
+draw_passes = 4
+draw_pass_1 = ExtResource( 11 )
+draw_pass_2 = ExtResource( 13 )
+draw_pass_3 = ExtResource( 14 )
+draw_pass_4 = ExtResource( 15 )
+
+[node name="border4" type="Particles" parent="parts"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 33.312, 0, -29.187 )
+amount = 39
+explosiveness = 1.0
+visibility_aabb = AABB( -1.5818, -0.835258, -2.52557, 53.0425, 1.67052, 13.0463 )
+process_material = SubResource( 13 )
+draw_passes = 4
+draw_pass_1 = ExtResource( 11 )
+draw_pass_2 = ExtResource( 13 )
+draw_pass_3 = ExtResource( 14 )
+draw_pass_4 = ExtResource( 15 )
+
+[node name="border7" type="Particles" parent="parts"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 33.312, 0.29, -29.187 )
+amount = 39
+explosiveness = 1.0
+visibility_aabb = AABB( -1.5818, -0.835258, -2.52557, 53.0425, 1.67052, 13.0463 )
+process_material = SubResource( 14 )
+draw_pass_1 = SubResource( 16 )
+
+[node name="border8" type="Particles" parent="parts"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -20.312, 0.29, 20.312 )
+amount = 39
+explosiveness = 1.0
+visibility_aabb = AABB( -1.5818, -0.835258, -2.52557, 53.0425, 1.67052, 13.0463 )
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 16 )
+
+[node name="areas" type="Spatial" parent="parts"]
+
+[node name="area in" type="Area" parent="parts/areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.956, -4.44 )
+
+[node name="CollisionShape" type="CollisionShape" parent="parts/areas/area in"]
+shape = SubResource( 17 )
+
+[node name="fa1" type="Area" parent="parts/areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.282, -4.437 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="parts/areas/fa1"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 26.812, -0.449, 0 )
+shape = SubResource( 18 )
+
+[node name="fa2" type="Area" parent="parts/areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.282, -4.437 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="parts/areas/fa2"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -26.812, -0.449, 0 )
+shape = SubResource( 18 )
+
+[node name="fa3" type="Area" parent="parts/areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.282, -4.437 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="parts/areas/fa3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.448784, 24.75 )
+shape = SubResource( 18 )
+
+[node name="fa4" type="Area" parent="parts/areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.282, -4.437 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="parts/areas/fa4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.449, -24.75 )
+shape = SubResource( 18 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+material = SubResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+material = SubResource( 21 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 22 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="navigation" type="Spatial" parent="."]
+
+[node name="st" type="Area" parent="navigation"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0.796, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="navigation/st"]
+shape = SubResource( 23 )
+
+[node name="Navigation" type="Navigation" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+script = ExtResource( 20 )
+
+[node name="GridMap" type="GridMap" parent="Navigation"]
+visible = false
+mesh_library = SubResource( 26 )
+cell_size = Vector3( 1, 1, 1 )
+data = {
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, -1610612736, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 17, 1, 0, 18, 1, -536870912, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 65526, 1, 0, 65527, 1, 0, 65528, 1, 0, 65529, 1, 0, 65530, 1, -1610612736, 65531, 1, 0, 65532, 1, 0, 65534, 1, -1073741824, 65535, 1, -536870912, 0, 2, 0, 1, 2, 536870912, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 2, 0, 18, 2, 0, 19, 2, 0, 20, 2, 0, 21, 2, 0, 22, 2, 0, 65526, 2, 0, 65527, 2, 0, 65528, 2, 0, 65529, 2, 0, 65530, 2, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 536870912, 6, 3, 0, 7, 3, 0, 8, 3, 1073741824, 9, 3, 536870912, 10, 3, 536870912, 11, 3, 536870912, 12, 3, 536870912, 13, 3, 0, 19, 3, 536870912, 20, 3, 536870912, 21, 3, 0, 22, 3, 0, 65526, 3, 0, 65527, 3, 536870912, 65528, 3, 0, 65529, 3, 0, 65530, 3, 536870912, 65531, 3, 0, 65532, 3, 0, 65533, 3, 536870912, 65534, 3, 536870912, 65535, 3, 0, 0, 4, 536870912, 1, 4, 536870912, 2, 4, 536870912, 3, 4, 536870912, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 4, 0, 8, 4, 536870912, 9, 4, 0, 10, 4, 1073741824, 11, 4, 0, 12, 4, 536870912, 13, 4, 536870912, 14, 4, 0, 18, 4, 536870912, 19, 4, 0, 20, 4, 536870912, 21, 4, 0, 22, 4, 536870912, 65526, 4, 536870912, 65527, 4, 0, 65528, 4, 0, 65529, 4, 0, 65530, 4, 0, 65531, 4, 0, 65532, 4, 536870912, 65533, 4, 1073741824, 65534, 4, 0, 65535, 4, 536870912, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 5, 5, 536870912, 6, 5, 0, 7, 5, 0, 8, 5, 0, 9, 5, 0, 10, 5, 0, 11, 5, 0, 12, 5, 0, 13, 5, 1073741824, 14, 5, 0, 15, 5, 0, 17, 5, 0, 18, 5, 0, 19, 5, 0, 20, 5, 0, 21, 5, 1073741824, 22, 5, 0, 65526, 5, 0, 65527, 5, 536870912, 65528, 5, 536870912, 65529, 5, 0, 65530, 5, 0, 65531, 5, 0, 65532, 5, 0, 65533, 5, 536870912, 65534, 5, 0, 65535, 5, 536870912, 0, 6, 0, 1, 6, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 10, 6, 0, 11, 6, 0, 12, 6, 0, 13, 6, 0, 14, 6, 0, 15, 6, 0, 16, 6, 0, 17, 6, 0, 18, 6, 536870912, 19, 6, 0, 20, 6, 0, 21, 6, 0, 22, 6, 0, 65526, 6, 0, 65527, 6, 536870912, 65528, 6, 1073741824, 65529, 6, 0, 65530, 6, 536870912, 65531, 6, 536870912, 65532, 6, 0, 65533, 6, 0, 65534, 6, 536870912, 65535, 6, 0, 0, 7, 0, 1, 7, 0, 2, 7, 0, 3, 7, 0, 4, 7, 0, 5, 7, 536870912, 6, 7, 0, 7, 7, 0, 8, 7, 536870912, 9, 7, 536870912, 10, 7, 536870912, 11, 7, 536870912, 12, 7, 536870912, 13, 7, 0, 14, 7, 536870912, 15, 7, 0, 16, 7, 536870912, 17, 7, 0, 18, 7, 536870912, 19, 7, 0, 20, 7, 0, 21, 7, 0, 22, 7, 0, 65526, 7, 536870912, 65527, 7, 0, 65528, 7, 0, 65529, 7, 0, 65530, 7, 0, 65531, 7, 0, 65532, 7, 0, 65533, 7, 0, 65534, 7, 0, 65535, 7, 0, 0, 8, 0, 1, 8, 0, 2, 8, 0, 3, 8, 0, 4, 8, -1610612736, 5, 8, 0, 6, 8, 0, 7, 8, 0, 8, 8, -1610612736, 9, 8, 0, 10, 8, 0, 11, 8, 0, 12, 8, 0, 13, 8, 0, 14, 8, 0, 15, 8, 0, 16, 8, 0, 17, 8, 536870912, 18, 8, 0, 19, 8, 0, 20, 8, 0, 21, 8, 0, 22, 8, 536870912, 65526, 8, 0, 65527, 8, 0, 65528, 8, 0, 65529, 8, 0, 65530, 8, 536870912, 65531, 8, 0, 65532, 8, 536870912, 65533, 8, 0, 65534, 8, 536870912, 65535, 8, -1610612736, 0, 9, 0, 1, 9, 0, 2, 9, 0, 3, 9, -1610612736, 4, 9, 0, 5, 9, 0, 6, 9, 0, 7, 9, 0, 8, 9, 0, 9, 9, 0, 10, 9, 0, 11, 9, 1073741824, 12, 9, 0, 13, 9, 536870912, 14, 9, 0, 15, 9, -1610612736, 16, 9, 0, 17, 9, 0, 18, 9, 0, 19, 9, 0, 20, 9, 0, 21, 9, 0, 22, 9, 0, 65526, 9, 1073741824, 65527, 9, 536870912, 65528, 9, 0, 65529, 9, 0, 65530, 9, 0, 65531, 9, 536870912, 65532, 9, 0, 65533, 9, 0, 65534, 9, 0, 65535, 9, 0, 0, 65518, 0, 1, 65518, 0, 2, 65518, 0, 3, 65518, 0, 4, 65518, 0, 5, 65518, 0, 6, 65518, 0, 7, 65518, 536870912, 8, 65518, 0, 9, 65518, 536870912, 10, 65518, 0, 11, 65518, 0, 12, 65518, 0, 13, 65518, 0, 14, 65518, 0, 15, 65518, 0, 16, 65518, 0, 17, 65518, 0, 18, 65518, 0, 19, 65518, 0, 20, 65518, 0, 21, 65518, 536870912, 22, 65518, 0, 65526, 65518, 0, 65527, 65518, 0, 65528, 65518, 0, 65529, 65518, 0, 65530, 65518, 0, 65531, 65518, 0, 65532, 65518, 536870912, 65533, 65518, 0, 65534, 65518, 0, 65535, 65518, 0, 0, 65519, 0, 1, 65519, 0, 2, 65519, 0, 3, 65519, 0, 4, 65519, 0, 5, 65519, 0, 6, 65519, 0, 7, 65519, 0, 8, 65519, 0, 9, 65519, 0, 10, 65519, 0, 11, 65519, 0, 12, 65519, 0, 13, 65519, 536870912, 14, 65519, 0, 15, 65519, 0, 16, 65519, 0, 17, 65519, 0, 18, 65519, 0, 19, 65519, 0, 20, 65519, 0, 21, 65519, 536870912, 22, 65519, 0, 65526, 65519, 536870912, 65527, 65519, 0, 65528, 65519, 536870912, 65529, 65519, 0, 65530, 65519, 0, 65531, 65519, 0, 65532, 65519, 0, 65533, 65519, 0, 65534, 65519, 0, 65535, 65519, 0, 0, 65520, 0, 1, 65520, 0, 2, 65520, 1073741824, 3, 65520, 0, 4, 65520, 0, 5, 65520, 536870912, 6, 65520, 0, 7, 65520, 0, 8, 65520, 0, 9, 65520, 0, 10, 65520, 536870912, 11, 65520, 0, 12, 65520, 0, 13, 65520, 0, 14, 65520, 536870912, 15, 65520, 0, 16, 65520, 0, 17, 65520, 0, 18, 65520, 536870912, 19, 65520, 536870912, 20, 65520, 1073741824, 21, 65520, 0, 22, 65520, 0, 65526, 65520, 0, 65527, 65520, 0, 65528, 65520, 0, 65529, 65520, 0, 65530, 65520, 0, 65531, 65520, 536870912, 65532, 65520, 0, 65533, 65520, 0, 65534, 65520, 536870912, 65535, 65520, 0, 1, 65521, 0, 2, 65521, 0, 3, 65521, 536870912, 4, 65521, 0, 5, 65521, 536870912, 6, 65521, 0, 7, 65521, 0, 8, 65521, 0, 9, 65521, 536870912, 10, 65521, 536870912, 11, 65521, 1073741824, 12, 65521, 0, 13, 65521, 1073741824, 14, 65521, 0, 15, 65521, 536870912, 16, 65521, 0, 17, 65521, 1073741824, 18, 65521, 0, 19, 65521, 536870912, 20, 65521, 0, 21, 65521, 536870912, 22, 65521, 0, 65526, 65521, 0, 65527, 65521, 0, 65528, 65521, 0, 65529, 65521, 1073741824, 65530, 65521, 0, 65531, 65521, 536870912, 65532, 65521, 0, 65533, 65521, 0, 65534, 65521, 536870912, 1, 65522, 0, 2, 65522, 536870912, 3, 65522, 1073741824, 4, 65522, 1073741824, 5, 65522, 1073741824, 6, 65522, 0, 7, 65522, 0, 8, 65522, 536870912, 9, 65522, 0, 10, 65522, 0, 11, 65522, 536870912, 12, 65522, 0, 13, 65522, 0, 14, 65522, 0, 15, 65522, 0, 16, 65522, 0, 17, 65522, 0, 18, 65522, 0, 19, 65522, 0, 20, 65522, 0, 21, 65522, 0, 22, 65522, 0, 65526, 65522, 0, 65527, 65522, 0, 65528, 65522, 1073741824, 65529, 65522, 536870912, 65530, 65522, 536870912, 65531, 65522, 0, 65532, 65522, 0, 65533, 65522, 0, 65534, 65522, 0, 0, 65523, 0, 1, 65523, 0, 2, 65523, 0, 3, 65523, 0, 4, 65523, 0, 5, 65523, 0, 6, 65523, 0, 7, 65523, 0, 8, 65523, 536870912, 9, 65523, 1073741824, 10, 65523, 0, 11, 65523, 0, 12, 65523, 0, 13, 65523, 0, 14, 65523, 0, 15, 65523, 536870912, 16, 65523, 0, 17, 65523, 536870912, 18, 65523, 0, 19, 65523, 0, 20, 65523, 0, 21, 65523, 0, 22, 65523, 0, 65526, 65523, 0, 65527, 65523, 0, 65528, 65523, 0, 65529, 65523, 0, 65530, 65523, 1073741824, 65531, 65523, 536870912, 65532, 65523, 0, 65533, 65523, 0, 65534, 65523, 0, 65535, 65523, 0, 0, 65524, 0, 1, 65524, 1073741824, 2, 65524, 0, 3, 65524, 0, 4, 65524, 0, 5, 65524, 536870912, 6, 65524, 0, 7, 65524, 536870912, 8, 65524, 536870912, 9, 65524, 536870912, 10, 65524, 0, 11, 65524, 0, 12, 65524, 0, 13, 65524, 0, 14, 65524, 0, 15, 65524, 0, 16, 65524, 0, 17, 65524, 0, 18, 65524, 0, 19, 65524, 0, 20, 65524, 0, 21, 65524, 0, 22, 65524, 0, 65526, 65524, 0, 65527, 65524, 0, 65528, 65524, 0, 65529, 65524, 0, 65530, 65524, 0, 65531, 65524, 0, 65532, 65524, 0, 65533, 65524, 0, 65534, 65524, 536870912, 65535, 65524, 0, 0, 65525, 0, 1, 65525, 0, 2, 65525, 0, 3, 65525, 0, 4, 65525, 0, 5, 65525, 0, 6, 65525, 0, 7, 65525, 0, 8, 65525, 536870912, 9, 65525, 0, 10, 65525, 0, 11, 65525, 0, 12, 65525, 0, 13, 65525, 0, 14, 65525, 0, 15, 65525, 0, 16, 65525, 0, 17, 65525, 0, 18, 65525, 0, 19, 65525, 0, 20, 65525, 0, 21, 65525, 0, 22, 65525, 0, 65526, 65525, 0, 65527, 65525, 0, 65528, 65525, 0, 65529, 65525, 536870912, 65530, 65525, 0, 65531, 65525, 0, 65532, 65525, 0, 65533, 65525, 0, 65534, 65525, 0, 65535, 65525, 536870912, 0, 65526, 0, 1, 65526, 0, 2, 65526, 1073741824, 3, 65526, 0, 4, 65526, 0, 5, 65526, 0, 6, 65526, 0, 7, 65526, 0, 8, 65526, 0, 9, 65526, 1073741824, 10, 65526, 0, 11, 65526, 0, 12, 65526, 0, 13, 65526, -536870912, 14, 65526, 0, 15, 65526, 0, 16, 65526, 0, 17, 65526, 0, 18, 65526, 0, 19, 65526, 0, 20, 65526, 0, 21, 65526, 0, 22, 65526, 0, 65526, 65526, 0, 65527, 65526, 0, 65528, 65526, 0, 65529, 65526, 0, 65530, 65526, 0, 65531, 65526, 0, 65532, 65526, 0, 65533, 65526, 0, 65534, 65526, 0, 65535, 65526, 536870912, 0, 65527, 536870912, 1, 65527, 536870912, 2, 65527, 536870912, 3, 65527, 536870912, 4, 65527, 0, 5, 65527, 536870912, 6, 65527, 0, 7, 65527, 536870912, 8, 65527, 536870912, 9, 65527, 1073741824, 10, 65527, 536870912, 11, 65527, 0, 12, 65527, 1073741824, 13, 65527, 0, 14, 65527, 536870912, 15, 65527, 1073741824, 16, 65527, 536870912, 17, 65527, 0, 18, 65527, 0, 19, 65527, 0, 20, 65527, 0, 21, 65527, 0, 22, 65527, 536870912, 65526, 65527, 0, 65527, 65527, 0, 65528, 65527, 1073741824, 65529, 65527, 0, 65530, 65527, 0, 65531, 65527, 536870912, 65532, 65527, 1073741824, 65533, 65527, 0, 65534, 65527, 536870912, 65535, 65527, 0, 0, 65528, 0, 1, 65528, 0, 2, 65528, 0, 3, 65528, 1073741824, 4, 65528, 1073741824, 5, 65528, 536870912, 6, 65528, 536870912, 7, 65528, 536870912, 8, 65528, 0, 9, 65528, 536870912, 10, 65528, 536870912, 11, 65528, 1073741824, 12, 65528, 536870912, 13, 65528, 1073741824, 14, 65528, 1073741824, 15, 65528, 536870912, 16, 65528, 1073741824, 17, 65528, 0, 18, 65528, 536870912, 19, 65528, 536870912, 20, 65528, 0, 21, 65528, 536870912, 22, 65528, 0, 65526, 65528, 0, 65527, 65528, 536870912, 65528, 65528, 1073741824, 65529, 65528, 1073741824, 65530, 65528, 0, 65531, 65528, 536870912, 65532, 65528, 536870912, 65533, 65528, 0, 65534, 65528, 536870912, 65535, 65528, 1073741824, 0, 65529, 536870912, 1, 65529, 536870912, 2, 65529, 0, 3, 65529, 536870912, 4, 65529, 536870912, 5, 65529, 1073741824, 6, 65529, 0, 7, 65529, 536870912, 8, 65529, 536870912, 9, 65529, 536870912, 10, 65529, 0, 11, 65529, 536870912, 12, 65529, 536870912, 13, 65529, 0, 16, 65529, 536870912, 17, 65529, 1073741824, 18, 65529, 0, 19, 65529, 1073741824, 20, 65529, 536870912, 21, 65529, 536870912, 22, 65529, 536870912, 65526, 65529, 536870912, 65527, 65529, 536870912, 65528, 65529, 0, 65529, 65529, 536870912, 65530, 65529, 536870912, 65531, 65529, 536870912, 65532, 65529, 536870912, 65533, 65529, 1073741824, 65534, 65529, 0, 65535, 65529, 0, 0, 65530, 536870912, 1, 65530, 0, 2, 65530, 0, 3, 65530, 0, 4, 65530, 536870912, 5, 65530, 1073741824, 6, 65530, 1073741824, 7, 65530, 536870912, 8, 65530, -1610612736, 9, 65530, 1073741824, 10, 65530, 0, 11, 65530, 0, 12, 65530, 1073741824, 13, 65530, 536870912, 16, 65530, 0, 17, 65530, 1073741824, 18, 65530, 536870912, 19, 65530, 0, 20, 65530, 536870912, 21, 65530, 1073741824, 22, 65530, 536870912, 65526, 65530, 1073741824, 65527, 65530, 0, 65528, 65530, 0, 65529, 65530, 0, 65530, 65530, 536870912, 65531, 65530, 0, 65532, 65530, 0, 65533, 65530, 536870912, 65534, 65530, 0, 65535, 65530, 0, 0, 65531, 536870912, 1, 65531, 0, 2, 65531, 0, 3, 65531, 0, 4, 65531, 536870912, 5, 65531, 1073741824, 6, 65531, 0, 7, 65531, 0, 8, 65531, 0, 9, 65531, 0, 10, 65531, 0, 11, 65531, 0, 12, 65531, 536870912, 13, 65531, 0, 14, 65531, 0, 15, 65531, 0, 16, 65531, 0, 17, 65531, 0, 18, 65531, 0, 19, 65531, 0, 20, 65531, 1073741824, 21, 65531, 536870912, 22, 65531, 0, 65526, 65531, 0, 65527, 65531, 0, 65528, 65531, 0, 65529, 65531, 0, 65530, 65531, 0, 65531, 65531, 0, 65532, 65531, 0, 65533, 65531, 536870912, 65534, 65531, 0, 65535, 65531, 0, 0, 65532, 536870912, 1, 65532, 0, 2, 65532, 0, 3, 65532, 536870912, 4, 65532, 0, 5, 65532, -1610612736, 6, 65532, 0, 7, 65532, 536870912, 8, 65532, 536870912, 9, 65532, 0, 10, 65532, 0, 11, 65532, 0, 12, 65532, 0, 13, 65532, 536870912, 14, 65532, 0, 15, 65532, 536870912, 16, 65532, 536870912, 17, 65532, 0, 18, 65532, 0, 19, 65532, 0, 20, 65532, 0, 21, 65532, 0, 22, 65532, 0, 65526, 65532, 0, 65527, 65532, 536870912, 65528, 65532, 536870912, 65529, 65532, 0, 65530, 65532, 536870912, 65531, 65532, 0, 65532, 65532, 0, 65533, 65532, 0, 65534, 65532, 0, 65535, 65532, 0, 0, 65533, 0, 1, 65533, 0, 2, 65533, 536870912, 3, 65533, 0, 4, 65533, 0, 5, 65533, 0, 6, 65533, 536870912, 7, 65533, 0, 8, 65533, 0, 9, 65533, -536870912, 10, 65533, 0, 11, 65533, 0, 12, 65533, 0, 13, 65533, 0, 14, 65533, 0, 15, 65533, 0, 16, 65533, 0, 17, 65533, 0, 18, 65533, 0, 19, 65533, 0, 20, 65533, 536870912, 21, 65533, 0, 22, 65533, 0, 65526, 65533, 0, 65527, 65533, 0, 65528, 65533, 0, 65529, 65533, 0, 65530, 65533, 0, 65531, 65533, 0, 65532, 65533, 0, 65533, 65533, 0, 65534, 65533, 0, 65535, 65533, -536870912, 0, 65534, 0, 1, 65534, 0, 2, 65534, 0, 3, 65534, -536870912, 4, 65534, 0, 5, 65534, 0, 6, 65534, 0, 7, 65534, 0, 8, 65534, 0, 9, 65534, 0, 10, 65534, 0, 11, 65534, 0, 12, 65534, 0, 13, 65534, 0, 14, 65534, 0, 15, 65534, 0, 16, 65534, 0, 17, 65534, 0, 18, 65534, 0, 19, 65534, 536870912, 20, 65534, 0, 21, 65534, 0, 22, 65534, 0, 65526, 65534, 0, 65527, 65534, 0, 65528, 65534, 0, 65529, 65534, 0, 65530, 65534, 0, 65531, 65534, 0, 65532, 65534, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0, 4, 65535, 0, 5, 65535, 0, 6, 65535, 0, 7, 65535, 0, 8, 65535, 0, 9, 65535, 0, 10, 65535, 0, 11, 65535, 0, 12, 65535, 0, 13, 65535, 0, 14, 65535, 0, 15, 65535, 0, 16, 65535, 0, 17, 65535, 0, 18, 65535, 0, 19, 65535, 0, 20, 65535, 0, 21, 65535, 0, 22, 65535, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65529, 65535, 0, 65530, 65535, 0, 65531, 65535, 0, 65532, 65535, 0, 65535, 65535, 0 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="preloading" type="Spatial" parent="."]
+script = ExtResource( 23 )
+[connection signal="body_entered" from="area_lights/Area" to="area_lights" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="area_lights/Area" to="area_lights" method="_on_Area_body_exited"]
+[connection signal="body_entered" from="parts/areas/area in" to="." method="_on_area_in_body_entered"]
+[connection signal="body_entered" from="parts/areas/area in" to="Control" method="_on_area_in_body_entered"]
+[connection signal="body_exited" from="parts/areas/area in" to="." method="_on_area_in_body_exited"]
+[connection signal="body_exited" from="parts/areas/area in" to="Control" method="_on_area_in_body_exited"]
+[connection signal="body_entered" from="parts/areas/fa1" to="." method="_on_fa1_body_entered" binds= [ 0 ]]
+[connection signal="body_entered" from="parts/areas/fa2" to="." method="_on_fa1_body_entered" binds= [ 1 ]]
+[connection signal="body_entered" from="parts/areas/fa3" to="." method="_on_fa1_body_entered" binds= [ 2 ]]
+[connection signal="body_entered" from="parts/areas/fa4" to="." method="_on_fa1_body_entered" binds= [ 3 ]]
+[connection signal="body_exited" from="navigation/st" to="Control" method="_on_st_body_exited"]

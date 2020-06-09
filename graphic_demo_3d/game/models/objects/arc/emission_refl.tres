@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://game/models/objects/arc/orig/p_o.png" type="Texture" id=1]
+[ext_resource path="res://game/models/objects/arc/refl.shader" type="Shader" id=2]
+[ext_resource path="res://game/models/objects/arc/orig_green/p_o.png" type="Texture" id=3]
+[ext_resource path="res://game/models/objects/arc/orig_red/p_o.png" type="Texture" id=4]
+[ext_resource path="res://game/models/objects/arc/orig_blue/p_o.png" type="Texture" id=5]
+
+[resource]
+render_priority = 1
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/blendx = Plane( 1, 0, 0, 0 )
+shader_param/emission = Color( 0.321569, 0.65098, 0.996078, 1 )
+shader_param/emission_energy = 1.0
+shader_param/iTime = null
+shader_param/p_o = ExtResource( 1 )
+shader_param/p_b = ExtResource( 5 )
+shader_param/p_g = ExtResource( 3 )
+shader_param/p_r = ExtResource( 4 )

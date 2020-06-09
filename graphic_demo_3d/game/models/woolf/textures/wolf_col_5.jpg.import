@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/wolf_col_5.jpg-798e1e1add35c820ad449faf687dfd2d.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://game/models/woolf/textures/wolf_col_5.jpg"
+dest_files=[ "res://.import/wolf_col_5.jpg-798e1e1add35c820ad449faf687dfd2d.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=1
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

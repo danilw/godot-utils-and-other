@@ -1,0 +1,298 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://game/models/objects/area_lights2/floor_area.shader" type="Shader" id=1]
+[ext_resource path="res://game/models/objects/area_lights/glmf2.png" type="Texture" id=2]
+[ext_resource path="res://game/models/objects/area_lights2/floor.gd" type="Script" id=3]
+[ext_resource path="res://game/models/objects/area_lights2/tx3.png" type="Texture" id=4]
+[ext_resource path="res://game/models/objects/area_lights2/g_ltc_mat.exr.gd" type="Script" id=5]
+[ext_resource path="res://game/models/objects/area_lights2/g_ltc_mag.exr.gd" type="Script" id=6]
+[ext_resource path="res://game/models/objects/area_lights2/bg.png" type="Texture" id=7]
+[ext_resource path="res://game/models/objects/area_lights/pbr_a/d880Mat_normal.jpeg" type="Texture" id=8]
+[ext_resource path="res://game/models/objects/area_lights/pbr_a/d880Mat_baseColor.jpeg" type="Texture" id=9]
+[ext_resource path="res://game/models/objects/area_lights2/g_ltc_mag.exr" type="Texture" id=10]
+[ext_resource path="res://game/models/objects/area_lights2/g_ltc_mat.exr" type="Texture" id=11]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/iTime = null
+shader_param/intensity = 1.5
+shader_param/roughtnss = 0.25
+shader_param/light_width0 = 1.0
+shader_param/light_height0 = 1.0
+shader_param/light_pos0 = Vector3( 0, 1.5, -7.7 )
+shader_param/light_normal0 = Vector3( 0, 0, 1 )
+shader_param/light_width1 = 0.5
+shader_param/light_height1 = 0.5
+shader_param/light_pos1 = Vector3( 0, 1.5, 7.58 )
+shader_param/light_normal1 = Vector3( 0, 0, -1 )
+shader_param/light_width2 = 0.5
+shader_param/light_height2 = 1.0
+shader_param/light_pos2 = Vector3( 1.441, 0.95, 0.13 )
+shader_param/light_normal2 = Vector3( -1, 0, 0 )
+shader_param/light_col = Color( 0.972549, 0.937255, 0.701961, 1 )
+shader_param/diff_col = Color( 1, 1, 1, 1 )
+shader_param/spec_col = Color( 0.823529, 0.823529, 0.823529, 1 )
+shader_param/tx_o = ExtResource( 7 )
+shader_param/tx_ox = ExtResource( 4 )
+shader_param/tx_b = ExtResource( 2 )
+shader_param/ltc_mat = ExtResource( 11 )
+shader_param/ltc_mag = ExtResource( 10 )
+shader_param/texture_albedo = ExtResource( 9 )
+shader_param/texture_normal = ExtResource( 8 )
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 3, 15 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,specular_disabled,vertex_lighting;
+uniform sampler2D tx1 : hint_albedo;
+uniform sampler2D tx2 : hint_albedo;
+uniform float iTime;
+
+
+void vertex() {
+	UV=UV*vec2(3.,2.);
+}
+
+void fragment() {
+	vec3 rd=normalize(((CAMERA_MATRIX) * vec4(normalize(-VERTEX), 0.0)).xyz);
+	vec3 nor=normalize((CAMERA_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	vec2 base_uv = UV;
+	vec2 ouv=UV;
+	base_uv.y+=fract(iTime*0.15);
+	base_uv=fract(base_uv);
+	ALBEDO = vec3(0.);
+	if(nor.z>0.5){
+		vec4 txx1 = textureLod(tx1,base_uv,4.);
+		//ALBEDO=txx1.rgb*3.;
+		//txx1*=0.15+0.75*smoothstep(0.15,0.4,abs(ouv.y-0.5));
+		//txx1*=smoothstep(-0.1,0.4,abs(ouv.y-0.5));
+		vec4 txx2 = texture(tx2,ouv);
+		EMISSION=mix(txx1.rgb*3.5,(txx2.rgb)*3.,txx2.r);
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/iTime = null
+shader_param/tx1 = ExtResource( 7 )
+shader_param/tx2 = ExtResource( 4 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 2, 2, 0.1 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,vertex_lighting,shadows_disabled,ambient_light_disabled;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform sampler2D texture_emission : hint_black_albedo;
+uniform vec4 emission : hint_color;
+uniform float emission_energy;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	ROUGHNESS=roughness;
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	SPECULAR = specular;
+	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
+	EMISSION=vec3(0.);
+	
+	vec3 nor=normalize((CAMERA_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	if(nor.z<-0.5){
+		EMISSION = (emission.rgb+emission_tex)*emission_energy;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/albedo = Color( 0, 0, 0, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/emission = Color( 1, 0.803922, 0.368627, 1 )
+shader_param/emission_energy = 3.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 1, 1, 0.1 )
+
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,vertex_lighting,shadows_disabled,ambient_light_disabled;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform sampler2D texture_emission : hint_black_albedo;
+uniform vec4 emission : hint_color;
+uniform float emission_energy;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	ROUGHNESS=roughness;
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	SPECULAR = specular;
+	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
+	EMISSION=vec3(0.);
+	
+	vec3 nor=normalize((CAMERA_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	if(nor.x<-0.5){
+		EMISSION = (emission.rgb+emission_tex)*emission_energy;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/albedo = Color( 0, 0, 0, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/emission = Color( 1, 0.803922, 0.368627, 1 )
+shader_param/emission_energy = 3.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+
+[sub_resource type="CubeMesh" id=11]
+size = Vector3( 1, 2, 0.2 )
+
+[sub_resource type="Shader" id=12]
+code = "shader_type canvas_item;
+
+uniform float iTime;
+uniform int iFrame;
+uniform sampler2D iChannel0;
+uniform sampler2D iChannel1;
+uniform sampler2D iChannel2;
+uniform sampler2D iChannel3;
+
+const int a=1;
+const int b=1+1;
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord, in vec2 iResolution )
+{
+    vec2 uv = fragCoord/iResolution.xy;
+	fragColor=vec4(1.,0.,0.,1.);
+}
+
+void fragment(){
+	vec2 iResolution=1./TEXTURE_PIXEL_SIZE;
+	mainImage(COLOR,UV*iResolution,iResolution);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+shader_param/iTime = null
+shader_param/iFrame = null
+
+[sub_resource type="ImageTexture" id=14]
+size = Vector2( 100, 100 )
+
+[node name="area_lights2" type="Spatial"]
+
+[node name="data_mag" type="Spatial" parent="."]
+script = ExtResource( 6 )
+
+[node name="data_mat" type="Spatial" parent="."]
+script = ExtResource( 5 )
+
+[node name="floor" type="MeshInstance" parent="."]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="alights" type="Spatial" parent="."]
+
+[node name="l1" type="MeshInstance" parent="alights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7.70215 )
+material_override = SubResource( 4 )
+cast_shadow = 0
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="SpotLight" type="SpotLight" parent="alights/l1"]
+transform = Transform( 1, 0, 0, 0, -0.999995, -0.0030891, 0, 0.0030891, -0.999995, 0, 0, -0.83741 )
+light_color = Color( 0.992157, 0.945098, 0.737255, 1 )
+spot_range = 3.46482
+spot_angle = 53.9017
+
+[node name="l2" type="MeshInstance" parent="alights"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 1.5, 7.5895 )
+material_override = SubResource( 7 )
+cast_shadow = 0
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="SpotLight" type="SpotLight" parent="alights/l2"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 1.66697e-07, 0, -0.51159 )
+light_color = Color( 0.992157, 0.945098, 0.737255, 1 )
+spot_range = 3.46482
+spot_angle = 53.9017
+
+[node name="l3" type="MeshInstance" parent="alights"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 1.44088, 1.5, 0.131438 )
+material_override = SubResource( 10 )
+cast_shadow = 0
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="SpotLight" type="SpotLight" parent="alights/l3"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.63913e-07, 0, -0.868713 )
+light_color = Color( 0.992157, 0.945098, 0.737255, 1 )
+spot_range = 3.46482
+spot_angle = 53.9017
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+material = SubResource( 13 )
+texture = SubResource( 14 )
+centered = false

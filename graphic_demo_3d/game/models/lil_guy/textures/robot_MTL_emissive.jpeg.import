@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/robot_MTL_emissive.jpeg-05e9cded3b97e3153c63f84421b3b48c.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://game/models/lil_guy/textures/robot_MTL_emissive.jpeg"
+dest_files=[ "res://.import/robot_MTL_emissive.jpeg-05e9cded3b97e3153c63f84421b3b48c.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=1
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
