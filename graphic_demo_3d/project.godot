@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="graphic_demo_3d"
 run/main_scene="res://game/scene.tscn"
-boot_splash/image="res://game/shaders/ltx.png"
+boot_splash/image="res://bt.png"
 config/icon="res://icon.png"
 
 [debug]
