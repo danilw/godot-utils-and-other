@@ -11,6 +11,16 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 *new 2020:*
 ___
 
+**graphic_demo_3d**
+
+**try it live(WebGL2) or download** on itch click [demo link](https://danilw.itch.io/godot-graphic-demo-3d?password=demo)
+
+Video [youtube link](https://youtu.be/Tk2P235GX1E)
+
+![gda1](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/p1.gif) ![gda2](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/an1.gif)
+
+___
+
 **Volumetric_Lights** GLES2 Volumetric lights for Godot 3, very minimal example. Shader logic do sample depth from light source, in main-camera view. Shader not very hight cost. Shader can use 16 or 32 sample steps. Used unmodified Godot 3.2-stable.
 
 Video [youtube link](https://youtu.be/alVrbpt7VpY)
@@ -105,6 +115,10 @@ ___
 
 
 ### Graphic
+
+**graphic_demo_3d** video(click)
+
+[![graphic_demo_3d](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/scrm.png)](https://youtu.be/Tk2P235GX1E)
 
 **Volumetric_Lights** video
 [![pp](https://danilw.github.io/godot-utils-and-other/volume_lights/vl_yt.png)](https://youtu.be/alVrbpt7VpY)
