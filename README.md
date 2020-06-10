@@ -30,7 +30,7 @@ Video [youtube link](https://youtu.be/Tk2P235GX1E)
 
 To avoid it - edit scene **Area lights2**, mesh *floor* its material, remove ltc_mat, and ltc_max linked textures. Then edit *floor.gd* script on same mesh, uncomment line 20 `load_from_data_v2()`
 
-**License** - my code do not have any licence, use it as you wish. External used resource linked in each shader if used. **Some of shaders and two character models has CC non commercial license.**
+**License** - External used resource linked in each shader if used. **Some of shaders and two character models has CC non commercial license.**
 
 ![gda1](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/p1.gif) ![gda2](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/an1.gif)
 
@@ -66,7 +66,7 @@ Video [youtube link](https://youtu.be/GyX0rkKkdFU)
 
 *Used external resources*: I have use external resources, [list of used 3d models](https://github.com/danilw/godot-utils-and-other/blob/master/portals_panorama/resources/using_external_resources_LINKS.md), and original shader-source linked in each *\*.shader* file.
 
-*Licence* - my code do not have license, use as you wish. Used some external shaders, that has CC-NonCommercial license. Check linked resource in each shader linked used resource.
+*Licence* - Used some external shaders, that may be under CC-NonCommercial license. Check linked resource in each shader.
 ___
 
 *old 2019:*
