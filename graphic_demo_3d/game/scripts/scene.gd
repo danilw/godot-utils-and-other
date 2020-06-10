@@ -4,7 +4,6 @@ extends Spatial
 
 
 # Created by Danil (2020+) https://github.com/danilw
-# my code do not have any license, use it as you wish
 
 # some shaders use external source code that can be under CC non commercial License
 # all used external resource linked on each shader, if used
