@@ -6,6 +6,7 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 **what is it** random(mosly some very broken demos, and very unusable utils) code I write using Godot. I do not recoment use this code for learning.
 
 ### Contact: [**Join discord server**](https://discord.gg/JKyqWgt)
+___
 
 **About license of this project, and license conflicts** - main license of this repository is Mit, I do use Sketchfab models that has CC(non comercial), so if you use my project, License of Models does not change from CC to Mit, it still CC for models, and models own by its authors, same to all used ecternal code. I have link all used materials in every project.
 
