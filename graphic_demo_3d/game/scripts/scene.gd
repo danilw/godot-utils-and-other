@@ -4,12 +4,12 @@ extends Spatial
 
 
 # Created by Danil (2020+) https://github.com/danilw
-# License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+# my code do not have any license, use it as you wish
 
+# some shaders use external source code that can be under CC non commercial License
+# all used external resource linked on each shader, if used
 
-# used external shaders-resources linked to its original in shader files
-
-# used two models with animations, origianl link
+# used two models with animations, origianl link (model License CC, check its sketchfab bage)
 # https://sketchfab.com/3d-models/wolf-with-animations-f3769a474a714ebbbaca0d97f9b0a5a0
 # https://sketchfab.com/3d-models/lil-guy-8fd55a0dcd8042168e7ffa57d7f279a5
 
