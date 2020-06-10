@@ -7,9 +7,9 @@ gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I c
 
 ### Contact: [**Join discord server**](https://discord.gg/JKyqWgt)
 
-**About license of this project, and license conflicts** - main license of this repository is Mit, I do use Sketchfab models that has CC(non comercial), so if you use my project, License of Models does not change from CC to Mit, it still CC and models, and models own by its authors. I have link all used materials in every project.
+**About license of this project, and license conflicts** - main license of this repository is Mit, I do use Sketchfab models that has CC(non comercial), so if you use my project, License of Models does not change from CC to Mit, it still CC for models, and models own by its authors, same to all used ecternal code. I have link all used materials in every project.
 
-My point about licensing and this code - use *my code* as you wish, you can consider as "no license". Please check license of used external code/resources that linked for every file, to see its license (only some of used shaders/resources have worst-case CC non commercial). I do not have any responsibility for how you use this code, I do link every used resource.
+**My main point about licensing and this code** - use *my code* as you wish, you can consider as "no license". Please check license of used external code/resources that linked for every file, to see its license (only some of used shaders/resources have worst-case CC non commercial). I do not have any responsibility for how you use this code, I do link every used resource.
 
 *new 2020:*
 ___
