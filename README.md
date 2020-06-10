@@ -23,7 +23,7 @@ Video [youtube link](https://youtu.be/Tk2P235GX1E)
 
 To avoid it - edit scene **Area lights2**, mesh *floor* its material, remove ltc_mat, and ltc_max linked textures. Then edit *floor.gd* script on same mesh, uncomment line 20 `load_from_data_v2()`
 
-License - this project *graphic_demo_3d*, include all shaders and graphic has *License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.* 
+**License** - my code do not have any licence, use it as you wish. External used resource linked in each shader if used. **Some of shaders and two character models has CC non commercial license.**
 
 ![gda1](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/p1.gif) ![gda2](https://danilw.github.io/godot-utils-and-other/graphic_demo_3d/an1.gif)
 
