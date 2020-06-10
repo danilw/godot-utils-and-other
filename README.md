@@ -46,8 +46,6 @@ Video [youtube link](https://youtu.be/alVrbpt7VpY)
 
 **AMD GLES2 bug** if you see [this(image link)](https://danilw.github.io/godot-utils-and-other/bug_depth/img/amd_gles2_bug.png) then you need use GLES3 only, [bugreport to Godot](https://github.com/godotengine/godot/issues/36812), [bugreport to AMD](https://community.amd.com/thread/249742).
 
-*Licence:* Volumetric_Lights code, include shaders do not have any Licence. *No licence*. Use it as you wish.
-
 to **remove Disk behind objects** read line 57 in [shaders/vulume_lights.shader](https://github.com/danilw/godot-utils-and-other/blob/master/Volumetric_Lights/shaders/vulume_lights.shader#L57) and set `depth_mult` value to 10 if you need. This Volumetric light good if you put it inside of something, like box or sphere, light from flat objects does have limitations.
 
 ___
