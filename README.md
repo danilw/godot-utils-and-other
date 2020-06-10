@@ -59,7 +59,7 @@ Video [youtube link](https://youtu.be/GyX0rkKkdFU)
 
 *Used external resources*: I have use external resources, [list of used 3d models](https://github.com/danilw/godot-utils-and-other/blob/master/portals_panorama/resources/using_external_resources_LINKS.md), and original shader-source linked in each *\*.shader* file.
 
-*Licence* of shaders License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+*Licence* - my code do not have license, use as you wish. Used some external shaders, that has CC-NonCommercial license. Check linked resource in each shader linked used resource.
 ___
 
 *old 2019:*
