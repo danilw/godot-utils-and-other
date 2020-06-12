@@ -552,6 +552,9 @@ margin_right = 126.426
 margin_bottom = 118.913
 custom_fonts/font = ExtResource( 18 )
 text = "Spawn 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="rnd2" type="CheckBox" parent="Control/mouse_ctrl"]
 margin_left = 8.16089

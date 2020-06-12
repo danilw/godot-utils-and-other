@@ -34,8 +34,11 @@ func _on_info_pressed():
 func _on_zoom_value_changed(value):
 	global_v.zoom_v=value/100.0
 
-
+var press_once=true
 func _on_force_toggled(button_pressed):
+	if(!press_once):
+		return
+	press_once=false
 	if(!get_node("mouse_ctrl/force").pressed):
 		get_node("mouse_ctrl/force").pressed=true
 	else:
@@ -44,6 +47,9 @@ func _on_force_toggled(button_pressed):
 
 
 func _on_rnd1_toggled(button_pressed):
+	if(!press_once):
+		return
+	press_once=false
 	if(!get_node("mouse_ctrl/rnd1").pressed):
 		get_node("mouse_ctrl/rnd1").pressed=true
 	else:
@@ -52,6 +58,9 @@ func _on_rnd1_toggled(button_pressed):
 
 
 func _on_rnd2_toggled(button_pressed):
+	if(!press_once):
+		return
+	press_once=false
 	if(!get_node("mouse_ctrl/rnd2").pressed):
 		get_node("mouse_ctrl/rnd2").pressed=true
 	else:
