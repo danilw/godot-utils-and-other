@@ -7,6 +7,7 @@ onready var global_v=get_tree().get_root().get_node("scene")
 onready var oMouse=Vector2(global_v.iMouse.x,global_v.iMouse.y)
 
 func _process(delta):
+	press_once=true
 	global_v.clean_scr=false
 	global_v.clean_scr5=false
 	global_v.clean_scr10=false

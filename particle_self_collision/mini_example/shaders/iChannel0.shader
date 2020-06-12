@@ -184,9 +184,9 @@ void sim_step( out vec4 fragColor, in vec2 fragCoord, in vec2 iResolution )
     float BALL_SIZE = 0.90 * SIZE; // should be between sqrt(2)/2 and 1
     float BALL_D = 2.0 * BALL_SIZE; 
     int H = 340; // Reduce this if you want to play with surface or reduce pressure at the bottom
-    float VEL_LIMIT = 0.2 * BALL_SIZE;
+    float VEL_LIMIT = 0.3 * BALL_SIZE;
     vec2 G = gravity;//vec2(0.0, -0.006); // 0.006
-    float E_FORCE = 1.9;
+    float E_FORCE = .9;
     float M = 0.6 * BALL_SIZE;
     float DAMP_K = 0.98;
     float SQ_K = 0.0;

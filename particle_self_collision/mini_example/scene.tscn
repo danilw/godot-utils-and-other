@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://scripts/scene.gd" type="Script" id=1]
 [ext_resource path="res://shaders/bg.shader" type="Shader" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://shaders/data_FBO.shader" type="Shader" id=5]
 [ext_resource path="res://scripts/data_fbo.gd" type="Script" id=6]
 [ext_resource path="res://shaders/iChannel0.shader" type="Shader" id=7]
-[ext_resource path="res://scripts/iChannel1.gd" type="Script" id=8]
 [ext_resource path="res://scripts/fbo_self.gd" type="Script" id=9]
 [ext_resource path="res://shaders/mainImage.shader" type="Shader" id=10]
 [ext_resource path="res://shaders/Particle_fragment.shader" type="Shader" id=11]
@@ -75,41 +74,12 @@ shader_param/iChannel1 = SubResource( 5 )
 [sub_resource type="ImageTexture" id=7]
 size = Vector2( 640, 360 )
 
-[sub_resource type="ViewportTexture" id=8]
-viewport_path = NodePath("iChannel0")
-
-[sub_resource type="ViewportTexture" id=9]
-viewport_path = NodePath("data_FBO")
-
-[sub_resource type="ShaderMaterial" id=10]
-resource_local_to_scene = true
-shader = ExtResource( 7 )
-shader_param/iTime = null
-shader_param/iFrame = null
-shader_param/scale_v = null
-shader_param/clean_scr = null
-shader_param/clean_scr5 = null
-shader_param/clean_scr10 = null
-shader_param/scr_posx = null
-shader_param/scr_posy = null
-shader_param/speed_x = null
-shader_param/last_index = null
-shader_param/spawn1 = null
-shader_param/spawn2 = null
-shader_param/gravity = Vector2( 0, -0.006 )
-shader_param/iMouse = Vector3( 1, 1, 0 )
-shader_param/iChannel0 = SubResource( 8 )
-shader_param/iChannel1 = SubResource( 9 )
-
-[sub_resource type="ImageTexture" id=11]
-size = Vector2( 640, 360 )
-
 [sub_resource type="CanvasItemMaterial" id=12]
 blend_mode = 4
 light_mode = 1
 
-[sub_resource type="ViewportTexture" id=13]
-viewport_path = NodePath("iChannel1")
+[sub_resource type="ViewportTexture" id=44]
+viewport_path = NodePath("iChannel0")
 
 [sub_resource type="ViewportTexture" id=14]
 viewport_path = NodePath("data_FBO")
@@ -328,19 +298,6 @@ texture = SubResource( 7 )
 centered = false
 script = ExtResource( 4 )
 
-[node name="iChannel1" type="Viewport" parent="."]
-size = Vector2( 640, 360 )
-transparent_bg = true
-disable_3d = true
-render_target_v_flip = true
-render_target_update_mode = 3
-
-[node name="Sprite" type="Sprite" parent="iChannel1"]
-material = SubResource( 10 )
-texture = SubResource( 11 )
-centered = false
-script = ExtResource( 8 )
-
 [node name="iChannel_buf0" type="Viewport" parent="."]
 size = Vector2( 640, 360 )
 transparent_bg = true
@@ -350,7 +307,7 @@ render_target_update_mode = 3
 
 [node name="Sprite" type="Sprite" parent="iChannel_buf0"]
 material = SubResource( 12 )
-texture = SubResource( 13 )
+texture = SubResource( 44 )
 centered = false
 
 [node name="data_buf" type="Viewport" parent="."]
