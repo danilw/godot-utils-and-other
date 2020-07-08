@@ -81,8 +81,17 @@ void mainImage( out vec4 fragColor, vec3 rd, float gd)
     fragColor = vec4(col,1.0);
 }
 
+vec3 decodeSRGB(vec3 screenRGB)
+{
+    vec3 a = screenRGB / 12.92;
+    vec3 b = pow((screenRGB + 0.055) / 1.055, vec3(2.4));
+    vec3 c = step(vec3(0.04045), screenRGB);
+    return mix(a, b, c);
+}
+
 void fragment(){
 	vec3 rd=normalize(((CAMERA_MATRIX*vec4(normalize(-VERTEX),0.0)).xyz));
+	//rd=normalize(((CAMERA_MATRIX*vec4(NORMAL,0.0)).xyz));
 	vec4 col=vec4(0.);
 	
 	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
@@ -94,6 +103,9 @@ void fragment(){
 	
 	mainImage(col, rd, depth);
 	ALBEDO=col.rgb;
+	if(!OUTPUT_IS_SRGB){
+		ALBEDO=decodeSRGB(ALBEDO);
+	}
 	
 	//ALBEDO=ALBEDO*depth;
 	

@@ -586,7 +586,7 @@ radial_segments = 48
 rings = 24
 
 [node name="CSGBox" type="CSGBox" parent="objects2/CSGSphere/CSGSphere"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.367281, 0, 1.04617 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.367281, 0, 0.988165 )
 width = 2.3078
 height = 1.14044
 depth = 1.0
