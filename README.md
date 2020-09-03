@@ -15,6 +15,27 @@ ___
 *new 2020:*
 ___
 
+**particle_system_effects_Godot3** some 3d particle effects for Godot, using custom particle and fragment shaders. And decals. *Glow not used*.
+
+**License -** all shader code under **MIT license**. **Warning -** all *3d models under CC non-comercial*, link to [list of all used resources](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/USED_RESOURCES_LINKS.md), also used sound file from [https://patrickdearteaga.com](patrickdearteaga.com)
+
+**Play -** live WebGL2 or download bin builds form [itch.io link](https://danilw.itch.io/particle-effects-godot3)
+
+**Description:**
+
+**1.** Lines draw with antialiasing, two types of antialiasing - *using mipmap from texture* or *using `dFd` procedural without textures*. **The point** - use antialiasing without texture needed. Shader code in [particle_lineAA_base.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/shaders/particle_lineAA_base.shader) include all 3 types of drawing for test, uncomment needed.
+
+Comparison on this gif: (left no antialiasing, midle `dFd`, right texture)
+
+![dfdx](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/AA_compare.gif)
+
+**2.** This particles rendered on quad/flat mesh, they not real 3d. **The point** - render 1000 real sphere particles use much more GPU resources then render 1000 fake-spheres(flat intersected), 10x+ better performance with flat-particles with less triangles. Shader source [particle_cloud_base.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/shaders/particle_cloud_base.shader), [particle_cube_base.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/shaders/particle_cube_base.shader) and [particle_lineGlow_base.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/shaders/particle_lineGlow_base.shader) use same code only verticles number and position changed.
+
+![quadx](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/particles_flat.gif)
+
+**3.** Decals screen space, using 
+___
+
 **graphic_demo_3d** using simple custom shaders in Godot 3.2.1, like Area lights, all used external-code/logic linked in each shader, if used. Used Godot 3.2.1 stable, without modifications.
 
 *Used two models with animations from sketchfab*, links in [USED_ASSETS_LINKS.md](https://github.com/danilw/godot-utils-and-other/blob/master/graphic_demo_3d/USED_ASSETS_LINKS.md)
