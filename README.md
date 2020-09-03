@@ -21,6 +21,8 @@ ___
 
 **Play -** live WebGL2 or download bin builds form [itch.io link](https://danilw.itch.io/particle-effects-godot3)
 
+**Debug menu** - move mouse to left top corner.
+
 **Description:**
 
 **1.** Lines draw with antialiasing, two types of antialiasing - *using mipmap from texture* or *using `dFd` procedural without textures*. **The point** - use antialiasing without texture needed. Shader code in [particle_lineAA_base.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/shaders/particle_lineAA_base.shader) include all 3 types of drawing for test, uncomment needed.
@@ -33,7 +35,17 @@ Comparison on this gif: (left no antialiasing, midle `dFd`, right texture)
 
 ![quadx](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/particles_flat.gif)
 
-**3.** Decals screen space, using 
+**3.** **Decals** screen space, using [Screen-Space-Decals](https://github.com/Mr-Slurpy/Screen-Space-Decals).
+
+I use **material-ID logic** to make decals work only on single object(by ID) and depth to cut objects without ID. Debug menu click Material ID.
+
+[![mid](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/decal31.png)](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/decal3.png)
+
+**Overhead** is second Viewport with full-static scene needed. This Viewport can work even in 0.25 resolution of main screen, change in this application options to 0.25 in UI(move mouse to left top after launch, for Debug menu).
+
+Depth object cutting, when object does not exist on *material-ID Viewport*, has obvious problem when object too close to other they have very small depth value shift. Look [screenshot 1](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/decal1.png) and [screenshot 2](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/decal2.png) with example, on screenshot white plane has small angle to floor.
+
+
 ___
 
 **graphic_demo_3d** using simple custom shaders in Godot 3.2.1, like Area lights, all used external-code/logic linked in each shader, if used. Used Godot 3.2.1 stable, without modifications.
