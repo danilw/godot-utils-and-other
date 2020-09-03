@@ -35,9 +35,9 @@ Comparison on this gif: (left no antialiasing, middle `dFd`, right texture)
 
 ![quadx](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/particles_flat.gif)
 
-**3.** **Decals** screen space, using [Screen-Space-Decals](https://github.com/Mr-Slurpy/Screen-Space-Decals). Shader code [decal.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/decals/decal.shader)
+**3.** **Decals** screen space, using [Screen-Space-Decals](https://github.com/Mr-Slurpy/Screen-Space-Decals).
 
-I use **material-ID logic** to make decals work only on a single object(by ID) and depth to cut objects without ID. Debug menu click Material ID.
+I use **material-ID logic** to make decals work only on a single object(by ID) and depth to cut objects without ID. Debug menu click Material ID. Maretial-ID logic in [decal.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/decals/decal.shader).
 
 [![mid](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/decal31.png)](https://danilw.github.io/godot-utils-and-other/particle_system_effects_Godot3/decal3.png)
 
