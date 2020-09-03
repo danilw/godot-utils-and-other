@@ -21,7 +21,7 @@ Some 3d particle effects for Godot, using custom particle and fragment shaders. 
 
 **License -** all shader code under **MIT license**. **Warning -** all *3d models under CC non-comercial*, link to [list of all used resources](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/USED_RESOURCES_LINKS.md), also used sound file from [https://patrickdearteaga.com](patrickdearteaga.com)
 
-**Play -** live WebGL2 or download bin builds form [itch.io link](https://danilw.itch.io/particle-effects-godot3)
+**Play -** live WebGL2 or download bin builds form **[itch.io link](https://danilw.itch.io/particle-effects-godot3)**.
 
 **Debug menu** - move mouse to left top corner.
 
