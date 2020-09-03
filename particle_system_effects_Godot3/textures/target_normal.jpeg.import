@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/target_normal.jpeg-16cf702d0727b063026c450b21050de6.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://textures/target_normal.jpeg"
+dest_files=[ "res://.import/target_normal.jpeg-16cf702d0727b063026c450b21050de6.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=1
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

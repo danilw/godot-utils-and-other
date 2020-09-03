@@ -1,0 +1,22 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://textures/bg1.png" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_orientation = Basis( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1 )
+background_color = Color( 0.572549, 0.690196, 0.839216, 1 )
+tonemap_mode = 3
+tonemap_white = 0.75
+auto_exposure_min_luma = 0.3
+glow_levels/1 = true
+glow_levels/4 = true
+glow_levels/5 = false
+glow_strength = 0.59
+glow_blend_mode = 1
+glow_hdr_threshold = 0.55
+glow_bicubic_upscale = true

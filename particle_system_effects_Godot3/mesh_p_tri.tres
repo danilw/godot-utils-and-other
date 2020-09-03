@@ -1,0 +1,15 @@
+[gd_resource type="ArrayMesh" format=2]
+
+[resource]
+resource_name = "Circle"
+surfaces/0 = {
+"aabb": AABB( -0.0866025, 0, -0.1, 0.173205, 1e-05, 0.15 ),
+"array_data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 205, 204, 204, 189, 0, 127, 0, 0, 127, 0, 0, 127, 0, 56, 0, 0, 172, 92, 177, 189, 0, 0, 0, 0, 207, 204, 76, 61, 0, 127, 0, 0, 127, 0, 0, 127, 73, 44, 0, 58, 173, 92, 177, 61, 0, 0, 0, 0, 203, 204, 76, 61, 0, 127, 0, 0, 127, 0, 0, 127, 118, 59, 255, 57 ),
+"array_index_data": PoolByteArray( 0, 0, 2, 0, 1, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 3,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 3
+}
