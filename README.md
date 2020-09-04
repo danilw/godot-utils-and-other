@@ -17,7 +17,7 @@ ___
 
 ### **particle_system_effects_Godot3**:
 
-Some 3d particle effects for Godot, using custom particle and fragment shaders. And decals. *Glow not used*.
+Some 3d particle effects for Godot, using custom particle and fragment shaders. And decals. *Glow not used*. Used **Godot 3.2.2-stable** without modifications.
 
 **License -** all shader code under **MIT license**. **Warning -** all *3d models under CC non-comercial*, link to [list of all used resources](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/USED_RESOURCES_LINKS.md), also used sound file from [https://patrickdearteaga.com](patrickdearteaga.com)
 
