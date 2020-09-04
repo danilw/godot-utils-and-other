@@ -6,7 +6,7 @@ https://patrickdearteaga.com/royalty-free-music/ name Chiptronical
 
 3D models:
 
-flood models 
+floor models 
 https://sketchfab.com/nomadking/models
 
 double-bench 
@@ -25,7 +25,9 @@ https://sketchfab.com/3d-models/healthy-hotdog-0813390b8e364e669ee5b72b96a42cb4
 Other:
 
 shader logic from https://www.vertexshaderart.com/art/TdqvseMQyoJ3ZrjrD  Garden Fireworks - @P_Malin
+
 decals based on https://github.com/Mr-Slurpy/Screen-Space-Decals
 
 my own old demo https://youtu.be/405yudjksDA
+
 my own shader as loading https://www.shadertoy.com/view/wt2fWw
