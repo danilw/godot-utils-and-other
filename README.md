@@ -3,12 +3,12 @@
 gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I can update github repo I will (depends of github rules[(region block)](https://danilw.github.io/GLSL-howto/1.png) updates based on U.S. laws)
 
 # godot-utils-and-other
-**what is it** my test projects using Godot. I do not recoment use this code for learning.
+**what is it** my test projects using Godot. I do not recomend use this code for learning.
 
 ### Contact: [**Join discord server**](https://discord.gg/JKyqWgt)
 ___
 
-**Licensing and this code** - in this repository used some scetchfab models that under CC-license, also music, and other resource that do not have Mit license. All used resources linked for every project, please check its license before use. My code under MIT license.
+**Licensing and this code** - in this repository used some sketchfab models that under CC-license, also music, and other resource that do not have Mit license. All used resources linked for every project, please check its license before use. My code under MIT license.
 
 ___
 
