@@ -1,3 +1,7 @@
+**update December 2020**
+
+**Today (*14 dec*) Google deleted my gmail account**, so my youtube also become unusable. I do have backups of most of Godot videos and reupload them elsewhere. 
+
 **update 2019 (actual in 2020)**
 
 gitlab mirror [https://gitlab.com/danilw](https://gitlab.com/danilw), untill I can update github repo I will (depends of github rules[(region block)](https://danilw.github.io/GLSL-howto/1.png) updates based on U.S. laws)
