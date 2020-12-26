@@ -13,6 +13,26 @@ ___
 ___
 
 *new 2020:*
+
+___
+
+### **cube_ex_tools**:
+
+Tools that I made for [Cubes experiment](https://danilw.itch.io/cubes-experiment) demo. 
+
+**Frame_capture** - capture and animation to use in *GLES2 particle-like*. Main point is - to pre-record some static physics-animation that use lots of CPU time when it in real time, like sparks that bonce of floor - just record that boncing animation and play in released project. (include two scenes - scene and scene2, each use own animation and script)
+
+*frame_view_example* - example project that include shaders. This is example of using captured frame. **[Live example](https://danilw.github.io/godot-utils-and-other/frame_view/frame_view_example.html) WebGL build of this example**.
+
+**Panorama render** - *will be added latter*.
+
+*Shaders*:
+
+**Reprojection UV** - Homography and Image-Wrap reprojettion logic [shaderetoy link](https://www.shadertoy.com/view/tdyBRz).
+
+Graphic shaders from *Cubes experiment* I will publish latter.
+
+
 ___
 
 ### **particle_system_effects_Godot3**:
