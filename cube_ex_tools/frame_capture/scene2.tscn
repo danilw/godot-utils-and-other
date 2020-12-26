@@ -1,0 +1,139 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Camera.gd" type="Script" id=1]
+[ext_resource path="res://2d_shape.gd" type="Script" id=2]
+[ext_resource path="res://textures/text.png" type="Texture" id=3]
+[ext_resource path="res://textures/obstacle.png" type="Texture" id=4]
+[ext_resource path="res://dynamic.tscn" type="PackedScene" id=5]
+[ext_resource path="res://static.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_color = Color( 0.862745, 0.305882, 0.305882, 1 )
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 0.4, 0.4 )
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.2
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="TileSet" id=7]
+0/name = "obstacle.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/occluder = SubResource( 5 )
+0/navigation_offset = Vector2( 0, 0 )
+0/navigation = SubResource( 4 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 6 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="scene" type="Spatial"]
+
+[node name="static" parent="." instance=ExtResource( 6 )]
+
+[node name="dynamic" parent="." instance=ExtResource( 5 )]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.446733, 0.263963, -0.854841, -0.0103223, 0.9539, 0.299946, 0.894608, 0.14282, -0.423414, -2.67987, 7.52546, -5.02293 )
+script = ExtResource( 1 )
+sensitivity = 0.25
+max_speed = Vector3( 5, 5, 5 )
+
+[node name="2d_shape" type="Position3D" parent="."]
+transform = Transform( 0.913503, 0, -0.406832, 0, 1, 0, 0.406832, 0, 0.913503, 8.15652, 7.48366, -7.65973 )
+script = ExtResource( 2 )
+shape_size = 0.4
+sec_to_record = 8
+box_size = 20
+
+[node name="body" type="Spatial" parent="2d_shape"]
+
+[node name="RigidBody" type="RigidBody" parent="2d_shape/body"]
+
+[node name="MeshInstance" type="MeshInstance" parent="2d_shape/body/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="2d_shape/body/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="spawn" type="Spatial" parent="2d_shape"]
+
+[node name="2d" type="Control" parent="2d_shape"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="2d_shape/2d"]
+position = Vector2( 315.883, 61.2725 )
+scale = Vector2( 0.965065, 0.804221 )
+texture = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="2d_shape/2d"]
+scale = Vector2( 0.2, 0.2 )
+tile_set = SubResource( 7 )
+format = 1
+tile_data = PoolIntArray( 131073, 0, 0, 131076, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131082, 0, 0, 131086, 0, 0, 131091, 0, 0, 131092, 0, 0, 131097, 0, 0, 131101, 0, 0, 131105, 0, 0, 131106, 0, 0, 131109, 0, 0, 131110, 0, 0, 131111, 0, 0, 131114, 0, 0, 131118, 0, 0, 131119, 0, 0, 131120, 0, 0, 196609, 0, 0, 196612, 0, 0, 196614, 0, 0, 196618, 0, 0, 196622, 0, 0, 196626, 0, 0, 196629, 0, 0, 196633, 0, 0, 196635, 0, 0, 196637, 0, 0, 196640, 0, 0, 196643, 0, 0, 196645, 0, 0, 196648, 0, 0, 196650, 0, 0, 196654, 0, 0, 196657, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262154, 0, 0, 262158, 0, 0, 262162, 0, 0, 262165, 0, 0, 262169, 0, 0, 262171, 0, 0, 262173, 0, 0, 262176, 0, 0, 262179, 0, 0, 262181, 0, 0, 262182, 0, 0, 262183, 0, 0, 262186, 0, 0, 262190, 0, 0, 262193, 0, 0, 327681, 0, 0, 327684, 0, 0, 327686, 0, 0, 327690, 0, 0, 327694, 0, 0, 327698, 0, 0, 327701, 0, 0, 327706, 0, 0, 327708, 0, 0, 327712, 0, 0, 327715, 0, 0, 327717, 0, 0, 327719, 0, 0, 327722, 0, 0, 327726, 0, 0, 327729, 0, 0, 393217, 0, 0, 393220, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393235, 0, 0, 393236, 0, 0, 393242, 0, 0, 393244, 0, 0, 393249, 0, 0, 393250, 0, 0, 393253, 0, 0, 393256, 0, 0, 393258, 0, 0, 393259, 0, 0, 393260, 0, 0, 393262, 0, 0, 393263, 0, 0, 393264, 0, 0 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timer" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -500.046
+margin_top = 16.1515
+margin_right = -345.046
+margin_bottom = 30.1515
+rect_scale = Vector2( 3, 3 )
+text = "animation progress: 000%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="saved" type="Label" parent="UI"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -229.87
+margin_top = 51.8819
+margin_right = -117.87
+margin_bottom = 65.8819
+rect_scale = Vector2( 3, 3 )
+text = "Saved!"
+__meta__ = {
+"_edit_use_anchors_": false
+}

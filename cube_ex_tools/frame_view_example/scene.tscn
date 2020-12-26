@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Camera.gd" type="Script" id=1]
+[ext_resource path="res://dynamic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://static.tscn" type="PackedScene" id=3]
+[ext_resource path="res://part_16x16.mesh" type="ArrayMesh" id=4]
+[ext_resource path="res://capture.shader" type="Shader" id=5]
+[ext_resource path="res://textures/capture.png" type="Texture" id=6]
+[ext_resource path="res://textures/capture2.png" type="Texture" id=7]
+[ext_resource path="res://scene.gd" type="Script" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/color = Color( 0.796078, 0.184314, 0.815686, 1 )
+shader_param/shape_size = 0.1
+shader_param/iTime = 0.0
+shader_param/texture_capture = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 5 )
+shader_param/color = Color( 0.52549, 0.937255, 0.298039, 1 )
+shader_param/shape_size = 0.2
+shader_param/iTime = 0.0
+shader_param/texture_capture = ExtResource( 7 )
+
+[node name="scene" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="static" parent="." instance=ExtResource( 3 )]
+
+[node name="dynamic" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.683465, 0.20498, -0.700613, 0, 0.959766, 0.280801, 0.729983, 0.191917, -0.655967, -7.11397, 6.30485, -9.34341 )
+script = ExtResource( 1 )
+max_speed = Vector3( 5, 5, 5 )
+
+[node name="capture1" type="MeshInstance" parent="."]
+material_override = SubResource( 1 )
+mesh = ExtResource( 4 )
+material/0 = null
+
+[node name="capture2" type="MeshInstance" parent="."]
+material_override = SubResource( 2 )
+mesh = ExtResource( 4 )
+material/0 = null

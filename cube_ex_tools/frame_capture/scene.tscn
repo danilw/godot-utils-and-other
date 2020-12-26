@@ -1,0 +1,3227 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Camera.gd" type="Script" id=1]
+[ext_resource path="res://custom_shape.gd" type="Script" id=2]
+[ext_resource path="res://static.tscn" type="PackedScene" id=5]
+[ext_resource path="res://dynamic.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_color = Color( 0.862745, 0.305882, 0.305882, 1 )
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 0.2, 0.2 )
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.1
+
+[node name="scene" type="Spatial"]
+
+[node name="static" parent="." instance=ExtResource( 5 )]
+
+[node name="dynamic" parent="." instance=ExtResource( 6 )]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.446733, 0.263963, -0.854841, -0.0103223, 0.9539, 0.299946, 0.894608, 0.14282, -0.423414, -2.67987, 7.52546, -5.02293 )
+script = ExtResource( 1 )
+sensitivity = 0.25
+max_speed = Vector3( 5, 5, 5 )
+
+[node name="custom_shape" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54739, 1.11546, -7.65973 )
+script = ExtResource( 2 )
+sec_to_record = 8
+box_size = 20
+
+[node name="spawn" type="Spatial" parent="custom_shape"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1376, -0.242241, 6.45676 )
+
+[node name="side" type="Spatial" parent="custom_shape/spawn"]
+
+[node name="line" type="Spatial" parent="custom_shape/spawn/side"]
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side/line"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line2" type="Spatial" parent="custom_shape/spawn/side"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side/line2"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line2/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line2/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line2/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line2/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line2/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line2/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line2/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line2/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line2/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line2/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line2/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line2/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line2/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line2/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line3" type="Spatial" parent="custom_shape/spawn/side"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side/line3"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line3/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line3/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line3/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line3/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line3/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line3/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line3/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line3/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line3/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line3/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line3/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line3/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line3/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line3/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line4" type="Spatial" parent="custom_shape/spawn/side"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side/line4"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line4/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line4/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line4/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line4/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line4/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line4/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line4/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line4/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line4/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line4/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line4/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line4/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line4/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line4/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line5" type="Spatial" parent="custom_shape/spawn/side"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side/line5"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line5/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line5/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line5/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line5/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line5/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line5/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line5/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line5/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line5/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line5/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line5/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line5/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line5/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line5/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line6" type="Spatial" parent="custom_shape/spawn/side"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side/line6"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line6/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line6/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line6/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line6/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line6/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line6/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line6/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line6/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line6/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line6/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line6/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line6/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line6/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line6/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line7" type="Spatial" parent="custom_shape/spawn/side"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side/line7"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line7/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line7/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line7/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line7/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line7/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line7/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line7/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line7/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line7/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line7/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line7/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line7/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side/line7/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side/line7/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="unused" type="Spatial" parent="custom_shape/spawn"]
+transform = Transform( 0.593138, 0, -0.805101, 0, 1, 0, 0.805101, 0, 0.593138, -0.887111, -3.06077, 0.0686026 )
+
+[node name="elems" type="Spatial" parent="custom_shape/spawn/unused"]
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="RigidBody8" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.213341, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody8"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody8"]
+shape = SubResource( 3 )
+
+[node name="RigidBody9" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429584, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody9"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody9"]
+shape = SubResource( 3 )
+
+[node name="RigidBody10" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.632679, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody10"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody10"]
+shape = SubResource( 3 )
+
+[node name="RigidBody11" type="RigidBody" parent="custom_shape/spawn/unused/elems"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.830435, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/unused/elems/RigidBody11"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/unused/elems/RigidBody11"]
+shape = SubResource( 3 )
+
+[node name="side4" type="Spatial" parent="custom_shape/spawn"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.85271, 0, 0.850099 )
+
+[node name="line" type="Spatial" parent="custom_shape/spawn/side4"]
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side4/line"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side4/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side4/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side4/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side4/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side4/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side4/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line2" type="Spatial" parent="custom_shape/spawn/side4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side4/line2"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line2/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line2/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side4/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line2/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line2/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side4/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line2/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line2/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side4/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line2/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line2/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side4/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line2/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line2/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side4/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line2/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line2/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side4/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line2/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line2/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line3" type="Spatial" parent="custom_shape/spawn/side4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side4/line3"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line3/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line3/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side4/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line3/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line3/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side4/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line3/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line3/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side4/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line3/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line3/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side4/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line3/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line3/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side4/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line3/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line3/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side4/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line3/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line3/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line4" type="Spatial" parent="custom_shape/spawn/side4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side4/line4"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line4/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line4/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side4/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line4/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line4/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side4/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line4/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line4/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side4/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line4/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line4/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side4/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line4/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line4/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side4/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line4/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line4/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side4/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line4/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line4/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line5" type="Spatial" parent="custom_shape/spawn/side4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side4/line5"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line5/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line5/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side4/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line5/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line5/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side4/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line5/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line5/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side4/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line5/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line5/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side4/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line5/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line5/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side4/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line5/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line5/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side4/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line5/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line5/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line6" type="Spatial" parent="custom_shape/spawn/side4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side4/line6"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line6/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line6/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side4/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line6/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line6/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side4/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line6/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line6/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side4/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line6/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line6/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side4/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line6/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line6/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side4/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line6/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line6/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side4/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line6/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line6/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line7" type="Spatial" parent="custom_shape/spawn/side4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side4/line7"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line7/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line7/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side4/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line7/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line7/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side4/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line7/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line7/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side4/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line7/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line7/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side4/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line7/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line7/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side4/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line7/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line7/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side4/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side4/line7/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side4/line7/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="side5" type="Spatial" parent="custom_shape/spawn"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.85271, 0, -0.769491 )
+
+[node name="line" type="Spatial" parent="custom_shape/spawn/side5"]
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side5/line"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side5/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side5/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side5/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side5/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side5/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side5/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line2" type="Spatial" parent="custom_shape/spawn/side5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side5/line2"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line2/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line2/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side5/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line2/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line2/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side5/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line2/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line2/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side5/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line2/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line2/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side5/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line2/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line2/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side5/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line2/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line2/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side5/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line2/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line2/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line3" type="Spatial" parent="custom_shape/spawn/side5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side5/line3"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line3/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line3/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side5/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line3/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line3/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side5/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line3/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line3/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side5/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line3/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line3/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side5/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line3/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line3/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side5/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line3/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line3/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side5/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line3/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line3/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line4" type="Spatial" parent="custom_shape/spawn/side5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side5/line4"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line4/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line4/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side5/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line4/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line4/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side5/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line4/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line4/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side5/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line4/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line4/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side5/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line4/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line4/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side5/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line4/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line4/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side5/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line4/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line4/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line5" type="Spatial" parent="custom_shape/spawn/side5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side5/line5"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line5/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line5/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side5/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line5/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line5/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side5/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line5/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line5/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side5/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line5/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line5/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side5/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line5/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line5/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side5/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line5/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line5/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side5/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line5/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line5/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line6" type="Spatial" parent="custom_shape/spawn/side5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side5/line6"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line6/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line6/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side5/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line6/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line6/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side5/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line6/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line6/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side5/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line6/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line6/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side5/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line6/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line6/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side5/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line6/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line6/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side5/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line6/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line6/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line7" type="Spatial" parent="custom_shape/spawn/side5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side5/line7"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line7/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line7/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side5/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line7/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line7/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side5/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line7/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line7/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side5/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line7/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line7/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side5/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line7/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line7/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side5/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line7/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line7/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side5/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side5/line7/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side5/line7/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="side3" type="Spatial" parent="custom_shape/spawn"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68645, 0, 0 )
+
+[node name="line" type="Spatial" parent="custom_shape/spawn/side3"]
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side3/line"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side3/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side3/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side3/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side3/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side3/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side3/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line2" type="Spatial" parent="custom_shape/spawn/side3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side3/line2"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line2/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line2/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side3/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line2/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line2/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side3/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line2/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line2/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side3/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line2/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line2/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side3/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line2/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line2/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side3/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line2/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line2/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side3/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line2/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line2/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line3" type="Spatial" parent="custom_shape/spawn/side3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side3/line3"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line3/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line3/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side3/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line3/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line3/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side3/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line3/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line3/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side3/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line3/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line3/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side3/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line3/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line3/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side3/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line3/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line3/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side3/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line3/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line3/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line4" type="Spatial" parent="custom_shape/spawn/side3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side3/line4"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line4/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line4/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side3/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line4/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line4/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side3/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line4/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line4/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side3/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line4/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line4/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side3/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line4/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line4/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side3/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line4/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line4/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side3/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line4/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line4/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line5" type="Spatial" parent="custom_shape/spawn/side3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side3/line5"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line5/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line5/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side3/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line5/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line5/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side3/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line5/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line5/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side3/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line5/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line5/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side3/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line5/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line5/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side3/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line5/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line5/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side3/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line5/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line5/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line6" type="Spatial" parent="custom_shape/spawn/side3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side3/line6"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line6/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line6/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side3/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line6/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line6/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side3/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line6/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line6/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side3/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line6/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line6/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side3/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line6/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line6/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side3/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line6/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line6/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side3/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line6/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line6/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line7" type="Spatial" parent="custom_shape/spawn/side3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side3/line7"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line7/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line7/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side3/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line7/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line7/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side3/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line7/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line7/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side3/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line7/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line7/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side3/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line7/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line7/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side3/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line7/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line7/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side3/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side3/line7/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side3/line7/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="side2" type="Spatial" parent="custom_shape/spawn"]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.846071, 0.840373, 0 )
+
+[node name="line" type="Spatial" parent="custom_shape/spawn/side2"]
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side2/line"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side2/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side2/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side2/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side2/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side2/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side2/line"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line2" type="Spatial" parent="custom_shape/spawn/side2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side2/line2"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line2/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line2/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side2/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line2/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line2/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side2/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line2/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line2/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side2/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line2/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line2/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side2/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line2/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line2/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side2/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line2/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line2/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side2/line2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line2/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line2/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line3" type="Spatial" parent="custom_shape/spawn/side2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side2/line3"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line3/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line3/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side2/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line3/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line3/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side2/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line3/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line3/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side2/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line3/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line3/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side2/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line3/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line3/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side2/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line3/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line3/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side2/line3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line3/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line3/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line4" type="Spatial" parent="custom_shape/spawn/side2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side2/line4"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line4/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line4/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side2/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line4/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line4/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side2/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line4/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line4/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side2/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line4/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line4/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side2/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line4/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line4/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side2/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line4/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line4/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side2/line4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line4/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line4/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line5" type="Spatial" parent="custom_shape/spawn/side2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side2/line5"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line5/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line5/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side2/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line5/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line5/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side2/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line5/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line5/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side2/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line5/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line5/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side2/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line5/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line5/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side2/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line5/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line5/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side2/line5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line5/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line5/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line6" type="Spatial" parent="custom_shape/spawn/side2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side2/line6"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line6/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line6/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side2/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line6/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line6/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side2/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line6/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line6/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side2/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line6/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line6/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side2/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line6/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line6/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side2/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line6/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line6/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side2/line6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line6/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line6/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="line7" type="Spatial" parent="custom_shape/spawn/side2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="custom_shape/spawn/side2/line7"]
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line7/RigidBody"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line7/RigidBody"]
+shape = SubResource( 3 )
+
+[node name="RigidBody2" type="RigidBody" parent="custom_shape/spawn/side2/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line7/RigidBody2"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line7/RigidBody2"]
+shape = SubResource( 3 )
+
+[node name="RigidBody3" type="RigidBody" parent="custom_shape/spawn/side2/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line7/RigidBody3"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line7/RigidBody3"]
+shape = SubResource( 3 )
+
+[node name="RigidBody4" type="RigidBody" parent="custom_shape/spawn/side2/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line7/RigidBody4"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line7/RigidBody4"]
+shape = SubResource( 3 )
+
+[node name="RigidBody5" type="RigidBody" parent="custom_shape/spawn/side2/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line7/RigidBody5"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line7/RigidBody5"]
+shape = SubResource( 3 )
+
+[node name="RigidBody6" type="RigidBody" parent="custom_shape/spawn/side2/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line7/RigidBody6"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line7/RigidBody6"]
+shape = SubResource( 3 )
+
+[node name="RigidBody7" type="RigidBody" parent="custom_shape/spawn/side2/line7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.63 )
+gravity_scale = 0.0
+
+[node name="MeshInstance" type="MeshInstance" parent="custom_shape/spawn/side2/line7/RigidBody7"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="custom_shape/spawn/side2/line7/RigidBody7"]
+shape = SubResource( 3 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timer" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -500.046
+margin_top = 16.1515
+margin_right = -345.046
+margin_bottom = 30.1515
+rect_scale = Vector2( 3, 3 )
+text = "animation progress: 000%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="saved" type="Label" parent="UI"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -229.87
+margin_top = 51.8819
+margin_right = -117.87
+margin_bottom = 65.8819
+rect_scale = Vector2( 3, 3 )
+text = "Saved!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
