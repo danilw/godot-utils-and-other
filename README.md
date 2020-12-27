@@ -20,7 +20,7 @@ ___
 
 Tools that I made for [Cubes experiment](https://danilw.itch.io/cubes-experiment) demo. 
 
-**Frame_capture** - capture and animation to use in *GLES2 particle-like*. **Main point is** - to pre-record some static physics-animation that uses lots of CPU time when it in real-time, like sparks that bonce of floor - just record that bouncing animation and play in the released project with 0% CPU usage. (include two scenes - scene and scene2, each using own animation and script)
+**Frame_capture** - capture animation to use in *GLES2 particle-like*. **Main point is** - to pre-record some physics-animation that uses lots of CPU time when it in real-time, like sparks that bounce of floor - just record that bouncing animation and play in the released project with 0% CPU usage. (include two scenes - scene and scene2, each using own animation and script)
 
 *frame_view_example* - example project that include shaders. This is example of using captured frame. **[Live example](https://danilw.github.io/godot-utils-and-other/frame_view/frame_view_example.html)** *WebGL build of this example*.
 
