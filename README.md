@@ -26,6 +26,8 @@ Tools that I made for [Cubes experiment](https://danilw.itch.io/cubes-experiment
 
 **Panorama render** - *will be added latter*.
 
+**Trails** on mace hit animation - I used this [gm_trail](https://github.com/HungryProton/gm_trail) addon for that.
+
 *Shaders*:
 
 **Reprojection UV** - Homography and Image-Wrap reprojection logic [shaderetoy link](https://www.shadertoy.com/view/tdyBRz).
