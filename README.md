@@ -32,7 +32,7 @@ Tools that I made for [Cubes experiment](https://danilw.itch.io/cubes-experiment
 
 **Reprojection UV** - Homography and Image-Wrap reprojection logic [shaderetoy link](https://www.shadertoy.com/view/tdyBRz).
 
-Graphic shaders from *Cubes experiment* I will publish latter.
+**Graphic shaders** from *Cubes experiment* [shadertoy link](https://www.shadertoy.com/view/WtdcW4).
 
 
 ___
