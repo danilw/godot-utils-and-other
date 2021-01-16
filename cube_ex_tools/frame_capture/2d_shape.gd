@@ -97,7 +97,7 @@ func on_save():
   
   var img = Image.new()
   img.create_from_data(image_size.x, image_size.y, false, Image.FORMAT_RGB8, byte_array)
-  img.save_png(path+"/capture2.png")
+  img.save_png(path.plus_file("capture2.png"))
   print("done")
   saved_text.visible=true
 
