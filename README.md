@@ -41,6 +41,8 @@ ___
 
 Some 3d particle effects for Godot, using custom particle and fragment shaders. And decals. *Glow not used*. Used **Godot 3.2.2-stable** without modifications.
 
+One of shaders in this project has *bug in old Nvidia drivers 341.49* look this [link to issues](https://github.com/danilw/godot-utils-and-other/issues/6).
+
 **License -** all shader code under **MIT license**. **Warning -** all *3d models under CC non-comercial*, link to [list of all used resources](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/USED_RESOURCES_LINKS.md), also used sound file from [https://patrickdearteaga.com](patrickdearteaga.com)
 
 **Play -** live WebGL2 or download bin builds form **[itch.io link](https://danilw.itch.io/particle-effects-godot3)**.
