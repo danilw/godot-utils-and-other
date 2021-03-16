@@ -51,6 +51,14 @@ One of shaders in this project has *bug in old Nvidia drivers 341.49* look this 
 
 **Description:**
 
+This project has **small misstake in sound texture implementation** - sound texture binded to shaders after srgb convertion(*this is my mistake*), example in node `debug/audio/audio` its shader [shaders/debug/debug_audio.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/shaders/debug/debug_audio.shader) has this code:
+
+```
+uniform sampler2D iChannel0 : hint_black;
+```
+
+` hint_black` means that Godot will apply srgb convertion to this texture before use in shader, *this is bug* I did not fix it in this build, if you need audio texture **remove `:hint_` flag from shader**, **I mean audio texture implementation is correct in the [audio.gd](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/scripts/audio.gd) script but because mistake in shaders it has not correct result.**
+
 **1.** Lines draw with antialiasing, two types of antialiasing - *using mipmap from texture* or *using `dFd` procedural without textures*. **The point** - use antialiasing without texture needed. Shader code in [particle_lineAA_base.shader](https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/shaders/particle_lineAA_base.shader) include all 3 types of drawing for test, uncomment needed.
 
 Comparison on this gif: (left no antialiasing, middle `dFd`, right texture)
