@@ -7,7 +7,6 @@ render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_burley, specula
 // geometry generated from triangle particles
 // WARNING this is BAD code, I do not want to rework it now. DEPTH is broken on far and angles
 
-uniform vec3 cam_pos=vec3(1.,1.,0.);
 uniform float iTime=0.;
 
 const float scale_g = 0.35;
@@ -423,6 +422,7 @@ void vertex() {
   //mtx = mat4(normalize(CAMERA_MATRIX[0]) * length(WORLD_MATRIX[0]), normalize(CAMERA_MATRIX[1]) * length(WORLD_MATRIX[0]), normalize(CAMERA_MATRIX[2]) * length(WORLD_MATRIX[2]), WORLD_MATRIX[3]);
 
   // lookAt project, comment/uncomment
+  vec3 cam_pos = CAMERA_MATRIX[3].xyz;
   mtx = lookAt(cam_pos, WORLD_MATRIX[3].xyz, vec3(0., 1., 0.));
   cm = mtx;
   cm[3].xyz = cam_pos;

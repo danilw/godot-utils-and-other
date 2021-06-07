@@ -26,7 +26,10 @@ var err=0
 func save_frame(name):
 	var image = get_node("../../Viewport").get_texture().get_data()
 	#image.flip_y()
-	err=image.save_png(save_folder+"/"+name+".png")
+	var path = OS.get_executable_path().get_base_dir().plus_file(save_folder)
+	var dir = Directory.new()
+	dir.make_dir(path)
+	err=image.save_png(path.plus_file(name+".png"))
 	if err!=0:
 		serr=true
 
@@ -465,7 +468,7 @@ func gen_text_data(count,glowa,glowb,glowc):
 				else:
 					glowx=0
 			var texta=Array(text.to_ascii())
-			for a in range(10-texta.size()):
+			for b in range(10-texta.size()):
 				texta.append(32)
 			#pos+=Vector2(21/2,21/2)
 			pos=pos/global_v.iResolution.y

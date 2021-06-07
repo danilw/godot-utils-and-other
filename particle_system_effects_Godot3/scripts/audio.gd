@@ -6,7 +6,7 @@ var img_heigh = 2
 
 const VU_COUNT = 512
 const FREQ_MAX = 11025.0
-const MIN_DB = 78
+const MIN_DB = 72
 const dB_min = -100 
 const dB_max = -30
 

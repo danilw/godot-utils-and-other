@@ -2,7 +2,7 @@ shader_type canvas_item;
 render_mode blend_mix;
 
 
-uniform sampler2D iChannel0 : hint_black;
+uniform sampler2D iChannel0;
 
 
 void vertex() {

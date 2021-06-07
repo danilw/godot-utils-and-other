@@ -1,5 +1,42 @@
 extends Spatial
 
+
+# self https://danilw.itch.io/particle-effects-godot3
+# self https://github.com/danilw/godot-utils-and-other
+
+# WARNING Nvidia has bug with some shaders https://github.com/danilw/godot-utils-and-other/issues/6
+# if this project crash for you then edit (outside of Godot) 
+# (just copy there any other shader code that works)
+# shaders/particle_cube_base.shader
+# shaders/demo/particle_cube_audio.shader
+# shaders/demo/particle_cube_spiral.shader
+
+
+#  In this project used CC-non commercial 3D models from sketchfab
+# all used resources
+# https://github.com/danilw/godot-utils-and-other/blob/master/particle_system_effects_Godot3/USED_RESOURCES_LINKS.md
+
+# Used music from
+# https://patrickdearteaga.com/
+
+
+# Main License:
+# All shader-logic and other my-own graphic and logic under MIT-license.
+
+
+# about SOUND texture:
+# it correct!
+
+# AVOID THIS MISTAKE:
+
+# in importing audio texture as sampler2D write this :
+# uniform sampler2D iChannel0;
+
+# DO NOT use any "hint_" like uniform sampler2D iChannel0:hint_black; or like that
+# "hint_" means Godot do SRGB trnaslation BEFORE shader reads texture, srgb ruin audio texture
+
+
+
 var iTime=0.0
 var iFrame=0
 var FPS_counter=1.0

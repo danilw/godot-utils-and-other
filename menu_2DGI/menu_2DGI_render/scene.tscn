@@ -273,7 +273,6 @@ items = [ "1280x720", null, false, 0, null, "1920x1080", null, false, 1, null, "
 selected = 0
 
 [node name="hb" type="HBoxContainer" parent="Control/menu/vc"]
-editor/display_folded = true
 margin_top = 240.0
 margin_right = 210.0
 margin_bottom = 240.0
@@ -466,6 +465,7 @@ dialog_text = "Error on save image file: "
 [node name="elems" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
 [connection signal="pressed" from="Control/menu/vc/at" to="Control/menu" method="_on_at_pressed"]
 [connection signal="pressed" from="Control/menu/vc/al" to="Control/menu" method="_on_al_pressed"]
 [connection signal="pressed" from="Control/menu/vc/al2" to="Control/menu" method="_on_al2_pressed"]

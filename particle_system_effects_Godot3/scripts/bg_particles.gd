@@ -33,16 +33,6 @@ func _process(delta):
 		iTime_bg+=delta
 	cnode.material_override.set("shader_param/iTime",iTime_bg)
 	cnode.process_material.set("shader_param/iTime",iTime_bg)
-	cnode.material_override.set("shader_param/cam_pos",camnode.translation)
-	cnode2.material_override.set("shader_param/cam_pos",camnode.translation)
-	
-	demnode.material_override.set("shader_param/cam_pos",camnode.translation)
-	demnode2.material_override.set("shader_param/cam_pos",camnode.translation)
-	
-	dnode.material_override.set("shader_param/cam_pos",camnode.translation)
-	dnode2.material_override.set("shader_param/cam_pos",camnode.translation)
-	
-	demofount.material_override.set("shader_param/cam_pos",camnode.translation)
 	demofount.material_override.set("shader_param/iTime",iTime)
 	
 	bnode.material_override.set("shader_param/iTime",max(iTime_bg-30,0)+27.1*2)
