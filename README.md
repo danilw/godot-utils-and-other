@@ -10,9 +10,12 @@ ___
 
 **Licensing and this code** - in this repository used some sketchfab models that under CC-license, also music, and other resource that do not have Mit license. All used resources linked for every project, please check its license before use. My code under MIT license.
 
+
+Everything tested on Godot **3.3.2**
+
 ___
 
-*new 2020:*
+*2020:*
 
 ___
 
@@ -179,7 +182,11 @@ ___
 
 *Warning: code very bad!* || Using lots of particles in Godot, in small demo-game.
 
-To build this project you need build Godot with module **futari-addon** (google it(gitlab) ot use this [link](https://gitlab.com/polymorphcool/futari-addon) ) *Binary versions*: [win64](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_win64.zip) [linux64](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/bw_game_lin64.zip) [live/web](https://danilw.github.io/godot-utils-and-other/a_rel_bw_game/web/afg.html)(work only in Firefox [reason](https://github.com/godotengine/godot/issues/28573)) (native builds have Mipmap On, web build off)
+To build this project you need build Godot with module **futari-addon** (google it(gitlab) ot use this [link](https://gitlab.com/polymorphcool/futari-addon) ) to make futari-addon work in [Godot 3.3.2 look this fix](https://gitlab.com/polymorphcool/futari-addon/-/issues/9).
+
+[Playable web/bin version.](https://danilw.itch.io/particle-game-demo)
+
+Video [youtube link](https://youtu.be/jTmppCifnYE)
 ___
 
 ### **Dynamic sky and reflection**:
