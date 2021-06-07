@@ -1,6 +1,6 @@
 **update 2019 (actual in 2020)**
 
-gitlab mirror [https://gitlab.com/danilw/godot-utils-and-other](https://gitlab.com/danilw/godot-utils-and-other), untill I can update github repo I will (depends of github rules[(region block)](https://danilw.github.io/GLSL-howto/1.png) updates based on U.S. laws)
+gitlab mirror [https://gitlab.com/danilw/godot-utils-and-other](https://gitlab.com/danilw/godot-utils-and-other), EU mirror [https://notabug.org/danilw/godot-utils-and-other](https://notabug.org/danilw/godot-utils-and-other), untill I can update github repo I will (depends of github rules[(region block)](https://danilw.github.io/GLSL-howto/1.png) )
 
 # godot-utils-and-other
 **what is it** my test projects using Godot. I do not recomend use this code for learning.
