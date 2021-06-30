@@ -14,6 +14,22 @@ ___
 Everything tested on Godot **3.3.2**
 
 ___
+*New:*
+
+___
+
+**Godot_shadertoy** updated version of "Shadertoy logic to Godot" [video](https://youtu.be/v48O7Nk_n4g). 
+
+[**New source code zip file**](https://danilw.github.io/GLSL-howto/shadertoy_new_2021/src/Godot_shadertoy_v2new.zip).
+
+**New web version** to test [live link](https://danilw.github.io/GLSL-howto/shadertoy_new_2021/shadertoy.html).
+
+Added correct resize set `resize_Viewport_to_screen = true` in *scene.gd* to make resize work, fixed lots of bugs, example of mouse and keyboard. [Shadertoy test shader link](https://www.shadertoy.com/view/WlcBWr).
+
+___
+
+
+___
 
 *2020:*
 
@@ -211,7 +227,7 @@ ___
 
 *old:*
 
-**Godot_shadertoy** very simple "Shadertoy logic to Godot" [video](https://youtu.be/v48O7Nk_n4g), [source repo](https://github.com/danilw/GLSL-howto/tree/master/Godot_shadertoy)
+**Godot_shadertoy** very simple "Shadertoy logic to Godot" [video](https://youtu.be/v48O7Nk_n4g)
 
 **Cubemap to panorama** convertor [live link](https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html) 
 
