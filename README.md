@@ -24,7 +24,7 @@ Mirror that copy screen image with self from previous frame, and Postprocessing 
 
 [**Source code zip**](https://danilw.github.io/godot-utils-and-other/mirror_and_postproc/mirror_in_mirror_and_postproc.zip).
 
-[**Web version**](https://danilw.github.io/godot-utils-and-other/mirror_and_postproc/mirror_in_mirror_and_postprocessing.html).
+[Web version](https://danilw.github.io/godot-utils-and-other/mirror_and_postproc/mirror_in_mirror_and_postprocessing.html).
 
 ___
 
