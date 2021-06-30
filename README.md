@@ -18,7 +18,7 @@ ___
 
 ___
 
-### **Godot_shadertoy** 
+### **Godot shadertoy**:
 
 **_updated_** version of "Shadertoy logic to Godot" [video](https://youtu.be/v48O7Nk_n4g). (old version linked under video)
 
