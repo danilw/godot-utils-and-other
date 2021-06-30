@@ -22,9 +22,9 @@ ___
 
 **_updated_** version of "Shadertoy logic to Godot" [video](https://youtu.be/v48O7Nk_n4g). (old version linked under video)
 
-[**New source code zip file**](https://danilw.github.io/GLSL-howto/shadertoy_new_2021/src/Godot_shadertoy_v2new.zip).
+[**New source code zip file**](https://danilw.github.io/godot-utils-and-other/shadertoy_new_2021/src/Godot_shadertoy_v2new.zip).
 
-**New web version** to test [live link](https://danilw.github.io/GLSL-howto/shadertoy_new_2021/shadertoy.html).
+**New web version** to test [live link](https://danilw.github.io/godot-utils-and-other/shadertoy_new_2021/shadertoy.html).
 
 Added correct resize set `resize_Viewport_to_screen = true` in *scene.gd* to make resize work, fixed lots of bugs, example of mouse and keyboard. [Shadertoy test shader link](https://www.shadertoy.com/view/WlcBWr).
 
