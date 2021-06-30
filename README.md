@@ -18,6 +18,16 @@ ___
 
 ___
 
+### **3D Mirror in Mirror and postprocessing example**:
+
+Mirror that copy screen image with self from previous frame, and Postprocessing that need to "aditional buffer to save state"(as example used jpeg/DCT real time effect).
+
+[**Source code zip**](https://danilw.github.io/godot-utils-and-other/mirror_and_postproc/mirror_in_mirror_and_postproc.zip).
+
+[**Web version**](https://danilw.github.io/godot-utils-and-other/mirror_and_postproc/mirror_in_mirror_and_postprocessing.html).
+
+___
+
 ### **Godot shadertoy**:
 
 **_updated_** version of "Shadertoy logic to Godot" [video](https://youtu.be/v48O7Nk_n4g). (old version linked under video)
