@@ -20,7 +20,8 @@ ___
 
 ### **Edge_Cavity_example_test**:
 
-Two shaders, look [screenshot link](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/screenshot.jpg) or same below and **full Godot-project in zip file** linked:
+Two shaders, look [screenshot link](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/screenshot.jpg) or same below and **full Godot-project in zip file** linked:\
+(shaders can be copy-pasted without any extra setup(normal buffer is optional for second shader))
 
 *[edge_cavity.shader](Edge_Cavity_example_test/shaders/edge_cavity.shader)* - this is default Edge shader that use only Depth for edges with small style, edge color is darker on white objects, on screenshot you can see it red and black lines.
 
