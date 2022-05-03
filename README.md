@@ -29,7 +29,8 @@ Two shaders, look screenshot below on Screenshots and full Godot-project in zip 
 
 [**Source code zip**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/Edge_Cavity_example_test_src.zip). To see usage of `edge_postprocessing.shader` open this project in Godot.
 
-[**Web version**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/cavity_edge_godot_web/Edge_Cavity_Outline_example_test.html). I did not setup proper normals for transparent objects, this why transparent objects in squares.
+[**Web version**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/cavity_edge_godot_web/Edge_Cavity_Outline_example_test.html).\
+I did not setup proper normals for transparent objects, this why transparent objects in squares.
 
 *3D models in this project not my own, used only for demonstration, everything except 3D models under MIT license.*
 
