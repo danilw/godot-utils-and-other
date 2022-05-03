@@ -18,6 +18,23 @@ ___
 
 ___
 
+### **Edge_Cavity_example_test**:
+
+Two shaders, look screenshot below on Screenshots and full Godot-project in zip file linked:
+
+*[edge_cavity.shader](Edge_Cavity_example_test/shaders/edge_cavity.shader)* - this is default Edge shader that use only Depth for edges with small style, edge color is darker on white objects, on screenshot you can see it red and black lines.
+
+*[edge_cavity_try2.shader](Edge_Cavity_example_test/shaders/edge_cavity_try2.shader)* - edge and cavity effect build from normals and depth, so requires additional normal-buffer. (can be used without normal buffer look `use_normal_texture` in code, in web-example click to disable normal this [screenshot](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/depth_normal_comparison.png) shows difference)\
+*Cavity effect - in this context is edges that face camera lighter when edges opposite camera darker, look screenshot below.*
+
+[**Source code zip**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/Edge_Cavity_example_test_src.zip).
+
+[**Web version**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/cavity_edge_godot_web/Edge_Cavity_Outline_example_test.html).
+
+___
+
+___
+
 ### **3D Mirror in Mirror and postprocessing example**:
 
 Mirror that copy screen image with self from previous frame, and Postprocessing that need an "aditional buffer to save state"(as example used jpeg/DCT real time effect).
@@ -248,6 +265,9 @@ ___
 
 
 ### Graphic
+
+**Edge_Cavity_example_test** - [Web version](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/cavity_edge_godot_web/Edge_Cavity_Outline_example_test.html)
+![Edge_Cavity_example_test](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/screenshot.jpg)
 
 **cube_ex_tools** tools that I used to make this project on video
 [![cubes_experiment](https://danilw.github.io/godot-utils-and-other/yt_cubes.png)](https://youtu.be/gfd7xkN4xoY)
