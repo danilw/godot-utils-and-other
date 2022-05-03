@@ -27,7 +27,7 @@ Two shaders, look screenshot below on Screenshots and full Godot-project in zip 
 *[edge_cavity_try2.shader](Edge_Cavity_example_test/shaders/edge_cavity_try2.shader)* - edge and cavity effect build from normals and depth, so requires additional normal-buffer. (can be used without normal buffer look `use_normal_texture` in code, in web-example click to disable normal this [screenshot](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/depth_normal_comparison.png) shows difference)\
 *Cavity effect - in this context is edges that face camera lighter when edges opposite camera darker, look screenshot below.*
 
-[**Source code zip**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/Edge_Cavity_example_test_src.zip).
+[**Source code zip**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/Edge_Cavity_example_test_src.zip). To see usage of `edge_postprocessing.shader` open this project in Godot.
 
 [**Web version**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/cavity_edge_godot_web/Edge_Cavity_Outline_example_test.html).
 
