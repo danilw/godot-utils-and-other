@@ -23,6 +23,8 @@ ___
 Two shaders, look [screenshot link](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/screenshot.jpg) or same below and **full Godot-project in zip file** linked:\
 (shaders can be copy-pasted without any extra setup(normal buffer is optional for second shader))
 
+(*this is not complete graphic-styled-pipeline*, this is just experiment that can be completelly useless for you, if you look for *toon-Cartoon shader pipeline* check other shaders for example [Complete Toon Shader](https://godotshaders.com/shader/complete-toon-shader/) or other examples you can find)
+
 *[edge_cavity.shader](Edge_Cavity_example_test/shaders/edge_cavity.shader)* - this is default Edge shader that use only Depth for edges with small style, edge color is darker on white objects, on screenshot you can see it red and black lines.
 
 *[edge_cavity_try2.shader](Edge_Cavity_example_test/shaders/edge_cavity_try2.shader)* - edge and cavity effect build from normals and depth, so requires additional normal-buffer. (can be used without normal buffer look `use_normal_texture` in code, in web-example click to disable normal this [screenshot](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/depth_normal_comparison.png) shows difference)\
