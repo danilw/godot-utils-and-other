@@ -27,8 +27,10 @@ Two shaders, look [screenshot link](https://danilw.github.io/godot-utils-and-oth
 
 *[edge_cavity.shader](Edge_Cavity_example_test/shaders/edge_cavity.shader)* - this is default Edge shader that use only Depth for edges with small style, edge color is darker on white objects, on screenshot you can see it red and black lines.
 
-*[edge_cavity_try2.shader](Edge_Cavity_example_test/shaders/edge_cavity_try2.shader)* - edge and cavity effect build from normals and depth, so requires additional normal-buffer. (can be used without normal buffer look `use_normal_texture` in code, in web-example click to disable normal this [screenshot](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/depth_normal_comparison.png) shows difference)\
+*[edge_cavity_try2.shader](Edge_Cavity_example_test/shaders/edge_cavity_try2.shader)* - edge and cavity effect build from normals and depth, so requires additional normal-buffer(just as option, can be rendered without normal buffer). (can be used without normal buffer look `use_normal_texture` in code, in web-example click to disable normal this [screenshot](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/depth_normal_comparison.png) shows difference, used improved normals)\
 *Cavity effect - in this context is edges that face camera lighter when edges opposite camera darker, look screenshot below.*
+
+*edge_cavity_try2.shader* **Updated using `computeNormalImproved`** improved normal detection from depth, that has almost not difference from original normal, so **additional normal buffer not needed**. Set `use_normal_texture` to `false` in shader. (source code and web version updated)
 
 [**Source code zip**](https://danilw.github.io/godot-utils-and-other/cavity_edge_godot/Edge_Cavity_example_test_src.zip). To see usage of *edge_postprocessing.shader* open this project in Godot.
 
