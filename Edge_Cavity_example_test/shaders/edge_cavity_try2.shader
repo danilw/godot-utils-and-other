@@ -4,7 +4,7 @@
 // AND on Material-Render Priority set 127
 
 // WARNING - THIS SHADER IS JUST EXPERIMENT. this MAY BE VERY WRONG/BAD
-// look image res://depth_normal_comparison.png real normal vs depth normals
+// look image res://depth_normal_comparison.png real normal vs depth normals (used Improved normals, same quality as from buffer)
 
 // modified 2022, by Danil:
 // added method normal-edge mothod
@@ -31,9 +31,9 @@ uniform bool display_normal = false;
 uniform bool cav_edges_st = false;
 
 
-// normal texture can be filtered with MSAA and have better quality over depth normal
+// normal texture can be filtered with MSAA
 uniform sampler2D norm_texture;
-uniform bool use_normal_texture=false; //set to true if you want use
+uniform bool use_normal_texture=false; //set to true if you want use normal texture from its own buffer
 
 
 varying flat mat4 model_view_matrix;
@@ -54,48 +54,59 @@ float get_depth(vec2 suv, sampler2D detpth_tx, mat4 iprm){
   return linear_depth;
 }
 
-vec3 getNormal(vec3 p1, vec3 p2)
-{
-    vec3 normal = cross(p2, p1);
-    normal = -normal;
-    if(length(normal)<0.000001)normal+=(1.-abs(sign(normal)))*0.0001;
-    return normalize(normal) ;
-}
 
-vec3 SampleSceneNormals(vec3 pos0,vec3 pos,vec3 pos2,vec3 pos3,vec3 pos4, vec2 suv)
-{
-  if(use_normal_texture)return texture(norm_texture,suv).xyz;
-  else return getNormal(dFdx(pos.xyz),dFdy(pos.xyz));
-}
-
-vec3 ReconstructViewPos(sampler2D depth_tx, mat4 mvm, mat4 ipm, vec2 suv, mat4 wm, mat4 icm){
-  vec4 pos = inverse(mvm) * ipm * vec4((suv * 2.0 - 1.0), texture(depth_tx, suv).r * 2.0 - 1.0, 1.0);
+vec3 getPos(float depth, mat4 mvm, mat4 ipm, vec2 suv, mat4 wm, mat4 icm){
+  vec4 pos = inverse(mvm) * ipm * vec4((suv * 2.0 - 1.0), depth * 2.0 - 1.0, 1.0);
   pos.xyz /= (pos.w+0.0001*(1.-abs(sign(pos.w))));
   return (pos*icm).xyz+wm[3].xyz;
 }
 
+// improved https://www.shadertoy.com/view/fsVczR
+vec3 computeNormalImproved( sampler2D depth_tx, mat4 mvm, mat4 ipm, vec2 suv, mat4 wm, mat4 icm, vec2 iResolution)
+{
+    vec2 e = vec2(1./iResolution);
+    float c0 = texture(depth_tx,suv           ).r;
+    float l2 = texture(depth_tx,suv-vec2(2,0)*e).r;
+    float l1 = texture(depth_tx,suv-vec2(1,0)*e).r;
+    float r1 = texture(depth_tx,suv+vec2(1,0)*e).r;
+    float r2 = texture(depth_tx,suv+vec2(2,0)*e).r;
+    float b2 = texture(depth_tx,suv-vec2(0,2)*e).r;
+    float b1 = texture(depth_tx,suv-vec2(0,1)*e).r;
+    float t1 = texture(depth_tx,suv+vec2(0,1)*e).r;
+    float t2 = texture(depth_tx,suv+vec2(0,2)*e).r;
+    
+    float dl = abs(l1*l2/(2.0*l2-l1)-c0);
+    float dr = abs(r1*r2/(2.0*r2-r1)-c0);
+    float db = abs(b1*b2/(2.0*b2-b1)-c0);
+    float dt = abs(t1*t2/(2.0*t2-t1)-c0);
+    
+    vec3 ce = getPos(c0, mvm, ipm, suv, wm, icm);
+
+    vec3 dpdx = (dl<dr) ?  ce-getPos(l1, mvm, ipm,suv-vec2(1,0)*e, wm, icm) : 
+                          -ce+getPos(r1, mvm, ipm,suv+vec2(1,0)*e, wm, icm) ;
+    vec3 dpdy = (db<dt) ?  ce-getPos(b1, mvm, ipm,suv-vec2(0,1)*e, wm, icm) : 
+                          -ce+getPos(t1, mvm, ipm,suv+vec2(0,1)*e, wm, icm) ;
+
+    return normalize(cross(dpdx,dpdy));
+}
+
 vec3 SampleNormal(sampler2D sam, mat4 mvm, mat4 ipm, vec2 suv, mat4 wm, mat4 icm, vec2 iResolution)
 {
-    vec3 vpos0 = ReconstructViewPos(sam, mvm, ipm, suv, wm, icm);
-    vec3 e = vec3(1./iResolution, 0.);
-    vec3 vpos = ReconstructViewPos(sam, mvm, ipm, suv+vec2(e.x,e.y), wm, icm);
-    vec3 vpos2 = ReconstructViewPos(sam, mvm, ipm, suv+vec2(e.x,-e.y), wm, icm);
-    vec3 vpos3 = ReconstructViewPos(sam, mvm, ipm, suv+vec2(-e.x,e.y), wm, icm);
-    vec3 vpos4 = ReconstructViewPos(sam, mvm, ipm, suv+vec2(-e.x,-e.y), wm, icm);
-    return SampleSceneNormals(vpos0,vpos,vpos2,vpos3,vpos4, suv);
+    if(use_normal_texture)return texture(norm_texture,suv).xyz;
+    else return computeNormalImproved( sam, mvm, ipm, suv, wm, icm, iResolution);
 }
 
 
 
 // this edge methods require use Normal texture also
 // Godot does not provide Normal texture, so you have to build yourself
-// using Normal texture allow to build edge "cheaper"(less texture reads) and with better quality
+// using Normal texture allow to build edge "cheaper"(less texture reads) (quality from improved depth normals is better)
 
 // (remember to NOT use it with Transparent Background Viewport, or when TrBg used remember to set Sky sphere around(look Normal Viewport))
 
 float CheckDiff(vec4 _centerNormalDepth,vec4 _otherNormalDepth) {
-	float _DepthDiffCoeff = 5.;
-	float _NormalDiffCoeff = 1.;
+  float _DepthDiffCoeff = 5.;
+  float _NormalDiffCoeff = 1.;
     float depth_diff = abs(_centerNormalDepth.w - _otherNormalDepth.w);
     vec3 normal_diff = abs(_centerNormalDepth.xyz - _otherNormalDepth.xyz);
     return 
@@ -106,15 +117,15 @@ float CheckDiff(vec4 _centerNormalDepth,vec4 _otherNormalDepth) {
 
 vec2 FastEdge(vec2 uv, vec2 iResolution, sampler2D detpth_tx, mat4 prm, mat4 ipm, mat4 wm, mat4 icm) {
   vec3 e = vec3(1./iResolution, 0.);
-	float d = get_depth(uv,detpth_tx,prm);
+  float d = get_depth(uv,detpth_tx,prm);
   vec4 Center_P = vec4(SampleNormal(detpth_tx ,model_view_matrix, ipm, uv, wm, icm,iResolution),0.);
-	Center_P.w = d;
-	d = get_depth(uv + vec2(e.x,e.y),detpth_tx,prm);
+  Center_P.w = d;
+  d = get_depth(uv + vec2(e.x,e.y),detpth_tx,prm);
   vec4 LD = vec4(SampleNormal(detpth_tx ,model_view_matrix, ipm, uv + vec2(e.x,e.y), wm, icm,iResolution),0.);
-	LD.w = d;
-	d = get_depth(uv + vec2(e.x,-e.y),detpth_tx,prm);
+  LD.w = d;
+  d = get_depth(uv + vec2(e.x,-e.y),detpth_tx,prm);
   vec4 RD = vec4(SampleNormal(detpth_tx ,model_view_matrix, ipm, uv + vec2(e.x, -e.y), wm, icm,iResolution),0.);
-	RD.w = d;
+  RD.w = d;
 
   float Edge = 0.;
   Edge += CheckDiff(Center_P,LD);
@@ -164,9 +175,9 @@ void Curvature(sampler2D sam, mat4 mvm, mat4 ipm, vec2 suv, mat4 wm, mat4 icm, v
 
 
 void fragment() {
-	ALBEDO = outline_color.rgb;
+  ALBEDO = outline_color.rgb;
   ALPHA=0.;
-	
+  
 if (outline_mode == 1) {
     vec2 tr=FastEdge(SCREEN_UV,VIEWPORT_SIZE,DEPTH_TEXTURE,PROJECTION_MATRIX, INV_PROJECTION_MATRIX,WORLD_MATRIX,INV_CAMERA_MATRIX);
     ALPHA = tr.x;
@@ -184,13 +195,13 @@ if (outline_mode == 1) {
     float de = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, py)).x;
     float dz = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(-px, -py)).x;
     float dc = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, -py)).x;
-		
-		ALPHA = 0.0 + abs(abs(abs(d)-abs(du)) - abs(abs(d)-abs(dd))) + abs(abs(abs(d)-abs(dl)) - abs(abs(d)-abs(dr))) + abs(abs(abs(d)-abs(dq)) - abs(abs(d)-abs(dc))) + abs(abs(abs(d)-abs(dz)) - abs(abs(d)-abs(de)));
+    
+    ALPHA = 0.0 + abs(abs(abs(d)-abs(du)) - abs(abs(d)-abs(dd))) + abs(abs(abs(d)-abs(dl)) - abs(abs(d)-abs(dr))) + abs(abs(abs(d)-abs(dq)) - abs(abs(d)-abs(dc))) + abs(abs(abs(d)-abs(dz)) - abs(abs(d)-abs(de)));
 
-		ALPHA *= 50000.0;
+    ALPHA *= 50000.0;
   }
-	
-	ALPHA=clamp(ALPHA,0.,1.);
+  
+  ALPHA=clamp(ALPHA,0.,1.);
   
   if(display_edge_only||display_edge_local){
     if(display_edge_local&&(!display_edge_only))
