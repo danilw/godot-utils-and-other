@@ -11,7 +11,9 @@ ___
 **Licensing and this code** - in this repository used some sketchfab models that under CC-license, also music, and other resource that do not have Mit license. All used resources linked for every project, please check its license before use. My code under MIT license.
 
 
-Everything tested on Godot **3.3.2**
+**Everything tested** in 2023 on Godot **3.5.2**. Updated few errors to make everything work in 3.5.2+.
+
+*release build and web builds not updated to godot 3.5.2, they stay on godot 3.1-3.3*
 
 ___
 *New:*
@@ -182,7 +184,7 @@ Video [youtube link](https://youtu.be/GyX0rkKkdFU)
 
 *links* **[Live web build](https://danilw.github.io/godot-utils-and-other/portal_panorama/web/portals_panorama.html)**, [Win64](https://danilw.github.io/godot-utils-and-other/portal_panorama/portal_panorama_win.zip), [Linux64](https://danilw.github.io/godot-utils-and-other/portal_panorama/portal_panorama_linux.zip)
 
-*Support*: Godot 3.1, Godot 3.2, GLES2 or GLES3. Used official Godot build, nothing else.
+*Support*: Godot 3.1, Godot 3.2, GLES2 or GLES3. Used official Godot build.
 
 **How yo use** in your project: create MeshInstance, mesh Sphere, in mesh check *flip faces*, create shader material, in shader code copy-paste any of *\*.shader* code form this project. (for advanced use look this project source)
 
@@ -211,7 +213,7 @@ this is GLSL-only logic, example on shadertoy https://www.shadertoy.com/view/tst
 
 Video [youtube link](https://youtu.be/fRu9PA4XHPQ)
 
-**Building:** you need rebuild Godot with enabled `GL_RGBA32F` suport, read this page [**there building howto**](https://github.com/danilw/flat-maze)
+**Building:** Godot 3.5 suppot fp32 framebuffer, works in Godot without changes.
 ___
 
 ### **Menu_2DGI**:
