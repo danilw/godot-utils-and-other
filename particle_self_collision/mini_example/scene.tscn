@@ -275,6 +275,7 @@ script = ExtResource( 4 )
 [node name="data_FBO" type="Viewport" parent="."]
 size = Vector2( 640, 360 )
 transparent_bg = true
+use_32_bpc_depth = true
 disable_3d = true
 render_target_v_flip = true
 render_target_update_mode = 3
@@ -288,6 +289,7 @@ script = ExtResource( 6 )
 [node name="iChannel0" type="Viewport" parent="."]
 size = Vector2( 640, 360 )
 transparent_bg = true
+use_32_bpc_depth = true
 disable_3d = true
 render_target_v_flip = true
 render_target_update_mode = 3
@@ -301,6 +303,7 @@ script = ExtResource( 4 )
 [node name="iChannel_buf0" type="Viewport" parent="."]
 size = Vector2( 640, 360 )
 transparent_bg = true
+use_32_bpc_depth = true
 disable_3d = true
 render_target_v_flip = true
 render_target_update_mode = 3
@@ -313,6 +316,7 @@ centered = false
 [node name="data_buf" type="Viewport" parent="."]
 size = Vector2( 640, 360 )
 transparent_bg = true
+use_32_bpc_depth = true
 disable_3d = true
 render_target_v_flip = true
 render_target_update_mode = 3
@@ -386,8 +390,8 @@ margin_left = 115.706
 margin_top = 1.52356
 margin_right = 180.706
 margin_bottom = 27.5236
-custom_styles/normal = SubResource( 23 )
 custom_fonts/font = ExtResource( 18 )
+custom_styles/normal = SubResource( 23 )
 text = "Zoom:"
 
 [node name="zl4" type="Label" parent="Control"]
@@ -395,8 +399,8 @@ margin_left = 610.0
 margin_top = 6.14204
 margin_right = 766.0
 margin_bottom = 32.1421
-custom_styles/normal = SubResource( 23 )
 custom_fonts/font = ExtResource( 18 )
+custom_styles/normal = SubResource( 23 )
 text = "Speed scale:"
 
 [node name="zl3" type="Label" parent="Control"]
@@ -405,8 +409,8 @@ margin_top = 48.1912
 margin_right = 935.0
 margin_bottom = 74.1912
 hint_tooltip = "this is last created ID, real number particles can be less then this"
-custom_styles/normal = SubResource( 24 )
 custom_fonts/font = ExtResource( 18 )
+custom_styles/normal = SubResource( 24 )
 text = "Particles counter(total):"
 
 [node name="set_IDx2" type="LineEdit" parent="Control"]
@@ -414,9 +418,9 @@ margin_left = 939.872
 margin_top = 40.0
 margin_right = 1106.87
 margin_bottom = 76.0
-custom_styles/read_only = SubResource( 25 )
-custom_fonts/font = ExtResource( 18 )
 custom_colors/clear_button_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 18 )
+custom_styles/read_only = SubResource( 25 )
 text = "16777215"
 max_length = 8
 editable = false
@@ -448,8 +452,8 @@ margin_left = 1152.72
 margin_top = 2.63159
 margin_right = 1256.72
 margin_bottom = 28.6316
-custom_styles/normal = SubResource( 23 )
 custom_fonts/font = ExtResource( 18 )
+custom_styles/normal = SubResource( 23 )
 text = "Gravity:"
 
 [node name="info_dlg" type="AcceptDialog" parent="Control"]
@@ -630,11 +634,12 @@ margin_left = 5.78644
 margin_top = 5.26315
 margin_right = 108.786
 margin_bottom = 37.2632
+custom_fonts/font = ExtResource( 18 )
 custom_styles/hover = SubResource( 41 )
 custom_styles/pressed = SubResource( 42 )
 custom_styles/normal = SubResource( 43 )
-custom_fonts/font = ExtResource( 18 )
 text = "Hide UI"
+
 [connection signal="pressed" from="Control/clean" to="Control" method="_on_clean_pressed"]
 [connection signal="pressed" from="Control/clean2" to="Control" method="_on_clean2_pressed"]
 [connection signal="pressed" from="Control/clean3" to="Control" method="_on_clean3_pressed"]

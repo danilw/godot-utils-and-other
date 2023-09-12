@@ -44,6 +44,7 @@ margin_right = 83.0
 margin_bottom = 58.0
 popup_exclusive = true
 dialog_text = "Clicked"
+
 [connection signal="button_down" from="menu/buttons/b1" to="menu" method="_on_b1_button_down"]
 [connection signal="button_up" from="menu/buttons/b1" to="menu" method="_on_b1_button_up"]
 [connection signal="mouse_entered" from="menu/buttons/b1" to="menu" method="_on_b1_mouse_entered"]

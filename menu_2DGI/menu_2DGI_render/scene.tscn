@@ -361,8 +361,6 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.jpg", "*.png", "*.jpeg" )
-current_dir = "/home/danil/Godot_projects/my/menu_2DGI_render"
-current_path = "/home/danil/Godot_projects/my/menu_2DGI_render/"
 
 [node name="info" type="AcceptDialog" parent="Control"]
 margin_left = 231.579

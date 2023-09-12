@@ -48,8 +48,8 @@ const vec3 col_o=vec3(0.79,0.43,1.);
 void fragment() {
 	ALBEDO=vec3(0.);
 	if(UV.y>0.35){
-		return;
-	}
+		 
+	}else{
 	vec3 rd=normalize(((CAMERA_MATRIX*vec4(normalize(-VERTEX),0.0)).xyz));
 	vec3 nor=normalize((CAMERA_MATRIX * vec4(NORMAL, 0.0)).xyz);
 	vec3 ref = reflect(rd,nor);
@@ -86,4 +86,5 @@ void fragment() {
 	rglow=clamp(rglow/10.,0.,1.);
 	vec2 ref_ofs = SCREEN_UV - ref_normal.xy * rglow;
 	EMISSION += texture(SCREEN_TEXTURE,ref_ofs).rgb ;
+  }
 }

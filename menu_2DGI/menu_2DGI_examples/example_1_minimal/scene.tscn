@@ -37,6 +37,7 @@ rect_pivot_offset = Vector2( 100, 100 )
 margin_right = 83.0
 margin_bottom = 58.0
 dialog_text = "Click"
+
 [connection signal="mouse_entered" from="menu/buttons/b1" to="menu" method="_on_b1_mouse_entered"]
 [connection signal="mouse_exited" from="menu/buttons/b1" to="menu" method="_on_b1_mouse_exited"]
 [connection signal="pressed" from="menu/buttons/b1" to="menu" method="_on_b1_pressed"]

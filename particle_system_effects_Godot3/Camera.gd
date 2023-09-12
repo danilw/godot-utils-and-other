@@ -94,8 +94,8 @@ func _input(event):
 		if event is InputEventMouseMotion:
 			_mouse_offset = event.relative
 			
-		_rotation_offset.x = Input.get_action_strength(rotate_right_action) - Input.get_action_strength(rotate_left_action)
-		_rotation_offset.y = Input.get_action_strength(rotate_down_action) - Input.get_action_strength(rotate_up_action)
+		#_rotation_offset.x = Input.get_action_strength(rotate_right_action) - Input.get_action_strength(rotate_left_action)
+		#_rotation_offset.y = Input.get_action_strength(rotate_down_action) - Input.get_action_strength(rotate_up_action)
 
 	if movement and _triggered and !is_ui:
 		_direction.x = get_action_x(right_action,right_action2) - get_action_x(left_action,left_action2)

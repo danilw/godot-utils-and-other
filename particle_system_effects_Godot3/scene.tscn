@@ -2079,7 +2079,7 @@ void vertex() {
 
 void fragment() {
 	vec4 col=texture(texture_albedo,UV);
-	ALBEDO=-clamp((COLOR.rgb/max(1.-col.a,0.001)),0.,10.);//+1.-max(col.a,1.-COLOR.a);
+	ALBEDO=clamp((COLOR.rgb/max(1.-col.a,0.001)),0.,10.);//+1.-max(col.a,1.-COLOR.a);
 	ALPHA=col.a*COLOR.a;
 }
 "
@@ -2434,11 +2434,9 @@ environment = ExtResource( 20 )
 script = ExtResource( 2 )
 max_speed = Vector3( 0.8, 0.2, 0.8 )
 
-[node name="KinematicBody" type="KinematicBody" parent="Camera" groups=[
-"player",
-]]
-input_ray_pickable = false
+[node name="KinematicBody" type="KinematicBody" parent="Camera" groups=["player"]]
 collision_layer = 2
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Camera/KinematicBody"]
 shape = SubResource( 3 )
@@ -2447,13 +2445,11 @@ shape = SubResource( 3 )
 visible = false
 material_override = SubResource( 5 )
 mesh = SubResource( 6 )
-material/0 = null
 
 [node name="mid_debug" type="MeshInstance" parent="Camera"]
 visible = false
 material_override = SubResource( 9 )
 mesh = SubResource( 6 )
-material/0 = null
 
 [node name="floor_scene" parent="." instance=ExtResource( 1 )]
 
@@ -2678,26 +2674,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.789315, -0.06314, 1.48928 )
 material_override = SubResource( 29 )
 cast_shadow = 0
 mesh = SubResource( 30 )
-material/0 = null
 
 [node name="cube" type="MeshInstance" parent="bg_particles/demo_p"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.871903, -0.155258, 2.07328 )
 material_override = SubResource( 31 )
 cast_shadow = 0
 mesh = SubResource( 30 )
-material/0 = null
 
 [node name="cloud" type="MeshInstance" parent="bg_particles/demo_p"]
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.81654, -0.06314, 2.80376 )
 material_override = SubResource( 32 )
 mesh = ExtResource( 23 )
-material/0 = null
 
 [node name="spark" type="MeshInstance" parent="bg_particles/demo_p"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0.811754, -0.06314, 0.999721 )
 material_override = SubResource( 33 )
 mesh = ExtResource( 33 )
-material/0 = null
 
 [node name="sparks_fountain" type="Particles" parent="bg_particles/demo_p"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.713067, -0.583333, -0.600695 )
@@ -2713,7 +2705,6 @@ transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.24683, -0.593333, -3.
 material_override = SubResource( 38 )
 cast_shadow = 0
 mesh = SubResource( 39 )
-material/0 = null
 script = ExtResource( 31 )
 
 [node name="expl" type="Spatial" parent="bg_particles/demo_p/decal_demo"]
@@ -2748,7 +2739,6 @@ draw_pass_1 = ExtResource( 23 )
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.788027, 0 )
 material_override = SubResource( 61 )
 mesh = SubResource( 62 )
-material/0 = null
 
 [node name="cube_repeat" type="Particles" parent="bg_particles"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92296, 0.593333, -0.968742 )
@@ -2765,13 +2755,11 @@ draw_pass_1 = ExtResource( 22 )
 material_override = SubResource( 66 )
 cast_shadow = 0
 mesh = SubResource( 67 )
-material/0 = null
 
 [node name="cube2" type="MeshInstance" parent="bg_particles/cube_repeat"]
 material_override = SubResource( 69 )
 cast_shadow = 0
 mesh = SubResource( 67 )
-material/0 = null
 
 [node name="door_lines" type="Particles" parent="bg_particles"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9332, 0.62161, 1.48292 )
@@ -2903,20 +2891,17 @@ transform = Transform( 0.2, 0, 0, 0, -3.25841e-08, 0.2, 0, -0.2, -3.25841e-08, 0
 material_override = SubResource( 146 )
 cast_shadow = 0
 mesh = ExtResource( 36 )
-material/0 = null
 
 [node name="p1" type="MeshInstance" parent="particle_effects/portal/portal"]
 transform = Transform( 0.2, 0, 0, 0, -3.25841e-08, 0.2, 0, -0.2, -3.25841e-08, 0, 0, 0 )
 material_override = SubResource( 148 )
 mesh = ExtResource( 42 )
-material/0 = null
 
 [node name="p" type="MeshInstance" parent="particle_effects/portal/portal"]
 transform = Transform( 0.2, 0, 0, 0, -3.25841e-08, 0.2, 0, -0.2, -3.25841e-08, 0, 0, 0 )
 material_override = SubResource( 150 )
 cast_shadow = 0
 mesh = ExtResource( 43 )
-material/0 = null
 
 [node name="running" type="Spatial" parent="particle_effects"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39901, 0.0386778, -2.18615 )
@@ -2950,14 +2935,12 @@ transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0
 material_override = SubResource( 157 )
 cast_shadow = 0
 mesh = SubResource( 158 )
-material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="target/target"]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
 material_override = SubResource( 157 )
 cast_shadow = 0
 mesh = SubResource( 158 )
-material/0 = null
 
 [node name="decals_spawn" type="Spatial" parent="."]
 script = ExtResource( 8 )
@@ -2968,7 +2951,6 @@ visible = false
 material_override = SubResource( 160 )
 cast_shadow = 0
 mesh = SubResource( 39 )
-material/0 = null
 script = ExtResource( 5 )
 
 [node name="expl" type="Spatial" parent="decals_spawn/decal"]
@@ -3003,7 +2985,6 @@ draw_pass_1 = ExtResource( 23 )
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.788027, 0 )
 material_override = SubResource( 161 )
 mesh = SubResource( 62 )
-material/0 = null
 
 [node name="spawn" type="Spatial" parent="decals_spawn"]
 

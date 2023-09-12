@@ -1174,6 +1174,6 @@ void fragment(){
 		mainImage(COLOR,fragCoord,iResolution);
 	}
 	else {
-		discard;return;
+		discard;
 	}
 }
