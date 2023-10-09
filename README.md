@@ -13,7 +13,7 @@ ___
 
 **Everything tested** in 2023 on Godot **3.5.2**. Updated few errors to make everything work in 3.5.2+.
 
-*release build and web builds not updated to godot 3.5.2, they stay on godot 3.1-3.3*
+*release build and web builds not updated to godot 3.5.2, they stay on godot 3.1-3.3 because this https://github.com/godotengine/godot/issues/82015 reason*
 
 ___
 *New:*
