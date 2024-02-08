@@ -30,7 +30,8 @@ extends Node2D
 # you can add same ID many times, like ID=1 for all particles, it does not matter for logic
 # creating many particles with same ID allow to control "groups" in single ID data-value
 
-# full page about HOW IT WORK read on this link <LINK>
+# full page about HOW IT WORK read on this link <https://arugl.medium.com/particle-interaction-on-gpu-shaders-particle-physics-logic-in-webgl-compute-dc31a4e7b9cc>
+# mirror <https://danilw.github.io/blog/Particle_interaction_on_GPU_shaders_particle_physics/>
 
 
 var iTime=0.0
