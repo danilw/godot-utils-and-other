@@ -214,6 +214,8 @@ this is GLSL-only logic, example on shadertoy https://www.shadertoy.com/view/tst
 Video [youtube link](https://youtu.be/fRu9PA4XHPQ)
 
 **Building:** Godot 3.5 suppot fp32 framebuffer, works in Godot without changes.
+
+**Blog with additional information** - [**medium blog link**](https://arugl.medium.com/particle-interaction-on-gpu-shaders-particle-physics-logic-in-webgl-compute-dc31a4e7b9cc) - github [*mirror blog post*](https://danilw.github.io/blog/Particle_interaction_on_GPU_shaders_particle_physics/).
 ___
 
 ### **Menu_2DGI**:
